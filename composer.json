@@ -15,7 +15,6 @@
 	"doctrine/dbal": "~2.3",
 	"infyomlabs/swagger-generator": "dev-master",
 	"jlapp/swaggervel": "dev-master"
-
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -24,9 +23,7 @@
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
 	"acoustep/entrust-gui": "5.2.x-dev",
-	"zizaco/entrust": "5.2.x-dev"
-	
-        
+	"zizaco/entrust": "5.2.x-dev"        
     },
     "autoload": {
         "classmap": [
