@@ -58,5 +58,25 @@ class Persona extends Model
         'email' => 'required|email'
     ];
 
+    public function pedidos_cliente(){
+        //return $this->belongsToMany('Pedido');
+        return $this->hasMany('Pedido');
+    }
     
+    public function comercio(){
+        return $this->belongsTo('Comercio');
+    }
+    
+    public function productos(){
+        //return $this->belongsToMany('Producto');
+        return $this->hasMany('Producto');
+    }
+    
+    public function pedidos_despachante(){
+        return $this->belongsToMany('Pedido');       
+    }
+    
+    public function pedidos_gerente(){
+        return $this->belongsToMany('Pedido');       
+    }
 }

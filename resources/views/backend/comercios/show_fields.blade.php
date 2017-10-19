@@ -36,8 +36,8 @@
 
 <!-- Gerente Id Field -->
 <div class="form-group">
-    {!! Form::label('gerente_id', 'Gerente Id:') !!}
-    <p>{!! $comercio->gerente_id !!}</p>
+    {!! Form::label('persona_id', 'Gerente Id:') !!}
+    <p>{!! $comercio->persona_id !!}</p>
 </div>
 
 <!-- Created At Field -->

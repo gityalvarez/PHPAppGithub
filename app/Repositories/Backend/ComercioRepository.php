@@ -25,7 +25,7 @@ class ComercioRepository extends BaseRepository
         'latitud',
         'longitud',
         'logo',
-        'gerente_id'
+        'persona_id'
     ];
 
     /**

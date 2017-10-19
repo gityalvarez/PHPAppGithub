@@ -20,7 +20,7 @@
             <td>{!! $comercio->latitud !!}</td>
             <td>{!! $comercio->longitud !!}</td>
             <td>{!! $comercio->logo !!}</td>
-            <td>{!! $comercio->gerente_id !!}</td>
+            <td>{!! $comercio->persona_id !!}</td>
             <td>{!! $comercio->created_at !!}</td>
             <td>{!! $comercio->updated_at !!}</td>
             <td>

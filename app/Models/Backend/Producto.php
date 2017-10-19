@@ -6,22 +6,21 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Comercio
+ * Class Producto
  * @package App\Models\Backend
- * @version October 18, 2017, 10:25 pm UTC
+ * @version October 18, 2017, 10:35 pm UTC
  *
  * @property string nombre
- * @property string direccion
- * @property string latitud
- * @property string longitud
- * @property string logo
+ * @property integer codigo
+ * @property string imagen
+ * @property integer categoria_id
  * @property integer persona_id
  */
-class Comercio extends Model
+class Producto extends Model
 {
     use SoftDeletes;
 
-    public $table = 'comercios';
+    public $table = 'productos';
     
 
     protected $dates = ['deleted_at'];
@@ -29,10 +28,9 @@ class Comercio extends Model
 
     public $fillable = [
         'nombre',
-        'direccion',
-        'latitud',
-        'longitud',
-        'logo',
+        'codigo',
+        'imagen',
+        'categoria_id',
         'persona_id'
     ];
 
@@ -43,10 +41,9 @@ class Comercio extends Model
      */
     protected $casts = [
         'nombre' => 'string',
-        'direccion' => 'string',
-        'latitud' => 'string',
-        'longitud' => 'string',
-        'logo' => 'string',
+        'codigo' => 'integer',
+        'imagen' => 'string',
+        'categoria_id' => 'integer',
         'persona_id' => 'integer'
     ];
 
@@ -57,13 +54,18 @@ class Comercio extends Model
      */
     public static $rules = [
         'nombre' => 'required',
-        'direccion' => 'required',
-        'persona_id' => 'numeric'
+        'codigo' => 'required',
+        'categoria_id' => 'required|numeric',
+        'persona_id' => 'required|numeric'
     ];
 
     public function articulos(){
         //return $this->belongsToMany('Articulo');
         return $this->hasMany('Articulo');
+    }
+    
+    public function categoria(){
+        return $this->belongsTo('Categoria');
     }
     
     public function persona(){

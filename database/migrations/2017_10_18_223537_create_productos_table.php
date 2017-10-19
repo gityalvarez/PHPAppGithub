@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateComerciosTable extends Migration
+class CreateProductosTable extends Migration
 {
 
     /**
@@ -13,16 +13,16 @@ class CreateComerciosTable extends Migration
      */
     public function up()
     {
-        Schema::create('comercios', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 100)->unique();
-            $table->string('direccion');
-            $table->string('latitud');
-            $table->string('longitud');
-            $table->string('logo');
+            $table->integer('codigo')->unique();
+            $table->string('imagen');
+            $table->integer('categoria_id')->unsigned();
             $table->integer('persona_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->foreign('persona_id')->references('id')->on('personas');
         });
     }
@@ -34,6 +34,6 @@ class CreateComerciosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('comercios');
+        Schema::drop('productos');
     }
 }
