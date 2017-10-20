@@ -24,6 +24,18 @@
 </div>
 @endif
 <div class="form-group">
+    <label for="direccion">Address</label>
+    <input type="name" class="form-control" id="direccion" placeholder="Address" name="direccion" value="{{ (Session::has('errors')) ? old('direccion', '') : $user->direccion }}">
+</div>
+<div class="form-group">
+    <label for="latitud">Latitude</label>
+    <input type="name" class="form-control" id="latitud" placeholder="Latitude" name="latitud" value="{{ (Session::has('errors')) ? old('latitud', '') : $user->latitud }}">
+</div>
+<div class="form-group">
+    <label for="longitud">Longitude</label>
+    <input type="name" class="form-control" id="longitud" placeholder="Longitude" name="longitud" value="{{ (Session::has('errors')) ? old('longitud', '') : $user->longitud }}">
+</div>
+<div class="form-group">
     <label for="roles">Roles</label>
     <select name="roles[]" id="roles" multiple class="form-control">
         @foreach($roles as $index => $role)
