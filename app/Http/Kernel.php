@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        //\App\Http\Middleware\RoleMiddleware::class,   
     ];
 
     /**
@@ -50,5 +51,11 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'entrust-gui.admin' => \Acoustep\EntrustGui\Http\Middleware\AdminAuth::class,
+        //'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        //'gerente'  => \App\Http\Middleware\GerenteMiddleware::class,   
+        //'despachador' => \App\Http\Middleware\DespachadorMiddleware::class,   
+        'role' => \App\Http\Middleware\RoleMiddleware::class,   
+        'permission' => \App\Http\Middleware\PermissionMiddleware::class,   
+        
     ];
 }

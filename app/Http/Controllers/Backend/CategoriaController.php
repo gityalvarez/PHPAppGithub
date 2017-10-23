@@ -18,6 +18,7 @@ class CategoriaController extends AppBaseController
 
     public function __construct(CategoriaRepository $categoriaRepo)
     {
+      
         $this->categoriaRepository = $categoriaRepo;
     }
 
