@@ -1,11 +1,17 @@
-@extends(Config::get('entrust-gui.layout'))
-
+@extends('layouts.app')
 @section('heading', 'Roles')
 
 @section('content')
-<div class="models--actions">
-    <a class="btn btn-labeled btn-primary" href="{{ route('entrust-gui::roles.create') }}"><span class="btn-label"><i class="fa fa-plus"></i></span>{{ trans('entrust-gui::button.create-role') }}</a>
-</div>
+
+<section class="content-header">
+        <h1 class="pull-left">Roles</h1>
+        <h1 class="pull-right">
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('entrust-gui::users.create') }}">Add New</a>
+        </h1>
+    </section>
+
+
+
 <table class="table table-striped">
     <tr>
         <th>Name</th>

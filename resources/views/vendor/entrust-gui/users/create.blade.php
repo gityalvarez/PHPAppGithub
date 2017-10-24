@@ -1,8 +1,12 @@
-@extends(Config::get('entrust-gui.layout'))
-
+@extends('layouts.app')
 @section('heading', 'Create User')
 
 @section('content')
+
+<h1>Crear Usuario</h1>
+
+
+
 <form action="{{ route('entrust-gui::users.store') }}" method="post" role="form">
     @include('entrust-gui::users.partials.form')
     <button type="submit" id="create" class="btn btn-labeled btn-primary"><span class="btn-label"><i class="fa fa-plus"></i></span>{{ trans('entrust-gui::button.create') }}</button>

@@ -1,8 +1,12 @@
-@extends(Config::get('entrust-gui.layout'))
+@extends('layouts.app')
 
 @section('heading', 'Create Permission')
 
 @section('content')
+
+<h1>Crear Permiso</h1>
+
+
 <form action="{{ route('entrust-gui::permissions.store') }}" method="post" role="form">
     @include('entrust-gui::permissions.partials.form')
     <button type="submit" class="btn btn-labeled btn-primary"><span class="btn-label"><i class="fa fa-plus"></i></span>{{ trans('entrust-gui::button.create') }}</button>

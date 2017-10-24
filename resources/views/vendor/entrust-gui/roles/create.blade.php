@@ -1,8 +1,13 @@
-@extends(Config::get('entrust-gui.layout'))
+@extends('layouts.app')
 
 @section('heading', 'Create Role')
 
 @section('content')
+
+<h1>Editar Rol</h1>
+
+
+
 <form action="{{ route('entrust-gui::roles.store') }}" method="post" role="form">
     @include('entrust-gui::roles.partials.form')
     <button type="submit" class="btn btn-labeled btn-primary"><span class="btn-label"><i class="fa fa-plus"></i></span>{{ trans('entrust-gui::button.create') }}</button>

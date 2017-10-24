@@ -1,8 +1,11 @@
-@extends(Config::get('entrust-gui.layout'))
+@extends('layouts.app')
 
 @section('heading', 'Edit Permission')
 
 @section('content')
+
+<h1>Editar Permiso</h1>
+
 <form action="{{ route('entrust-gui::permissions.update', $model->id) }}" method="post" role="form">
 <input type="hidden" name="_method" value="put">
   @include('entrust-gui::permissions.partials.form')

@@ -1,8 +1,10 @@
-@extends(Config::get('entrust-gui.layout'))
-
+@extends('layouts.app')
 @section('heading', 'Edit Role')
 
 @section('content')
+
+<h1>Editar Rol</h1>
+
 <form action="{{ route('entrust-gui::roles.update', $model->id) }}" method="post" role="form">
 <input type="hidden" name="_method" value="put">
   @include('entrust-gui::roles.partials.form')

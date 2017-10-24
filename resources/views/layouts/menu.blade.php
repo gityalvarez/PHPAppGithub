@@ -12,8 +12,16 @@
 </li>
 
 <li class="{{ Request::is('users*') ? 'active' : '' }}">
-    <a href="/admin/users"><i class="fa fa-edit"></i><span>Usuarios</span></a>
+    <a href="{!! route('entrust-gui::users.index') !!}"><i class="fa fa-edit"></i><span>Usuarios</span></a>
 </li>
+<li class="{{ Request::is('roles*') ? 'active' : '' }}">
+    <a href="{!! route('entrust-gui::roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
+</li>
+<li class="{{ Request::is('permissions*') ? 'active' : '' }}">
+    <a href="{!! route('entrust-gui::permissions.index') !!}"><i class="fa fa-edit"></i><span>Permisos</span></a>
+</li>
+
+
 @endrole
 @role('gerente')
 <li class="{{ Request::is('articulos*') ? 'active' : '' }}">
