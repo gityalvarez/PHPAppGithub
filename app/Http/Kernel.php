@@ -50,12 +50,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'entrust-gui.admin' => \Acoustep\EntrustGui\Http\Middleware\AdminAuth::class,
-        //'admin' => \App\Http\Middleware\AdminMiddleware::class,
-        //'gerente'  => \App\Http\Middleware\GerenteMiddleware::class,   
-        //'despachador' => \App\Http\Middleware\DespachadorMiddleware::class,   
-        'role' => \App\Http\Middleware\RoleMiddleware::class,   
-        'permission' => \App\Http\Middleware\PermissionMiddleware::class,   
-        
+        'entrust-gui.admin' => \Acoustep\EntrustGui\Http\Middleware\AdminAuth::class,     
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,  
     ];
 }

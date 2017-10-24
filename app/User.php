@@ -12,11 +12,13 @@ use Illuminate\Database\Eloquent\Model;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Acoustep\EntrustGui\Contracts\HashMethodInterface;
 use Hash;
+use Zizaco\Entrust\HasRole;//importamos la clase HasRole
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, ValidatingModelInterface, HashMethodInterface
 {
   use Authenticatable, CanResetPassword, ValidatingModelTrait, EntrustUserTrait;
-
+  //use HasRole;
+  
     protected $throwValidationExceptions = true;
 
     /**

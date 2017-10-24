@@ -10,6 +10,10 @@
 <li class="{{ Request::is('productos*') ? 'active' : '' }}">
     <a href="{!! route('backend.productos.index') !!}"><i class="fa fa-edit"></i><span>Productos</span></a>
 </li>
+
+<li class="{{ Request::is('users*') ? 'active' : '' }}">
+    <a href="/admin/users"><i class="fa fa-edit"></i><span>Usuarios</span></a>
+</li>
 @endrole
 @role('gerente')
 <li class="{{ Request::is('articulos*') ? 'active' : '' }}">
@@ -17,8 +21,8 @@
 </li>
 @endrole
 
-@permission('read-pedido')
+@role(['gerente','despachador'])
 <li class="{{ Request::is('pedidos*') ? 'active' : '' }}">
     <a href="{!! route('backend.pedidos.index') !!}"><i class="fa fa-edit"></i><span>Pedidos</span></a>
 </li>
-@endpermission
+@endrole
