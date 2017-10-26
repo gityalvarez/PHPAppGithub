@@ -118,3 +118,7 @@ Route::group(['prefix' => '/', 'middleware' => ['role:gerente|despachador']], fu
     Route::get('backend/pedidos/{pedidos}', ['as'=> 'backend.pedidos.show', 'uses' => 'Backend\PedidoController@show']);
     Route::get('backend/pedidos/{pedidos}/edit', ['as'=> 'backend.pedidos.edit', 'uses' => 'Backend\PedidoController@edit']);
 });
+
+Route::post('oauth/access_token', function() {
+    return Response::json(Authorizer::issueAccessToken());
+});
