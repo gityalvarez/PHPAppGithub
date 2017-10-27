@@ -119,6 +119,29 @@ Route::group(['prefix' => '/', 'middleware' => ['role:gerente|despachador']], fu
     Route::get('backend/pedidos/{pedidos}/edit', ['as'=> 'backend.pedidos.edit', 'uses' => 'Backend\PedidoController@edit']);
 });
 
+
+
+/*
 Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
 });
+
+*/
+
+Route::post('oauth/request', function() {
+    return Response::json(Authorizer::issueAccessToken());
+});
+
+Route::group(['middleware' => ['oauth']], function () {
+    Route::resource('user', 'UserController');
+});
+
+
+
+
+
+
+
+
+
+//Route::get('user',['middleware' => 'oauth','users' => 'UserController@index']);

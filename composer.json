@@ -25,8 +25,8 @@
         "symfony/dom-crawler": "2.8.*|3.0.*",
 	"acoustep/entrust-gui": "5.2.x-dev",
 	"zizaco/entrust": "5.2.x-dev",
-        "xethron/migrations-generator": "dev-l5",
-        "way/generators": "dev-feature/laravel-five-stable"
+        "xethron/migrations-generator": "dev-l5"
+        
 	
         
     },

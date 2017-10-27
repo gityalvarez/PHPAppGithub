@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
  * This file is part of OAuth 2.0 Laravel.
  *
@@ -27,10 +29,27 @@ return [
     |
     */
 
+
+
+    'grant_types' => [
+    'password' => [
+        'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
+        'callback' => '\App\OAuth2\Verifier\PasswordGrantVerifier@verify',
+        'access_token_ttl' => 3600
+    ]
+],
+
+
+    /*
+
     'grant_types' => [
         'password' => [
         'class' => 'League\OAuth2\Server\Grant\PasswordGrant',
-        'access_token_tt'’ => 604800,
+        'callback' => '\App\app\Http\Controllers\Verifier@verify',
+        'access_token_ttl' => 604800,
+        //'callback' => '\LucaDegasperi\OAuth2Server\Authorizer::Authorizer@getAccessToken',
+        //'callback' => 'App\Http\Controllers\Auth\AuthController',
+        //'callback' => '\Authorizer::getResourceOwnerId()',
         // the code to run in order to verify the user’s identity
         'callback' => function($username, $password){
             $credentials = [
@@ -45,7 +64,21 @@ return [
             }
         }
         ]
-    ],
+
+
+        'refresh_token' => [
+            'class' => 'League\OAuth2\Server\Grant\RefreshTokenGrant',
+            'access_token_ttl' => 604800,
+            'refresh_token_ttl' => 604800
+        ]
+
+
+
+    ],*/
+
+
+
+
 
     /*
     |--------------------------------------------------------------------------
