@@ -12,9 +12,4 @@ class UserController extends Controller
     {
         return User::all();
     }
-
-    public function store()
-    {
-        return User::all();
-    }
 }
