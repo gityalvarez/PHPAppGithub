@@ -25,6 +25,7 @@ class RolesTableSeeder extends Seeder
                 'description' => '',
                 'created_at' => NULL,
                 'updated_at' => '2017-10-12 21:32:49',
+                'deleted_at' => NULL,
             ),
             1 => 
             array (
@@ -34,6 +35,7 @@ class RolesTableSeeder extends Seeder
                 'description' => '',
                 'created_at' => '2017-10-12 21:35:02',
                 'updated_at' => '2017-10-12 21:35:02',
+                'deleted_at' => NULL,
             ),
             2 => 
             array (
@@ -43,6 +45,7 @@ class RolesTableSeeder extends Seeder
                 'description' => '',
                 'created_at' => '2017-10-12 21:36:15',
                 'updated_at' => '2017-10-12 21:36:15',
+                'deleted_at' => NULL,
             ),
             3 => 
             array (
@@ -52,6 +55,7 @@ class RolesTableSeeder extends Seeder
                 'description' => '',
                 'created_at' => '2017-10-12 21:37:42',
                 'updated_at' => '2017-10-12 21:37:42',
+                'deleted_at' => NULL,
             ),
         ));
         
