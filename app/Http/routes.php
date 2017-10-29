@@ -128,13 +128,7 @@ Route::post('oauth/access_token', function() {
 
 */
 
-Route::post('oauth/request', function() {
-    return Response::json(Authorizer::issueAccessToken());
-});
 
-Route::group(['middleware' => ['oauth']], function () {
-    Route::resource('user', 'UserController');
-});
 
 
 
