@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->decimal('longitud');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
