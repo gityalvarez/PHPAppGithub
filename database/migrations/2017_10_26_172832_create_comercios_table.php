@@ -20,7 +20,7 @@ class CreateComerciosTable extends Migration {
 			$table->string('latitud');
 			$table->string('longitud');
 			$table->string('logo');
-			$table->integer('user_id')->unsigned()->index('comercios_persona_id_foreign');
+			$table->integer('user_id')->unsigned()->index('comercios_persona_id_foreign')->unique();
 			$table->timestamps();
 			$table->softDeletes();
 		});
