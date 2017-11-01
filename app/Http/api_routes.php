@@ -22,6 +22,7 @@ Route::group(['middleware' => ['oauth']], function () {
     Route::resource('articulo', 'ArticuloController');
     Route::resource('comercio', 'ComercioController');
     Route::resource('envio', 'EnvioController');
+    Route::resource('producto', 'ProductoController');
     
 
 });

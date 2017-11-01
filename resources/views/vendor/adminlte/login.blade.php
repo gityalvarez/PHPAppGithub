@@ -51,6 +51,10 @@
                     <div class="col-xs-4">
                         <button type="submit"
                                 class="btn btn-primary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
+
+                               
+
+                                <!--<a href="redirect/google">Login in with Google</a>-->
                     </div>
                     <!-- /.col -->
                 </div>

@@ -81,9 +81,14 @@
         </form>
 
         <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
-
-    </div>
+        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a><br>
+        <!--
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <a href="login/google" class="btn btn-lg waves-effect waves-light btn-block google">Google+</a>
+            </div>
+        </div>
+    -->
     <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->

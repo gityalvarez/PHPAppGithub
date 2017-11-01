@@ -11,7 +11,11 @@ use App\Http\Controllers\Controller;
 class ArticuloController extends Controller
 {
     public function index()
-    {
-        return Articulo::all();
+    { 
+    	
+    	
+    	$articulos=Articulo::all();
+        return response()->json($articulos,200);
+        
     }
 }

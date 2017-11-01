@@ -127,15 +127,9 @@ Route::post('oauth/access_token', function() {
 });
 
 */
+/*
+Route::get('login/google', 'Auth\AuthController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\AuthController@handleProviderCallback');
 
-
-
-
-
-
-
-
-
-
-
+*/
 //Route::get('user',['middleware' => 'oauth','users' => 'UserController@index']);
