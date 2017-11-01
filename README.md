@@ -10,3 +10,6 @@
 8.php artisan infyom.publish:layout 
 9.php artisan serve
 
+01/11
+1.composer dump-autoload
+

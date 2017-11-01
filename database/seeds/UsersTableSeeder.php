@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 2,
                 'name' => 'Leonardo Manzuetti',
-                'email' => 'leomanace@gmail.com',
+                'email' => 'leonardo.admin@gmail.com',
                 'password' => '$2y$10$MB7UQUfTvMVhdJXjhavMa.s/v1uGaYWYAjOZHG5gOzLbxbo6CUSKy',
                 'direccion' => 'Arenal Grande 3884',
                 'latitud' => '-344',
@@ -48,8 +48,8 @@ class UsersTableSeeder extends Seeder
             2 => 
             array (
                 'id' => 3,
-                'name' => 'Juan Gonzalez',
-                'email' => 'jgonzalez@gmail.com',
+                'name' => 'Juan Gerente',
+                'email' => 'juan.gerente@gmail.com',
                 'password' => '$2y$10$AW.WsFkwakiqZ5g9wDo9KeEDamN66.Cvs2CjYbGiCRHQ1uAyWCkGS',
                 'direccion' => 'Avda de las Leyes 2345',
                 'latitud' => '-33',
@@ -63,7 +63,7 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 4,
                 'name' => 'Andres Despachador',
-                'email' => 'despachador@gmail.com',
+                'email' => 'andres.despachador@gmail.com',
                 'password' => '$2y$10$vVXqn4.y32ot1PaV90Do.uqaVwZXMFCy9Sr9YUqIoCOmbroOWE/U2',
                 'direccion' => 'Joaquin Requena 1345',
                 'latitud' => '-77',
@@ -77,7 +77,7 @@ class UsersTableSeeder extends Seeder
             array (
                 'id' => 5,
                 'name' => 'Andrea Gerente',
-                'email' => 'gerente@gmail.com',
+                'email' => 'andrea.gerente@gmail.com',
                 'password' => '$2y$10$fFS/v0/ps4JgIyeJkRPFX.rfLpxgisY8.6mLCQVj2anwG7Sl0pGJC',
                 'direccion' => '19 de Abril 2345',
                 'latitud' => '-35',
@@ -87,8 +87,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => '2017-10-24 20:56:20',
                 'deleted_at' => NULL,
             ),
-        ));
-        
+        )); 
         
     }
 }
