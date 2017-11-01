@@ -58,7 +58,7 @@ Route::group(['prefix' => 'frontend', 'namespace' => 'Frontend'], function () {
     require __DIR__ . '/Routes/frontend_routes.php';
 });
 
-<<<<<<< HEAD
+
 
 
 /*
@@ -73,8 +73,8 @@ Route::get('login/google/callback', 'Auth\AuthController@handleProviderCallback'
 
 */
 //Route::get('user',['middleware' => 'oauth','users' => 'UserController@index']);
-=======
+
 Route::group(['prefix' => 'mobile', 'namespace' => 'WebMobile'], function () {
     require __DIR__ . '/Routes/webmobile_routes.php';
 });
->>>>>>> e2d462c22bf1c5326a0c9bd6b5defa61cf4cd8bd
+
