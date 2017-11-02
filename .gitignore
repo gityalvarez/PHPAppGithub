@@ -6,4 +6,4 @@ Homestead.json
 .env
 composer.json
 composer.lock
-/mobile/node_modules
+mobile/node_modules
