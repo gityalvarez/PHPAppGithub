@@ -42,10 +42,6 @@ Route::controllers(['auth' => 'Auth\AuthController', 'password' => 'Auth\Passwor
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
-/*Route::group(['prefix' => 'admin'], function () {
-    require __DIR__ . '/Routes/backend_routes.php';
-});*/
-
 // Backend con middleware de autenticación, con rutas en Routes/backend_routes.php    
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'admin'], function () {
@@ -58,8 +54,9 @@ Route::group(['prefix' => 'frontend', 'namespace' => 'Frontend'], function () {
     require __DIR__ . '/Routes/frontend_routes.php';
 });
 
-
-
+Route::group(['prefix' => 'mobile', 'namespace' => 'WebMobile'], function () {
+    require __DIR__ . '/Routes/webmobile_routes.php';
+});
 
 /*
 Route::post('oauth/access_token', function() {
@@ -73,8 +70,3 @@ Route::get('login/google/callback', 'Auth\AuthController@handleProviderCallback'
 
 */
 //Route::get('user',['middleware' => 'oauth','users' => 'UserController@index']);
-
-Route::group(['prefix' => 'mobile', 'namespace' => 'WebMobile'], function () {
-    require __DIR__ . '/Routes/webmobile_routes.php';
-});
-
