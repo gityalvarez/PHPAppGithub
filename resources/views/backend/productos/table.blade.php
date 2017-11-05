@@ -4,7 +4,7 @@
             <th>Nombre</th>
         <th>Codigo</th>
         <th>Imagen</th>
-        <th>Categoria Id</th>
+        <th>Categoria</th>
         <th>Admin Id</th>
             <th colspan="3">Action</th>
         </tr>
@@ -14,8 +14,12 @@
         <tr>
             <td>{!! $producto->nombre !!}</td>
             <td>{!! $producto->codigo !!}</td>
-            <td>{!! $producto->imagen !!}</td>
-            <td>{!! $producto->categoria_id !!}</td>
+            @if (!empty($producto->imagen))
+                <td><img src="{{ asset($producto->imagen) }}" width="100" height="50"/></td>
+            @else
+                <td>Producto sin imagen...</td>
+            @endif
+            <td>{!! $producto->categoria->nombre !!}</td>
             <td>{!! $producto->user_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['backend.productos.destroy', $producto->id], 'method' => 'delete']) !!}

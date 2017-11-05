@@ -31,7 +31,11 @@
 <!-- Logo Field -->
 <div class="form-group">
     {!! Form::label('logo', 'Logo:') !!}
-    <p>{!! $comercio->logo !!}</p>
+    @if (!empty($comercio->logo))
+        <p><img src="{{ asset($comercio->logo) }}" width="350" height="200"/></p>
+    @else
+        <p>Comercio sin logo...</p>
+    @endif
 </div>
 
 <!-- User Id Field -->

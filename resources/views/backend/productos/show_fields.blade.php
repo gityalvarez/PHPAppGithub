@@ -19,13 +19,17 @@
 <!-- Imagen Field -->
 <div class="form-group">
     {!! Form::label('imagen', 'Imagen:') !!}
-    <p>{!! $producto->imagen !!}</p>
+    @if (!empty($producto->imagen))
+        <p><img src="{{ asset($producto->imagen) }}" width="350" height="200"/></p>
+    @else
+        <p>Producto sin imagen...</p>
+    @endif
 </div>
 
 <!-- Categoria Id Field -->
 <div class="form-group">
-    {!! Form::label('categoria_id', 'Categoria Id:') !!}
-    <p>{!! $producto->categoria_id !!}</p>
+    {!! Form::label('categoria_nombre', 'Categoría:') !!}
+    <p>{!! $producto->categoria->nombre !!}</p>
 </div>
 
 <!-- User Id Field -->

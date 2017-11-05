@@ -18,14 +18,14 @@
 
 <!-- Producto Id Field -->
 <div class="form-group">
-    {!! Form::label('producto_id', 'Producto Id:') !!}
-    <p>{!! $articulo->producto_id !!}</p>
+    {!! Form::label('producto', 'Producto:') !!}
+    <p>{!! $articulo->producto->nombre !!}</p>
 </div>
 
 <!-- Comercio Id Field -->
 <div class="form-group">
-    {!! Form::label('comercio_id', 'Comercio Id:') !!}
-    <p>{!! $articulo->comercio_id !!}</p>
+    {!! Form::label('comercio', 'Comercio:') !!}
+    <p>{!! $articulo->comercio->nombre !!}</p>
 </div>
 
 <!-- Created At Field -->

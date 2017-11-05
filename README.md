@@ -13,3 +13,9 @@
 01/11
 1.composer dump-autoload
 
+04/11
+1.Se cambiaron vistas del backend entre otras cosas para visualizar las imagenes.
+2.Se empezó con el frontend con base en los archivos del infyom pero a mano, sin generarlos.
+3.Para probar el frontend la direccion es http://localhost:8000/frontend
+4.Funcionan Ver Lista Articulos y Ver Lista Comercios por ahora...
+

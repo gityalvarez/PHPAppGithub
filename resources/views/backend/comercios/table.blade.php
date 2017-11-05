@@ -17,7 +17,11 @@
             <td>{!! $comercio->direccion !!}</td>
             <td>{!! $comercio->latitud !!}</td>
             <td>{!! $comercio->longitud !!}</td>
-            <td>{!! $comercio->logo !!}</td>
+            @if (!empty($comercio->logo))
+                <td><img src="{{ asset($comercio->logo) }}" width="100" height="50"/></td>
+            @else
+                <td>Comercio sin logo...</td>
+            @endif
             <td>{!! $comercio->user_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['backend.comercios.destroy', $comercio->id], 'method' => 'delete']) !!}

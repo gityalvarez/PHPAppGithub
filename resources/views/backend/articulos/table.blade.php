@@ -2,9 +2,9 @@
     <thead>
         <tr>
             <th>Stock</th>
-        <th>Precio</th>
-        <th>Producto Id</th>
-        <th>Comercio Id</th>
+            <th>Precio</th>
+            <th>Producto</th>
+            <th>Comercio</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
@@ -13,8 +13,8 @@
         <tr>
             <td>{!! $articulo->stock !!}</td>
             <td>{!! $articulo->precio !!}</td>
-            <td>{!! $articulo->producto_id !!}</td>
-            <td>{!! $articulo->comercio_id !!}</td>
+            <td>{!! $articulo->producto->nombre !!}</td>
+            <td>{!! $articulo->comercio->nombre !!}</td>
             <td>
                 {!! Form::open(['route' => ['backend.articulos.destroy', $articulo->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
