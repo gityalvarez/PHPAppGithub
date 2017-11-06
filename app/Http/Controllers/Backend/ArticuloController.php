@@ -12,6 +12,9 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Backend\Producto;
 use App\Models\Backend\Comercio;
+use Auth;
+
+
 
 class ArticuloController extends AppBaseController
 {
@@ -46,7 +49,9 @@ class ArticuloController extends AppBaseController
     public function create()
     {
         $productos = Producto::all();
-        $comercios = Comercio::all();
+        $id = Auth::id();
+        $comercios = Comercio::where('user_id', $id);
+        //$comercios = Comercio::all()->where('user_id','=', $id);
         return view('backend.articulos.create')->with('productos',$productos)->with('comercios',$comercios);
     }
 
