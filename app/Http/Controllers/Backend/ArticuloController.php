@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\Backend\Producto;
+use App\Models\Backend\Comercio;
 
 class ArticuloController extends AppBaseController
 {
@@ -43,7 +45,9 @@ class ArticuloController extends AppBaseController
      */
     public function create()
     {
-        return view('backend.articulos.create');
+        $productos = Producto::all();
+        $comercios = Comercio::all();
+        return view('backend.articulos.create')->with('productos',$productos)->with('comercios',$comercios);
     }
 
     /**
