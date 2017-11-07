@@ -81,7 +81,7 @@
         </form>
 
         <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a><br>
+       <!-- <a href="{{ url('/register') }}" class="text-center">Register a new membership</a><br>-->
         <!--
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-6">

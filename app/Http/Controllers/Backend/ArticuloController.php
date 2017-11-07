@@ -13,6 +13,7 @@ use Response;
 use App\Models\Backend\Producto;
 use App\Models\Backend\Comercio;
 use Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 
 
@@ -33,10 +34,13 @@ class ArticuloController extends AppBaseController
      * @return Response
      */
     public function index(Request $request)
-    {
-        $this->articuloRepository->pushCriteria(new RequestCriteria($request));
-        $articulos = $this->articuloRepository->all();
-
+    {  
+        $articulos = collect([]);
+        $productos = Producto::where('nombre','like','%'.$request->input('search').'%')->get();
+        foreach ($productos as $producto){
+            $articulosaux = $producto->articulos()->get();
+            $articulos = $articulos->merge($articulosaux);   
+        }        
         return view('backend.articulos.index')
             ->with('articulos', $articulos);
     }
