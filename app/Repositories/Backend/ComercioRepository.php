@@ -20,8 +20,8 @@ class ComercioRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'nombre',
-        'direccion',
+        'nombre'=>'like',
+        'direccion'=>'like',
         'latitud',
         'longitud',
         'logo',
