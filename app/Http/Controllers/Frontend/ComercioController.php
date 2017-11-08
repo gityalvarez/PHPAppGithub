@@ -48,6 +48,14 @@ class ComercioController extends AppBaseController
 
         return view('frontend.comercios.show')->with('comercio', $comercio);
     }
+
+    public function mapeo()
+    {
+        $comercios = Comercio::all();
+
+        return view('frontend.comercios.mapeo')
+            ->with('comercios', $comercios);
+    }
 }
 
 

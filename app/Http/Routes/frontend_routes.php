@@ -22,3 +22,5 @@ Route::get('articulos/{articulos}', ['as'=> 'frontend.articulos.show', 'uses' =>
 Route::get('comercios', ['as'=> 'frontend.comercios.index', 'uses' => 'ComercioController@index']);
 
 Route::get('comercios/{comercios}', ['as'=> 'frontend.comercios.show', 'uses' => 'ComercioController@show']);
+
+Route::get('mapacomercios', ['as'=> 'frontend.comercios.mapeo', 'uses' => 'ComercioController@mapeo']);

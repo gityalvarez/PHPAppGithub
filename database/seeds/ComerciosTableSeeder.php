@@ -22,8 +22,8 @@ class ComerciosTableSeeder extends Seeder
                 'id' => 1,
                 'nombre' => 'Devoto Suc Cordon',
                 'direccion' => 'Arenal Grande 2341',
-                'latitud' => '-55',
-                'longitud' => '-77',
+                'latitud' => '-34.8924003',
+                'longitud' => '-56.2504233',
                 'logo' => 'https://www.devoto.com.uy/mvdcms/imgnoticias/201408/W655/2014.jpg',
                 'user_id' => 2,
                 'created_at' => '2017-10-20 02:01:16',
@@ -33,15 +33,16 @@ class ComerciosTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 2,
-                'nombre' => 'Tata Suc Tres Cruces',
-                'direccion' => 'Goes 4563',
-                'latitud' => '-38',
-                'longitud' => '-64',
-                'logo' => 'http://institucional.tata.com.uy/wp-content/uploads/2014/03/Montevideo-115-Tres-Cruces.png',
+                'nombre' => 'Tata Suc union',
+                'direccion' => 'avenida 8 de Octubre 3723',
+                'latitud' => '-34.87525805',
+                'longitud' => '-56.1414468957355',
+                'logo' => 'http://institucional.tata.com.uy/wp-content/uploads/2014/04/Montevideo-102-Union.png',
                 'user_id' => 5,
                 'created_at' => '2017-10-20 02:01:16',
                 'updated_at' => '2017-10-20 02:01:16',
-                'deleted_at' => NULL,
+                'deleted_at' => NULL, 
+                
             ),
             
         ));

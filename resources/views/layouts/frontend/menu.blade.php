@@ -10,8 +10,8 @@
     <a href="{!! route('frontend.comercios.index') !!}"><i class="fa fa-eye"></i><span>Ver Lista Comercios</span></a>
 </li>
 
-<li class="{{ Request::is('comercios*') ? 'active' : '' }}">
-    <a href=""><i class="fa fa-eye"></i><span>Ver Mapa Comercios</span></a>
+<li class="{{ Request::is('mapacomercios*') ? 'active' : '' }}">
+    <a href="{!! route('frontend.comercios.mapeo') !!}"><i class="fa fa-eye"></i><span>Ver Mapa Comercios</span></a>
 </li>
 
 <li class="{{ Request::is('pedidos*') ? 'active' : '' }}">
