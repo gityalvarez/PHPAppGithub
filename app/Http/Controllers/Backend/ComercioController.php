@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Storage;
 
 class ComercioController extends AppBaseController
 {
@@ -54,13 +55,14 @@ class ComercioController extends AppBaseController
      * @return Response
      */
     public function store(CreateComercioRequest $request)
-    {
-        $input = $request->all();
-
+    {        
+        $file = $request->file('logo_comercio'); 
+        $input = $request->except(['logo_comercio']);
+        $newFilename =  'logo-comercio.'.$file->getClientOriginalName();
+        Storage::disk('public')->put($newFilename, file_get_contents($file));       
+        $input['logo'] = storage_path('app/public'). DIRECTORY_SEPARATOR .$newFilename;
         $comercio = $this->comercioRepository->create($input);
-
         Flash::success('Comercio saved successfully.');
-
         return redirect(route('backend.comercios.index'));
     }
 
