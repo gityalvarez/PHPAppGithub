@@ -19,8 +19,17 @@ Route::get('articulos', ['as'=> 'frontend.articulos.index', 'uses' => 'ArticuloC
 
 Route::get('articulos/{articulos}', ['as'=> 'frontend.articulos.show', 'uses' => 'ArticuloController@show']);
 
+// Route::get('articulos/search', ['as'=> 'frontend.articulos.search', 'uses' => 'ArticuloController@search']);
+
 Route::get('comercios', ['as'=> 'frontend.comercios.index', 'uses' => 'ComercioController@index']);
 
 Route::get('comercios/{comercios}', ['as'=> 'frontend.comercios.show', 'uses' => 'ComercioController@show']);
 
 Route::get('mapacomercios', ['as'=> 'frontend.comercios.mapeo', 'uses' => 'ComercioController@mapeo']);
+
+Route::get('pedidos', ['as'=> 'frontend.pedidos.index', 'uses' => 'PedidoController@index']);
+
+Route::post('pedidos', ['as'=> 'frontend.pedidos.search', 'uses' => 'PedidoController@search']);
+
+//Route::get('pedidos/search/{pedidos}', ['as'=> 'frontend.pedidos.show', 'uses' => 'PedidoController@search']);
+

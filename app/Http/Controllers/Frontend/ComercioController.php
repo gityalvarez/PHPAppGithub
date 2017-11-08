@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Backend\Comercio;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\Backend\ComercioRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Illuminate\Http\Request;
 use Flash;
+use Response;
 
 class ComercioController extends AppBaseController
 {
-    
-    public function __construct()
-    {       
-       // contructor vacío 
+    /** @var  ComercioRepository */
+    private $comercioRepository;
+
+    public function __construct(ComercioRepository $comercioRepo)
+    {
+        $this->comercioRepository = $comercioRepo;
     }
 
     /**
@@ -21,10 +25,10 @@ class ComercioController extends AppBaseController
      * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $comercios = Comercio::all();
-
+        $this->comercioRepository->pushCriteria(new RequestCriteria($request));
+        $comercios = $this->comercioRepository->all();
         return view('frontend.comercios.index')
             ->with('comercios', $comercios);
     }
@@ -38,21 +42,20 @@ class ComercioController extends AppBaseController
      */
     public function show($id)
     {
-        $comercio = Comercio::find($id);
-
+        $comercio = $this->comercioRepository->findWithoutFail($id);
         if (empty($comercio)) {
             Flash::error('Comercio not found');
-
             return redirect(route('frontend.comercios.index'));
         }
-
-        return view('frontend.comercios.show')->with('comercio', $comercio);
+        return view('frontend.comercios.show')
+            ->with('comercio', $comercio);
     }
-
-    public function mapeo()
+    
+    
+    public function mapeo(Request $request)
     {
-        $comercios = Comercio::all();
-
+        $this->comercioRepository->pushCriteria(new RequestCriteria($request));
+        $comercios = $this->comercioRepository->all();
         return view('frontend.comercios.mapeo')
             ->with('comercios', $comercios);
     }

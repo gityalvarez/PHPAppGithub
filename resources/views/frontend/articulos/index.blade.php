@@ -1,12 +1,14 @@
 @extends('layouts.frontend.app')
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Articulos</h1>        
+        <h1 class="pull-left">Articulos
+            <p></p>
+            @include('frontend.buscar',['url'=>'articulos?search'])
+            <p></p>
+        </h1>        
     </section>
     <div class="content">
-        <div class="clearfix"></div>
-
-        @include('flash::message')
+        <div class="clearfix"></div>        
 
         <div class="clearfix"></div>
         <div class="box box-primary">

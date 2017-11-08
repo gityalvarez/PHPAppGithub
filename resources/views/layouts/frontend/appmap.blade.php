@@ -88,8 +88,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
     <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
     
+    <script type="text/javascript">
+       var map = L.map('map').setView([-34.866944, -56.166667], 13);
+       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        @foreach ($comercios as $comercio)
+          var marker = L.marker([{!! $comercio->latitud !!},{!! $comercio->longitud !!}]).addTo(map).bindPopup("<p>{!! $comercio->nombre !!}</p><br />{!! $comercio->direccion !!}");  
+        @endforeach        
+    </script>
+
     @yield('scripts')
 </body>
 </html>

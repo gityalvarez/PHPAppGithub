@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Backend\Articulo;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\Backend\ArticuloRepository;
 use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Flash;
 
 class ArticuloController extends AppBaseController
-{
-    
-    public function __construct()
-    {        
+{   
+    private $articuloRepository;
+
+    public function __construct(ArticuloRepository $articuloRepo)
+    {
+        $this->articuloRepository = $articuloRepo;
     }
 
     /**
@@ -20,14 +23,14 @@ class ArticuloController extends AppBaseController
      * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articulos = Articulo::all();
-
+        $this->articuloRepository->pushCriteria(new RequestCriteria($request));
+        $articulos = $this->articuloRepository->all();
         return view('frontend.articulos.index')
-            ->with('articulos', $articulos);
+            ->with('articulos', $articulos, 'comercios', null);
     }
-
+    
     /**
      * Display the specified Articulo.
      *
@@ -37,14 +40,12 @@ class ArticuloController extends AppBaseController
      */
     public function show($id)
     {
-        $articulo = Articulo::find($id);
-
+        $articulo = $this->articuloRepository->findWithoutFail($id);
         if (empty($articulo)) {
             Flash::error('Articulo not found');
-
             return redirect(route('frontend.articulos.index'));
         }
-
-        return view('frontend.articulos.show')->with('articulo', $articulo);
-    }
+        return view('frontend.articulos.show')->with('articulo', $articulo, 'comercios', null);
+    }   
+    
 }

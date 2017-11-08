@@ -1,7 +1,11 @@
 @extends('layouts.frontend.app')
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Comercios</h1>        
+        <h1 class="pull-left">Comercios
+            <p></p>
+            @include('frontend.buscar',['url'=>'comercios?search'])
+            <p></p>
+        </h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>

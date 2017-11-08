@@ -15,7 +15,7 @@
 </li>
 
 <li class="{{ Request::is('pedidos*') ? 'active' : '' }}">
-    <a href=""><i class="fa fa-search"></i><span>Buscar Pedido</span></a>
+    <a href="{!! route('frontend.pedidos.index') !!}"><i class="fa fa-search"></i><span>Buscar Pedido</span></a>
 </li>
 
 
