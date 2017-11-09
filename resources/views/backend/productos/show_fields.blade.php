@@ -20,7 +20,7 @@
 <div class="form-group">
     {!! Form::label('imagen', 'Imagen:') !!}
     @if (!empty($producto->imagen))
-        <p><img src="{{ asset($producto->imagen) }}" width="350" height="200"/></p>
+        <p><img src="{{ asset('storage/'.$producto->imagen) }}" width="350" height="200"/></p>
     @else
         <p>Producto sin imagen...</p>
     @endif

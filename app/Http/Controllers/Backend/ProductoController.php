@@ -60,7 +60,7 @@ class ProductoController extends AppBaseController
         $input = $request->except(['imagen_producto']);
         $newFilename =  'imagen-producto-'.str_random(15).'.'.$file->getClientOriginalExtension();
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
-        $input['imagen'] = storage_path('app/public'). DIRECTORY_SEPARATOR .$newFilename;
+        $input['imagen'] = /*storage_path('app/public'). DIRECTORY_SEPARATOR .*/$newFilename;
         $producto = $this->productoRepository->create($input);
         Flash::success('Producto saved successfully.');
         return redirect(route('backend.productos.index'));

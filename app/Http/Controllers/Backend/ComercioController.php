@@ -60,7 +60,7 @@ class ComercioController extends AppBaseController
         $input = $request->except(['logo_comercio']);
         $newFilename =  'logo-comercio-'.str_random(15).'.'.$file->getClientOriginalExtension();
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
-        $input['logo'] = storage_path('app/public'). DIRECTORY_SEPARATOR .$newFilename;
+        $input['logo'] = /*storage_path('app/public'). DIRECTORY_SEPARATOR .*/$newFilename;
         $comercio = $this->comercioRepository->create($input);
         Flash::success('Comercio saved successfully.');
         return redirect(route('backend.comercios.index'));

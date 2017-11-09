@@ -18,7 +18,7 @@
             <td>{!! $comercio->latitud !!}</td>
             <td>{!! $comercio->longitud !!}</td>
             @if (!empty($comercio->logo))
-                <td><img src="{{ asset($comercio->logo) }}" width="100" height="50"/></td>
+                <td><img src="{{ asset('storage/'.$comercio->logo) }}" width="100" height="50"/></td>
             @else
                 <td>Comercio sin logo...</td>
             @endif
