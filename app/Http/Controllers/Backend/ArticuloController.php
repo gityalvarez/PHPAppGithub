@@ -12,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Backend\Producto;
 use App\Models\Backend\Comercio;
+use App\Models\Backend\Articulo;
 use Auth;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -35,12 +36,10 @@ class ArticuloController extends AppBaseController
      */
     public function index(Request $request)
     {  
-        $articulos = collect([]);
-        $productos = Producto::where('nombre','like','%'.$request->input('search').'%')->get();
-        foreach ($productos as $producto){
-            $articulosaux = $producto->articulos()->get();
-            $articulos = $articulos->merge($articulosaux);   
-        }        
+        $palabra = '%'.$request->input('search').'%';
+        $articulos = Articulo::whereHas('producto',function($query) use($palabra){
+            $query->where('nombre', 'like', $palabra);
+        })->get();
         return view('backend.articulos.index')
             ->with('articulos', $articulos);
     }

@@ -30,7 +30,7 @@
 
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'Gerente Id:') !!}<p></p>
+    {!! Form::label('user_id', 'Gerente Id:') !!}<p></p>    
     {!! Form::select('user_id', $gerentes->pluck('name','id'), ['class' => 'form-control']) !!}
 </div>
 
