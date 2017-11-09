@@ -104,8 +104,9 @@ class ProductoController extends AppBaseController
 
             return redirect(route('backend.productos.index'));
         }
+        $categorias = Categoria::all();
 
-        return view('backend.productos.edit')->with('producto', $producto);
+        return view('backend.productos.edit')->with('producto', $producto)->with('categorias',$categorias);
     }
 
     /**

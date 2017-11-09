@@ -100,14 +100,15 @@ class ComercioController extends AppBaseController
     public function edit($id)
     {
         $comercio = $this->comercioRepository->findWithoutFail($id);
-
         if (empty($comercio)) {
             Flash::error('Comercio not found');
 
             return redirect(route('backend.comercios.index'));
         }
-
-        return view('backend.comercios.edit')->with('comercio', $comercio);
+        $gerentes = User::whereHas('roles',function($query){
+            $query->where('id',2);
+        });    
+        return view('backend.comercios.edit')->with('comercio', $comercio)->with('gerentes',$gerentes);
     }
 
     /**
