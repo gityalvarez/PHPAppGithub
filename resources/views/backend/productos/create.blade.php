@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'backend.productos.store']) !!}
+                    {!! Form::open(['route' => 'backend.productos.store','files'=>true]) !!}
 
                         @include('backend.productos.fields')
 

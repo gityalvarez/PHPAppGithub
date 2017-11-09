@@ -13,7 +13,7 @@
 <!-- Imagen Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('imagen', 'Imagen:') !!}
-    {!! Form::text('imagen', null, ['class' => 'form-control']) !!}
+    {!!Form::file('imagen_producto',['class'=>'form-control'])!!}
 </div>
 
 <!-- Categoria Id Field -->

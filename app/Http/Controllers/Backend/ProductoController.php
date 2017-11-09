@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Storage;
 
 class ProductoController extends AppBaseController
 {
@@ -55,12 +56,13 @@ class ProductoController extends AppBaseController
      */
     public function store(CreateProductoRequest $request)
     {
-        $input = $request->all();
-
+        $file = $request->file('imagen_producto'); 
+        $input = $request->except(['imagen_producto']);
+        $newFilename =  'imagen-producto-'.str_random(15).'.'.$file->getClientOriginalExtension();
+        Storage::disk('public')->put($newFilename, file_get_contents($file));       
+        $input['imagen'] = storage_path('app/public'). DIRECTORY_SEPARATOR .$newFilename;
         $producto = $this->productoRepository->create($input);
-
         Flash::success('Producto saved successfully.');
-
         return redirect(route('backend.productos.index'));
     }
 
