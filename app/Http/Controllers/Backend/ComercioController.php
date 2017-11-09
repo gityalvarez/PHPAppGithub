@@ -59,12 +59,18 @@ class ComercioController extends AppBaseController
      * @return Response
      */
     public function store(CreateComercioRequest $request)
-    {        
-        $file = $request->file('logo_comercio'); 
+    {   
+        if(!$request->validate([
+            'logo_comercio' =>'required|image|mimes:jpg,png|image_size:<=300'
+        ])){
+            abort(404);
+        }
+        $file = $request->file('logo_comercio');
+        
         $input = $request->except(['logo_comercio']);
-        $newFilename =  'logo-comercio-'.str_random(15).'.'.$file->getClientOriginalExtension();
+        $newFilename =  'logo-comercio-'.$file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
-        $input['logo'] = /*storage_path('app/public'). DIRECTORY_SEPARATOR .*/$newFilename;
+        $input['logo'] =$newFilename;
         $comercio = $this->comercioRepository->create($input);
         Flash::success('Comercio saved successfully.');
         return redirect(route('backend.comercios.index'));
