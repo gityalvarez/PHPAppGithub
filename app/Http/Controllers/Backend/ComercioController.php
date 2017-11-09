@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Storage;
+use App\User;
 
 class ComercioController extends AppBaseController
 {
@@ -44,7 +45,10 @@ class ComercioController extends AppBaseController
      */
     public function create()
     {
-        return view('backend.comercios.create');
+        $gerentes = User::whereHas('roles',function($query){
+            $query->where('id',2);
+        });
+        return view('backend.comercios.create')->with('gerentes',$gerentes);
     }
 
     /**
