@@ -18,9 +18,10 @@
 
 <!-- Categoria Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('categoria_id', 'Categoria Id:') !!}
-    {!! Form::number('categoria_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('categoria_id', 'Categoria:') !!}<p></p>
+    {!! Form::select('categoria_id', $categorias->pluck('nombre','id'), ['class' => 'form-control']) !!}
 </div>
+    
 
 <!-- User Id Field -->
 <div class="form-group col-sm-6">

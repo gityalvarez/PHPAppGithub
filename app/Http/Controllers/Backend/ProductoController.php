@@ -11,6 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Storage;
+use App\Models\Backend\Categoria;
 
 class ProductoController extends AppBaseController
 {
@@ -44,7 +45,8 @@ class ProductoController extends AppBaseController
      */
     public function create()
     {
-        return view('backend.productos.create');
+        $categorias = Categoria::all();
+        return view('backend.productos.create')->with('categorias',$categorias);
     }
 
     /**
