@@ -14,7 +14,7 @@ class ComerciosTableSeeder extends Seeder
     {
         
 
-        \DB::table('comercios')->delete();
+        //\DB::table('comercios')->delete();
         
         \DB::table('comercios')->insert(array (
             0 => 
