@@ -3,7 +3,7 @@
     <section class="content-header">
         <h1 class="pull-left">Comercios
             <p></p>
-            @include('frontend.buscar',['url'=>'comercios?search'])
+            @include('frontend.comercios.search',['url'=>'comercios?search'])
             <p></p>
         </h1>
     </section>

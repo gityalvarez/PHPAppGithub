@@ -14,7 +14,7 @@
 <div class="form-group">
     {!! Form::label('logo', 'Logo:') !!}
     @if (!empty($comercio->logo))
-        <p><img src="{{ asset($comercio->logo) }}" width="350" height="200"/></p>
+        <p><img src="{{ asset('storage/'.$comercio->logo) }}" width="350" height="200"/></p>
     @else
         <p>Comercio sin logo...</p>
     @endif

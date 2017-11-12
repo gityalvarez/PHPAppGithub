@@ -16,7 +16,7 @@
                     <div class="form-group">
                         {!! Form::text('numero', null, ['required' => 'required', 'class' => 'form-control', 'placeholder' => 'Número de Pedido']) !!}                        
                     </div>
-                    <button type="submit" class="btn btn-default">Buscar</button>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
                 {!! Form::close() !!}
             </div>
         </div>

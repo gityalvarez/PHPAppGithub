@@ -14,7 +14,7 @@
 <div class="form-group">
     {!! Form::label('producto_image', 'Imagen:') !!}
     @if (!empty($articulo->producto->imagen))
-        <p><img src="{{ asset($articulo->producto->imagen) }}" width="350" height="200"/></p>
+        <p><img src="{{ asset('storage/'.$articulo->producto->imagen) }}" width="350" height="200"/></p>
     @else
         <p>Producto sin imagen...</p>
     @endif
@@ -36,7 +36,7 @@
 <div class="form-group">
     {!! Form::label('comercio_logo', 'Logo:') !!}
     @if (!empty($articulo->comercio->logo))
-        <p><img src="{{ asset($articulo->comercio->logo) }}" width="350" height="200"/></p>
+        <p><img src="{{ asset('storage/'.$articulo->comercio->logo) }}" width="350" height="200"/></p>
     @else
         <p>Comercio sin logo...</p>
     @endif

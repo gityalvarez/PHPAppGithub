@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('frontend.articulos.show_fields')
-                    <a href="{!! route('frontend.articulos.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('frontend.articulos.index') !!}" class="btn btn-primary">Volver</a>
                 </div>
             </div>
         </div>
