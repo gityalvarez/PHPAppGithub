@@ -8,7 +8,7 @@
         </h1>
         
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('backend.articulos.create') !!}">Add New</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('backend.articulos.create') !!}">Nuevo Articulo</a>
         </h1>
     </section>
     <div class="content">

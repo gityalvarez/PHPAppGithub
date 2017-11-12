@@ -6,7 +6,7 @@
 <section class="content-header">
         <h1 class="pull-left">Usuarios</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('entrust-gui::users.create') }}">Add New</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('entrust-gui::users.create') }}">Nuevo Usuario</a>
         </h1>
     </section>
 
@@ -20,8 +20,8 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Address</th>
-    <th>Actions</th>
+    <th>Direccion</th>
+    <th>Acciones</th>
   </tr>
   @foreach($users as $user)
     <tr>
