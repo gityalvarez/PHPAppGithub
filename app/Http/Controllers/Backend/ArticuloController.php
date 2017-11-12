@@ -106,14 +106,15 @@ class ArticuloController extends AppBaseController
     public function edit($id)
     {
         $articulo = $this->articuloRepository->findWithoutFail($id);
-
+        $comercios = $articulo->comercio();
+        $productos = $articulo->producto();
         if (empty($articulo)) {
             Flash::error('Articulo not found');
 
             return redirect(route('backend.articulos.index'));
         }
 
-        return view('backend.articulos.edit')->with('articulo', $articulo);
+        return view('backend.articulos.edit')->with('articulo', $articulo)->with('comercios',$comercios)->with('productos',$productos);
     }
 
     /**
