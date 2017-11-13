@@ -15,7 +15,7 @@
             <td>{!! $producto->nombre !!}</td>
             <td>{!! $producto->codigo !!}</td>
             @if (!empty($producto->imagen))
-                <td><img src="{{ asset('storage/'.$producto->imagen) }}" width="100" height="50"/></td>
+                <td><img src="{{ asset('storage/'.$producto->imagen) }}" width="100" height="80"/></td>
             @else
                 <td>Producto sin imagen...</td>
             @endif
