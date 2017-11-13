@@ -28,7 +28,7 @@ class ArticuloController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::lists('nombre', 'id')->all();
         if ($request->input('rangoprecios') <> 0)
         {
             $rangoprecios = $request->input('rangoprecios');
