@@ -7,7 +7,7 @@
 <section class="content-header">
         <h1 class="pull-left">Permisos</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('entrust-gui::users.create') }}">Nuevo permiso</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('entrust-gui::permissions.create') }}">Nuevo permiso</a>
         </h1>
     </section>
 

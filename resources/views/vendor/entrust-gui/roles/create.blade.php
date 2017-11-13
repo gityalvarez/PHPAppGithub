@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Editar Rol</h1>
+<h1>Crear Rol</h1>
 
 
 
