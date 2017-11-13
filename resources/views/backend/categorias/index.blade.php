@@ -9,7 +9,7 @@
         @include('backend.buscar',['url'=>'categorias?search'])
 
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('backend.categorias.create') !!}">Nueva categoria</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('backend.categorias.create') !!}">Nueva Categoria</a>
         </h1>
     </section>
 

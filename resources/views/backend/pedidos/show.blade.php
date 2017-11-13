@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('backend.pedidos.show_fields')
-                    <a href="{!! route('backend.pedidos.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('backend.pedidos.index') !!}" class="btn btn-default">Volver</a>
                 </div>
             </div>
         </div>
