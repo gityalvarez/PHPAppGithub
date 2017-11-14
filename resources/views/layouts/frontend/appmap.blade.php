@@ -35,7 +35,7 @@
 
             <!-- Logo -->
             <a class="logo">
-                <img class="img-responsive" src="http://dliltd.com/wp-content/uploads/2013/06/our_experties_header1.jpg"/>
+                <img class="img-responsive" src="{{ asset('storage/imagenes/headerfrontend.jpg') }}"/>
             </a>
 
             <!-- Header Navbar -->
@@ -53,14 +53,15 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/-->
-                                <img src="http://i1.wp.com/blog.intradebook.com/wp-content/uploads/2017/09/export4.jpg"
-                                     class="user-image" alt="Enterprise Image"/>                            </a>
+                                <img src="{{ asset('storage/imagenes/logofrontend.jpg') }}"
+                                     class="user-image" alt="Enterprise Image"/>
+                            </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
                                     <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                          class="img-circle" alt="User Image"/-->
-                                    <img src="http://i1.wp.com/blog.intradebook.com/wp-content/uploads/2017/09/export4.jpg"
+                                    <img src="{{ asset('storage/imagenes/logofrontend.jpg') }}"
                                          class="img-circle" alt="Entreprise Image"/>     
                                 </li>                                
                             </ul>
