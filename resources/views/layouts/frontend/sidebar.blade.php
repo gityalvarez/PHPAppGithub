@@ -8,7 +8,7 @@
             <div class="pull-left image">
                 <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
                      alt="User Image"/-->
-                <img src="{{ asset('storage/imagenes/sidebarfrontend.jpg') }}" class="img-circle"
+                <img src="{{ asset('imagenes/sidebarfrontend.jpg') }}" class="img-circle"
                      alt="Menu Image"/>
             </div>  
             <div class="pull-left info">
