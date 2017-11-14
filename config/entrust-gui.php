@@ -1,7 +1,7 @@
 <?php
 return [
     "layout" => "entrust-gui::app",
-    "route-prefix" => "admin",
+    "route-prefix" => "admin/backend",
     "pagination" => [
         "users" => 5,
         "roles" => 5,
@@ -12,6 +12,9 @@ return [
     "middleware-role" => 'admin',
     "confirmable" => false,
     "users" => [
-      'fieldSearchable' => [],
+      'fieldSearchable' => [
+        'name'=>'like',
+        'email'=>'like',
+        'roles.name'=>'like'],
     ],
 ];

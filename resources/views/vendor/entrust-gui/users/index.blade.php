@@ -7,9 +7,8 @@
         <h1 class="pull-left">Usuarios</h1>
         <!--Estos br son para darle el espacio del search-->
         <br/>
-        <br/>
-        <br/>
-        <br/>
+        @include('backend.buscar',['url'=>'users?search'])
+      
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{{ route('entrust-gui::users.create') }}">Nuevo Usuario</a>
         </h1>
