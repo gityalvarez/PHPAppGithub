@@ -14,7 +14,11 @@
                 <div class="row">
                     {!! Form::open(['route' => 'backend.pedidos.store']) !!}
 
-                        @include('backend.pedidos.fields')
+                        @include('backend.pedidos.clients')
+
+                        @include('backend.pedidos.articles_list')
+
+
 
                     {!! Form::close() !!}
                 </div>
@@ -22,3 +26,6 @@
         </div>
     </div>
 @endsection
+
+
+

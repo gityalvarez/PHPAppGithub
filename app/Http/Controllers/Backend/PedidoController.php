@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
+use App\Models\Backend\Comercio;
+use App\User;
 
 class PedidoController extends AppBaseController
 {
@@ -32,6 +35,7 @@ class PedidoController extends AppBaseController
         $this->pedidoRepository->pushCriteria(new RequestCriteria($request));
         $pedidos = $this->pedidoRepository->all();
 
+
         return view('backend.pedidos.index')
             ->with('pedidos', $pedidos);
     }
@@ -43,7 +47,23 @@ class PedidoController extends AppBaseController
      */
     public function create()
     {
-        return view('backend.pedidos.create');
+        $id = Auth::id();
+        $comercio = Comercio::where('user_id', $id)->first();
+        $articulos = $comercio->articulos()->get();
+        //dd($articulos);
+
+       // $clientes = User::all()->hasRole('4');
+
+        $clientes = User::whereHas('roles',function($query){
+            $query->where('id',4);
+        });
+
+
+        return view('backend.pedidos.create')
+            ->with('articulos',$articulos)
+            ->with('clientes',$clientes);
+
+
     }
 
     /**

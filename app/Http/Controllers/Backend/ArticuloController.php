@@ -54,7 +54,6 @@ class ArticuloController extends AppBaseController
         $productos = Producto::all();
         $id = Auth::id();
         $comercios = Comercio::where('user_id', $id);
-        //$comercios = Comercio::all()->where('user_id','=', $id);
         return view('backend.articulos.create')->with('productos',$productos)->with('comercios',$comercios);
     }
 
