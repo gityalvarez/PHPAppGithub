@@ -12,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Auth;
 use App\Models\Backend\Comercio;
+use App\Models\Backend\Pedido;
 use App\User;
 
 class PedidoController extends AppBaseController
@@ -32,13 +33,44 @@ class PedidoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
+        if ($user -> hasRole('despachador'))
+        {
+            $pedidos = Pedido::where('estado', 'disponible')->get();
+            if (!empty($pedidos))
+            {
+                return view('backend.pedidos.index')
+                -> with('pedidos', $pedidos)
+                -> with('user', $user); 
+            }
+            else 
+            {
+                Flash::error('No existen Pedidos a despachar.');             
+                return view('backend.pedidos.index');
+            }              
+        }
+        if ($user -> hasRole('gerente'))
+        {
+            //$pedidos = $user->gerentePedidos()->get();
+            $pedidos = Pedido::all();
+            return view('backend.pedidos.index')
+                -> with('pedidos', $pedidos)
+                -> with('user', $user);
+        }
         $this->pedidoRepository->pushCriteria(new RequestCriteria($request));
         $pedidos = $this->pedidoRepository->all();
-
-
         return view('backend.pedidos.index')
+            ->with('pedidos', $pedidos)
+            -> with('user', $user);
+    }
+        
+    public function despatch(Request $request)
+    {
+        $pedidos = Pedido::where('estado', 'disponible')->get();
+        return view('backend.pedidos.dispatch')
             ->with('pedidos', $pedidos);
     }
+
 
     /**
      * Show the form for creating a new Pedido.
