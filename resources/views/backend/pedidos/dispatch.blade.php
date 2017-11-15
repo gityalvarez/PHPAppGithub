@@ -3,6 +3,8 @@
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Despachar Pedidos</h1>
+        <br>
+        <br>
     </section>
     <div class="content">
         <div class="clearfix"></div>
@@ -12,14 +14,13 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                {!! Form::open(['route' => 'backend.pedidos.create']) !!}>
+                {!! Form::open(['route' => 'backend.pedidos.send']) !!}  
                 
-                @include('backend.pedidos.orders_list')                    
+                @include('backend.pedidos.orders_list')
+                
+                {!! Form::close() !!}                
             </div>                          
-        </div>
-        <div>
-            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="">Despachar Pedidos</a>
-        </div>
+        </div>        
     </div>
 @endsection
 

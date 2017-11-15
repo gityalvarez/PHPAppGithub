@@ -14,8 +14,10 @@
                 {!! Form::open(['route' => ['backend.pedidos.destroy', $pedido->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('backend.pedidos.show', [$pedido->id]) !!}" class='btn btn-default btn-xs'><i class="fa fa-eye"> Ver</i></a>
+                    @if ($user -> hasRole('gerente'))
                     <a href="{!! route('backend.pedidos.edit', [$pedido->id]) !!}" class='btn btn-default btn-xs'><i class="fa fa-pencil"> Editar</i></a>
                     {!! Form::button('<i class="fa fa-trash"> Borrar</i>', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Realmente está seguro?')"]) !!}
+                    @endif
                 </div>
                 {!! Form::close() !!}
             </td>

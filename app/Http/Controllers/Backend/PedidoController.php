@@ -70,6 +70,11 @@ class PedidoController extends AppBaseController
         return view('backend.pedidos.dispatch')
             ->with('pedidos', $pedidos);
     }
+    
+    public function send(Request $request)
+    {
+        return "Llego aca...";
+    }
 
 
     /**
