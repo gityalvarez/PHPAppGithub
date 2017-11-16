@@ -5,7 +5,7 @@
         @if ($user -> hasRole('gerente'))
         <h1 class="pull-left">Pedidos del Gerente</h1>
         <br>
-        <br>
+        @include('backend.buscar',['url'=>'pedidos?search'])
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('backend.pedidos.create') !!}">Nuevo Pedido</a>
         </h1>

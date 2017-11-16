@@ -54,16 +54,18 @@ class PedidoController extends AppBaseController
         if ($user -> hasRole('gerente'))
         {
             //$pedidos = $user->gerentePedidos()->get();
-            $pedidos = Pedido::all();
+            //$pedidos = Pedido::all();
+            $estado = '%'.$request->input('search').'%';
+            $pedidos = Pedido::where('estado', 'like', $estado)->get();
             return view('backend.pedidos.index')
                 -> with('pedidos', $pedidos)
                 -> with('user', $user);
         }
-        $this->pedidoRepository->pushCriteria(new RequestCriteria($request));
+        /*$this->pedidoRepository->pushCriteria(new RequestCriteria($request));
         $pedidos = $this->pedidoRepository->all();
         return view('backend.pedidos.index')
             -> with('pedidos', $pedidos)
-            -> with('user', $user);
+            -> with('user', $user);*/
     }
         
     public function despatch(Request $request)
