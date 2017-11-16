@@ -1,7 +1,5 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
 <script type="text/javascript">
-
 $(document).ready(function(){
     $('.checkbox').on('change',function(){
         var $row = $(this).parents('tr');
@@ -19,12 +17,7 @@ $(document).ready(function(){
 });
 </script>
 
-
 <h2>Total: <span class='total'></span></h2>
-
-
-
-
 <table class="table table-responsive table-striped" id="articles">    
         <tr>
             <th>Stock</th>
@@ -33,7 +26,6 @@ $(document).ready(function(){
             <th>Imagen</th>
             <th>Seleccionar</th>
             <th>Cantidad</th>
-
         </tr>    
     @foreach($articulos as $articulo)
         <tbody>
