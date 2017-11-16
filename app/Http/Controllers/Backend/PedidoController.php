@@ -53,10 +53,17 @@ class PedidoController extends AppBaseController
         }
         if ($user -> hasRole('gerente'))
         {
-            //$pedidos = $user->gerentePedidos()->get();
+            
             //$pedidos = Pedido::all();
+            if (empty($request->input('search')))
+            {
+                $pedidos = $user->gerentePedidos()->get();
+            }
+            else
+            {
             $estado = '%'.$request->input('search').'%';
             $pedidos = Pedido::where('estado', 'like', $estado)->get();
+            }
             return view('backend.pedidos.index')
                 -> with('pedidos', $pedidos)
                 -> with('user', $user);
@@ -81,7 +88,9 @@ class PedidoController extends AppBaseController
         $user = Auth::user();
         foreach ($pedidos as $id)
         {
-          Pedido::find($id)->update(['estado' => 'despachado']);  
+          $pedido = Pedido::find($id);
+          $pedido->update(['estado' => 'despachado']);
+          $pedido->despachantes()->attach($user->id);
         }
         $pedidos = Pedido::where('estado', 'creado')->get();
         return view('backend.pedidos.index')
