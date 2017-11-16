@@ -72,7 +72,7 @@ class ComercioController extends AppBaseController
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
         $input['logo'] =$newFilename;
         $comercio = $this->comercioRepository->create($input);
-        Flash::success('Comercio saved successfully.');
+        Flash::success('Comercio guardado exitosamente');
         return redirect(route('backend.comercios.index'));
     }
 
@@ -88,7 +88,7 @@ class ComercioController extends AppBaseController
         $comercio = $this->comercioRepository->findWithoutFail($id);
 
         if (empty($comercio)) {
-            Flash::error('Comercio not found');
+            Flash::error('Comercio no encontrado');
 
             return redirect(route('backend.comercios.index'));
         }
@@ -107,7 +107,7 @@ class ComercioController extends AppBaseController
     {
         $comercio = $this->comercioRepository->findWithoutFail($id);
         if (empty($comercio)) {
-            Flash::error('Comercio not found');
+            Flash::error('Comercio no encontrado');
 
             return redirect(route('backend.comercios.index'));
         }
@@ -130,14 +130,14 @@ class ComercioController extends AppBaseController
         $comercio = $this->comercioRepository->findWithoutFail($id);
 
         if (empty($comercio)) {
-            Flash::error('Comercio not found');
+            Flash::error('Comercio no encontrado');
 
             return redirect(route('backend.comercios.index'));
         }
 
         $comercio = $this->comercioRepository->update($request->all(), $id);
 
-        Flash::success('Comercio updated successfully.');
+        Flash::success('Comercio actualizado exitosamente');
 
         return redirect(route('backend.comercios.index'));
     }
@@ -154,14 +154,14 @@ class ComercioController extends AppBaseController
         $comercio = $this->comercioRepository->findWithoutFail($id);
 
         if (empty($comercio)) {
-            Flash::error('Comercio not found');
+            Flash::error('Comercio no encontrado');
 
             return redirect(route('backend.comercios.index'));
         }
 
         $this->comercioRepository->delete($id);
 
-        Flash::success('Comercio deleted successfully.');
+        Flash::success('Comercio borrado exitosamente.');
 
         return redirect(route('backend.comercios.index'));
     }

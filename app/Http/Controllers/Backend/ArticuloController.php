@@ -70,7 +70,7 @@ class ArticuloController extends AppBaseController
 
         $articulo = $this->articuloRepository->create($input);
 
-        Flash::success('Articulo saved successfully.');
+        Flash::success('Articulo guardado exitosamente');
 
         return redirect(route('backend.articulos.index'));
     }
@@ -87,7 +87,7 @@ class ArticuloController extends AppBaseController
         $articulo = $this->articuloRepository->findWithoutFail($id);
 
         if (empty($articulo)) {
-            Flash::error('Articulo not found');
+            Flash::error('Articulo no encontrado');
 
             return redirect(route('backend.articulos.index'));
         }
@@ -108,7 +108,7 @@ class ArticuloController extends AppBaseController
         $comercios = $articulo->comercio();
         $productos = $articulo->producto();
         if (empty($articulo)) {
-            Flash::error('Articulo not found');
+            Flash::error('Articulo no encontrado');
 
             return redirect(route('backend.articulos.index'));
         }
@@ -129,14 +129,14 @@ class ArticuloController extends AppBaseController
         $articulo = $this->articuloRepository->findWithoutFail($id);
 
         if (empty($articulo)) {
-            Flash::error('Articulo not found');
+            Flash::error('Articulo no encontrado');
 
             return redirect(route('backend.articulos.index'));
         }
 
         $articulo = $this->articuloRepository->update($request->all(), $id);
 
-        Flash::success('Articulo updated successfully.');
+        Flash::success('Articulo actualizado exitosamente');
 
         return redirect(route('backend.articulos.index'));
     }
@@ -153,14 +153,14 @@ class ArticuloController extends AppBaseController
         $articulo = $this->articuloRepository->findWithoutFail($id);
 
         if (empty($articulo)) {
-            Flash::error('Articulo not found');
+            Flash::error('Articulo no encontrado');
 
             return redirect(route('backend.articulos.index'));
         }
 
         $this->articuloRepository->delete($id);
 
-        Flash::success('Articulo deleted successfully.');
+        Flash::success('Articulo borrado exitosamente');
 
         return redirect(route('backend.articulos.index'));
     }
