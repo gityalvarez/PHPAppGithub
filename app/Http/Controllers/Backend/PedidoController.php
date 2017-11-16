@@ -49,7 +49,7 @@ class PedidoController extends AppBaseController
             }
             else 
             {
-                Flash::error('No existen Pedidos a despachar.');             
+                Flash::error('No existen Pedidos a despachar');             
                 return view('backend.pedidos.index')
                     -> with('pedidos', $pedidos)
                     -> with('user', $user);
@@ -57,16 +57,14 @@ class PedidoController extends AppBaseController
         }
         if ($user -> hasRole('gerente'))
         {
-            
-            //$pedidos = Pedido::all();
             if (empty($request->input('search')))
             {
                 $pedidos = $user->gerentePedidos()->get();
             }
             else
             {
-            $estado = '%'.$request->input('search').'%';
-            $pedidos = Pedido::where('estado', 'like', $estado)->get();
+                $estado = '%'.$request->input('search').'%';
+                $pedidos = $user->gerentePedidos()->where('estado', 'like', $estado)->get();             
             }
             return view('backend.pedidos.index')
                 -> with('pedidos', $pedidos)
@@ -113,20 +111,12 @@ class PedidoController extends AppBaseController
         $id = Auth::id();
         $comercio = Comercio::where('user_id', $id)->first();
         $articulos = $comercio->articulos()->get();
-        //dd($articulos);
-
-       // $clientes = User::all()->hasRole('4');
-
         $clientes = User::whereHas('roles',function($query){
             $query->where('id',4);
-        });
-
-
+        })->get();
         return view('backend.pedidos.create')
             ->with('articulos',$articulos)
             ->with('clientes',$clientes);
-
-
     }
 
     /**

@@ -1,17 +1,17 @@
 <table class="table table-responsive table-striped" id="articulos-table">    
         <tr>
-            <th>Stock</th>
+            <th>Producto</th>            
             <th>Precio</th>
-            <th>Producto</th>
+            <th>Stock</th>
             <th>Imagen</th>
             <th>Comercio</th>
             <th colspan="3">Acciones</th>
         </tr>    
     @foreach($articulos as $articulo)
         <tr>
-            <td>{!! $articulo->stock !!}</td>   
-            <td>{!! $articulo->precio !!}</td>
-            <td>{!! $articulo->producto->nombre !!}</td>
+            <td>{!! $articulo->producto->nombre !!}</td>             
+            <td>{!! $articulo->precio !!}</td> 
+            <td>{!! $articulo->stock !!}</td>
             @if (!empty($articulo->producto->imagen))
                 <td><img src="{{ asset('storage/'.$articulo->producto->imagen) }}" width="100" height="80"/></td>
             @else

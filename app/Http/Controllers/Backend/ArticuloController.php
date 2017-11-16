@@ -36,12 +36,43 @@ class ArticuloController extends AppBaseController
      */
     public function index(Request $request)
     {  
+        $user = Auth::user();
+        if ($user -> hasRole('gerente'))
+        {
+            if (empty($request->input('search')))
+            {
+                $comercio = Comercio::where('user_id', $user->id)->get()->first();
+                $articulos = Articulo::where('comercio_id', $comercio->id)->get();
+                if ($articulos->count() > 0)
+                {
+                    return view('backend.articulos.index')
+                        -> with('articulos', $articulos); 
+                }
+                else 
+                {
+                    Flash::error('No existen Articulos asociados');             
+                    return view('backend.articulos.index')
+                        -> with('articulos', $articulos);
+                }   
+            }
+            else
+            {
+                $producto = '%'.$request->input('search').'%';
+                $comercio = Comercio::where('user_id', $user->id)->get()->first();
+                $articulos = Articulo::where('comercio_id', $comercio->id)
+                    ->whereHas('producto',function($query) use($producto){
+                        $query->where('nombre', 'like', $producto);
+                    })->get();
+                return view('backend.articulos.index')
+                    ->with('articulos', $articulos);             
+            }           
+        }        
         $palabra = '%'.$request->input('search').'%';
         $articulos = Articulo::whereHas('producto',function($query) use($palabra){
-            $query->where('nombre', 'like', $palabra);
-        })->get();
+                $query->where('nombre', 'like', $palabra);
+            })->get();
         return view('backend.articulos.index')
-            ->with('articulos', $articulos);
+            ->with('articulos', $articulos); 
     }
 
     /**
@@ -54,7 +85,9 @@ class ArticuloController extends AppBaseController
         $productos = Producto::all();
         $id = Auth::id();
         $comercios = Comercio::where('user_id', $id);
-        return view('backend.articulos.create')->with('productos',$productos)->with('comercios',$comercios);
+        return view('backend.articulos.create')
+                ->with('productos',$productos)
+                ->with('comercios',$comercios);
     }
 
     /**
@@ -92,7 +125,8 @@ class ArticuloController extends AppBaseController
             return redirect(route('backend.articulos.index'));
         }
 
-        return view('backend.articulos.show')->with('articulo', $articulo);
+        return view('backend.articulos.show')
+                ->with('articulo', $articulo);
     }
 
     /**
@@ -113,7 +147,10 @@ class ArticuloController extends AppBaseController
             return redirect(route('backend.articulos.index'));
         }
 
-        return view('backend.articulos.edit')->with('articulo', $articulo)->with('comercios',$comercios)->with('productos',$productos);
+        return view('backend.articulos.edit')
+                ->with('articulo', $articulo)
+                ->with('comercios',$comercios)
+                ->with('productos',$productos);
     }
 
     /**
