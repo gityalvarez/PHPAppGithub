@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('direccion');
-            $table->decimal('latitud');
-            $table->decimal('longitud');
+            $table->decimal('latitud',10,8);
+            $table->decimal('longitud',10,8);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
