@@ -14,7 +14,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                {!! Form::open(['route' => 'backend.pedidos.send']) !!}  
+                {!! Form::open(['route' => 'backend.pedidos.send', 'method' => 'POST']) !!}  
                 
                 @include('backend.pedidos.orders_list')
                 

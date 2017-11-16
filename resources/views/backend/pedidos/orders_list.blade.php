@@ -13,8 +13,8 @@
             <td>
                 <div class='btn-group'>
                     <a href="{!! route('backend.pedidos.show', [$pedido->id]) !!}" class='btn btn-default btn-xs'><i class="fa fa-eye"> Ver</i></a>
-                    
-                    Seleccionar {!! Form::checkbox('pedido', $pedido->id, null, ['class' => 'field']) !!}
+                    {!! Form::label('seleccionar', ' Seleccionar ') !!} 
+                    {!! Form::checkbox('pedidos[]', $pedido->id, null, ['class' => 'field']) !!}
                 </div>
                 
             </td>
@@ -24,9 +24,7 @@
     <!--div>
          <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="">Despachar Pedidos</a>
     </div-->
-<div class="pull-right">
-<div class="form-group col-sm-12 ">
+<div class="form-group pull-right">
     {!! Form::submit('Despachar Pedidos', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('backend.pedidos.index') !!}" class="btn btn-default">Cancelar</a>
-</div>
 </div>

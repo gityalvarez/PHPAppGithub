@@ -36,17 +36,19 @@ class PedidoController extends AppBaseController
         $user = Auth::user();
         if ($user -> hasRole('despachador'))
         {
-            $pedidos = Pedido::where('estado', 'disponible')->get();
-            if (!empty($pedidos))
+            $pedidos = Pedido::where('estado', 'creado')->get();
+            if ($pedidos->count() > 0)
             {
                 return view('backend.pedidos.index')
-                -> with('pedidos', $pedidos)
-                -> with('user', $user); 
+                    -> with('pedidos', $pedidos)
+                    -> with('user', $user); 
             }
             else 
             {
                 Flash::error('No existen Pedidos a despachar.');             
-                return view('backend.pedidos.index');
+                return view('backend.pedidos.index')
+                    -> with('pedidos', $pedidos)
+                    -> with('user', $user);
             }              
         }
         if ($user -> hasRole('gerente'))
@@ -60,20 +62,29 @@ class PedidoController extends AppBaseController
         $this->pedidoRepository->pushCriteria(new RequestCriteria($request));
         $pedidos = $this->pedidoRepository->all();
         return view('backend.pedidos.index')
-            ->with('pedidos', $pedidos)
+            -> with('pedidos', $pedidos)
             -> with('user', $user);
     }
         
     public function despatch(Request $request)
     {
-        $pedidos = Pedido::where('estado', 'disponible')->get();
+        $pedidos = Pedido::where('estado', 'creado')->get();
         return view('backend.pedidos.dispatch')
             ->with('pedidos', $pedidos);
     }
     
     public function send(Request $request)
     {
-        return "Llego aca...";
+        $pedidos = $request -> pedidos;
+        $user = Auth::user();
+        foreach ($pedidos as $id)
+        {
+          Pedido::find($id)->update(['estado' => 'despachado']);  
+        }
+        $pedidos = Pedido::where('estado', 'creado')->get();
+        return view('backend.pedidos.index')
+            -> with('user', $user)
+            -> with('pedidos', $pedidos);
     }
 
 
