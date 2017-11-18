@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 </script>
 
-<h2>Total: <span class='total'></span></h2>
+<b>Total:</b> <span class='total'></span>
 <table class="table table-responsive table-striped" id="articles">    
         <tr>
             <th>Stock</th>
@@ -29,17 +29,17 @@ $(document).ready(function(){
         </tr>    
     @foreach($articulos as $articulo)
         <tbody>
-        <tr class='item'>
-            <td>{!! $articulo->stock !!}</td>   
-            <td> <input name='precio' class='form-control precio' value="{!! $articulo->precio !!}" readonly='readonly'></td>
+        <tr class="item">
+            <td>{!! $articulo->stock !!}</td> 
+            <td> <input type="text" name="precios[]" class="form-control precio" value="{!! $articulo->precio !!}" readonly='readonly'></td>
             <td>{!! $articulo->producto->nombre !!}</td>
             @if (!empty($articulo->producto->imagen))
                 <td><img src="{{ asset('storage/'.$articulo->producto->imagen) }}" width="100" height="80"/></td>
             @else
                 <td>Articulo sin imagen...</td>
             @endif
-            <td><input type="checkbox" value="" class='checkbox'></td>
-            <td><input type="number" style="display:none"  name='cantidad' class='form-control cantidad' min=0 ></td>
+            <td><input name="articulos[]" type="checkbox" value="{!! $articulo->id !!}" class="checkbox"></td>
+            <td><input name="cantidades[]" type="number" style="display:none" class="form-control cantidad" min=0></td>
         </tr>
         </tbody>
     @endforeach    

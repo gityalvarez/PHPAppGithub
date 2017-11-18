@@ -113,7 +113,7 @@ class PedidoController extends AppBaseController
         $articulos = $comercio->articulos()->get();
         $clientes = User::whereHas('roles',function($query){
             $query->where('id',4);
-        })->get();
+        })->lists('name', 'id')->all();
         return view('backend.pedidos.create')
             ->with('articulos',$articulos)
             ->with('clientes',$clientes);
@@ -128,6 +128,55 @@ class PedidoController extends AppBaseController
      */
     public function store(CreatePedidoRequest $request)
     {
+        $pedido = new Pedido();
+        $pedido->estado='creado';
+        $pedido->user_id=$request->cliente_id;
+        $total = 0;
+        for ($i=0; $i < count($request->articulos); $i++){
+            if ($i == 0){
+                $proximo = 0;
+            }            
+            else {
+                $proximo ++;
+            }
+            $encontrado = false;
+            while ($proximo < count($request->cantidades) && !$encontrado){
+                if ($request->cantidades[$proximo] != ""){
+                    $encontrado = true;
+                    //dd($encontrado);
+                }
+                else {
+                    $proximo ++;
+                }
+            }
+            $total = $total + ($request->precios[$proximo] * $request->cantidades[$proximo]);            
+        }
+        $pedido->total=$total;        
+        $pedido->save();
+        $ultimopedido = Pedido::all()->last();
+        for ($i=0; $i < count($request->articulos); $i++){
+            $proximo = $i;
+            $encontrado = false;
+            while ($proximo < count($request->cantidades) && !$encontrado){
+                if ($request->cantidades[$proximo] != ""){
+                    $encontrado = true;
+                }
+                else {
+                    $proximo ++;
+                }
+            }
+            $ultimopedido->articulos()->attach($request->articulos[$i], ['cantidad' => $request->cantidades[$proximo]]);            
+        }
+        $gerente_id = Auth::id();
+        $ultimopedido->gerentes()->attach($gerente_id);
+        Flash::success('Pedido guardado exitosamente.');
+
+        return redirect(route('backend.pedidos.index'));
+    }
+    
+    
+    /*public function store(CreatePedidoRequest $request)
+    {
         $input = $request->all();
 
         $pedido = $this->pedidoRepository->create($input);
@@ -135,8 +184,8 @@ class PedidoController extends AppBaseController
         Flash::success('Pedido guardado exitosamente.');
 
         return redirect(route('backend.pedidos.index'));
-    }
-
+    }*/
+    
     /**
      * Display the specified Pedido.
      *

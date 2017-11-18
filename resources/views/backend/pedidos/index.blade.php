@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         @if ($user -> hasRole('gerente'))
-        <h1 class="pull-left">Pedidos del Gerente</h1>
+        <h1 class="pull-left">Pedidos</h1>
         <br>
         @include('backend.buscar',['url'=>'pedidos?search'])
         <h1 class="pull-right">
