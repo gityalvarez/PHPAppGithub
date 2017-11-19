@@ -13,6 +13,7 @@ use Response;
 use Auth;
 use App\Models\Backend\Comercio;
 use App\Models\Backend\Pedido;
+use App\Models\Backend\Articulo;
 use App\User;
 
 class PedidoController extends AppBaseController
@@ -129,26 +130,29 @@ class PedidoController extends AppBaseController
     public function store(CreatePedidoRequest $request)
     {
         $pedido = new Pedido();
-        $pedido->estado='creado';
-        $pedido->user_id=$request->cliente_id;
+        $pedido->estado = 'creado';
+        $pedido->user_id = $request->cliente_id;
         $total = 0;
+        //dd($request->articulos,$request->cantidades,$request->precios);
         for ($i=0; $i < count($request->articulos); $i++){
             if ($i == 0){
                 $proximo = 0;
             }            
             else {
                 $proximo ++;
-            }
+            }            
             $encontrado = false;
             while ($proximo < count($request->cantidades) && !$encontrado){
                 if ($request->cantidades[$proximo] != ""){
                     $encontrado = true;
-                    //dd($encontrado);
                 }
                 else {
                     $proximo ++;
                 }
             }
+            $articulo = Articulo::find($request->articulos[$i]);
+            $articulo->stock = $articulo->stock - $request->cantidades[$proximo];
+            $articulo->save();
             $total = $total + ($request->precios[$proximo] * $request->cantidades[$proximo]);            
         }
         $pedido->total=$total;        
@@ -170,7 +174,6 @@ class PedidoController extends AppBaseController
         $gerente_id = Auth::id();
         $ultimopedido->gerentes()->attach($gerente_id);
         Flash::success('Pedido guardado exitosamente.');
-
         return redirect(route('backend.pedidos.index'));
     }
     

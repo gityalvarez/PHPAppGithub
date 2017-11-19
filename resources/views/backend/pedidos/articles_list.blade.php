@@ -30,8 +30,9 @@ $(document).ready(function(){
     @foreach($articulos as $articulo)
         <tbody>
         <tr class="item">
-            <td>{!! $articulo->stock !!}</td> 
-            <td> <input type="text" name="precios[]" class="form-control precio" value="{!! $articulo->precio !!}" readonly='readonly'></td>
+            <!--td>{!! $articulo->stock !!}</td--> 
+            <td> <input type="text" name="stocks[]" class="form-control" value="{!! $articulo->stock !!}" readonly="readonly" size="1"></td>
+            <td> <input type="text" name="precios[]" class="form-control precio" value="{!! $articulo->precio !!}" readonly="readonly" size="2"></td>
             <td>{!! $articulo->producto->nombre !!}</td>
             @if (!empty($articulo->producto->imagen))
                 <td><img src="{{ asset('storage/'.$articulo->producto->imagen) }}" width="100" height="80"/></td>
