@@ -74,7 +74,7 @@ class Pedido extends Model
      **/
     public function articulos()
     {
-        return $this->belongsToMany(\App\Models\Backend\Articulo::class, 'articulo_pedido');
+        return $this->belongsToMany(\App\Models\Backend\Articulo::class, 'articulo_pedido')->withPivot('cantidad');
     }
 
     /**

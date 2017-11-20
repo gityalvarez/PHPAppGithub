@@ -16,9 +16,38 @@ $(document).ready(function(){
     });
 });
 </script>
-
-<b>Total:</b> <span class='total'></span>
-<table class="table table-responsive table-striped" id="articles">    
+<!--style type="text/css">
+.table-fixed{
+  width: 100%;
+  background-color: #f3f3f3;
+  tbody{
+    height:200px;
+    overflow-y:auto;
+    width: 100%;
+    }
+  thead,tbody,tr,td,th{
+    display:block;
+  }
+  tbody{
+    td{
+      float:left;
+    }
+  }
+  thead {
+    tr{
+      th{
+       float:left;
+       background-color: #f39c12;
+       border-color:#e67e22;
+      }
+    }
+  }
+}
+</style-->
+<b>Total:</b> <span class="total"></span>
+<div style="margin:0px; padding:6px; width:100%; margin-bottom: 10px; height:390px; overflow:auto">
+<table class="table table-responsive table-striped" id="articles">
+        <div style="display:block; position:fixed">
         <tr>
             <th>Stock</th>
             <th>Precio</th>
@@ -26,11 +55,11 @@ $(document).ready(function(){
             <th>Imagen</th>
             <th>Seleccionar</th>
             <th>Cantidad</th>
-        </tr>    
-    @foreach($articulos as $articulo)
-        <tbody>
+        </tr>
+        </div>
+     <tbody>        
+    @foreach($articulos as $articulo)           
         <tr class="item">
-            <!--td>{!! $articulo->stock !!}</td--> 
             <td> <input type="text" name="stocks[]" class="form-control" value="{!! $articulo->stock !!}" readonly="readonly" size="1"></td>
             <td> <input type="text" name="precios[]" class="form-control precio" value="{!! $articulo->precio !!}" readonly="readonly" size="2"></td>
             <td>{!! $articulo->producto->nombre !!}</td>
@@ -41,11 +70,11 @@ $(document).ready(function(){
             @endif
             <td><input name="articulos[]" type="checkbox" value="{!! $articulo->id !!}" class="checkbox"></td>
             <td><input name="cantidades[]" type="number" style="display:none" class="form-control cantidad" min=0></td>
-        </tr>
-        </tbody>
-    @endforeach    
-</table>
-
+        </tr>        
+    @endforeach
+    </tbody>
+ </table>
+</div>
 <div class="pull-right">
 <div class="form-group col-sm-12 ">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}

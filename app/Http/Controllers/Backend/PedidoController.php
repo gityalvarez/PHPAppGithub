@@ -7,6 +7,7 @@ use App\Http\Requests\Backend\UpdatePedidoRequest;
 use App\Repositories\Backend\PedidoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+//use Illuminate\Pagination\Paginator;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -52,7 +53,7 @@ class PedidoController extends AppBaseController
             {
                 Flash::error('No existen Pedidos a despachar');             
                 return view('backend.pedidos.index')
-                    -> with('pedidos', $pedidos)
+                    -> with('pedidos', $pedidos/*->paginate()*/)
                     -> with('user', $user);
             }              
         }
@@ -205,8 +206,12 @@ class PedidoController extends AppBaseController
 
             return redirect(route('backend.pedidos.index'));
         }
-
-        return view('backend.pedidos.show')->with('pedido', $pedido);
+        $user = User::find($pedido->user_id);
+        $articulos = $pedido->articulos()->get();
+        return view('backend.pedidos.show')
+                ->with('pedido', $pedido)
+                ->with('articulos', $articulos)
+                ->with('user', $user);
     }
 
     /**
