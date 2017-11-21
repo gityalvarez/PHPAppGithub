@@ -158,7 +158,12 @@ class ComercioController extends AppBaseController
 
             return redirect(route('backend.comercios.index'));
         }
+        $articulos = $comercio->articulos()->get();
+        if (!empty($articulos)){
+            Flash::error('No es posible eliminar el Comercio dado que tiene Articulos asociados');
 
+            return redirect(route('backend.categorias.index'));
+        }
         $this->comercioRepository->delete($id);
 
         Flash::success('Comercio borrado exitosamente.');

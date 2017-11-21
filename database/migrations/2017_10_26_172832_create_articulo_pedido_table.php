@@ -19,6 +19,7 @@ class CreateArticuloPedidoTable extends Migration {
 			$table->integer('articulo_id')->unsigned()->index('articulo_pedido_articulo_id_foreign');
 			$table->integer('pedido_id')->unsigned()->index('articulo_pedido_pedido_id_foreign');
 			$table->timestamps();
+                        $table->softDeletes();
 		});
 	}
 

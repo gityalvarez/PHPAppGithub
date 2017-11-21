@@ -74,7 +74,9 @@ class Pedido extends Model
      **/
     public function articulos()
     {
-        return $this->belongsToMany(\App\Models\Backend\Articulo::class, 'articulo_pedido')->withPivot('cantidad');
+        return $this->belongsToMany(\App\Models\Backend\Articulo::class, 'articulo_pedido')
+                ->whereNull('articulo_pedido.deleted_at')
+                ->withPivot('cantidad');
     }
 
     /**
@@ -82,7 +84,8 @@ class Pedido extends Model
      **/
     public function despachantes()
     {
-        return $this->belongsToMany(\App\User::class, 'despachante_pedido');
+        return $this->belongsToMany(\App\User::class, 'despachante_pedido')
+                ->whereNull('despachante_pedido.deleted_at');
     }
 
     /**
@@ -90,6 +93,7 @@ class Pedido extends Model
      **/
     public function gerentes()
     {
-        return $this->belongsToMany(\App\User::class, 'gerente_pedido');
+        return $this->belongsToMany(\App\User::class, 'gerente_pedido')
+                ->whereNull('gerente_pedido.deleted_at');
     }     
 }

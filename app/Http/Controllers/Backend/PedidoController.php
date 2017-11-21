@@ -16,6 +16,7 @@ use App\Models\Backend\Comercio;
 use App\Models\Backend\Pedido;
 use App\Models\Backend\Articulo;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class PedidoController extends AppBaseController
 {
@@ -53,7 +54,7 @@ class PedidoController extends AppBaseController
             {
                 Flash::error('No existen Pedidos a despachar');             
                 return view('backend.pedidos.index')
-                    -> with('pedidos', $pedidos/*->paginate()*/)
+                    -> with('pedidos', $pedidos)
                     -> with('user', $user);
             }              
         }
@@ -88,13 +89,13 @@ class PedidoController extends AppBaseController
     
     public function send(Request $request)
     {
-        $pedidos = $request -> pedidos;
+        $pedidos = $request->pedidos;
         $user = Auth::user();
         foreach ($pedidos as $id)
         {
           $pedido = Pedido::find($id);
           $pedido->update(['estado' => 'despachado']);
-          $pedido->despachantes()->attach($user->id);
+          $pedido->despachantes()->attach($user->id, ['created_at' => DB::raw('NOW()')]);
         }
         $pedidos = Pedido::where('estado', 'creado')->get();
         return view('backend.pedidos.index')
@@ -131,10 +132,9 @@ class PedidoController extends AppBaseController
     public function store(CreatePedidoRequest $request)
     {
         $pedido = new Pedido();
-        $pedido->estado = 'creado';
+        $pedido->estado = "creado";
         $pedido->user_id = $request->cliente_id;
         $total = 0;
-        //dd($request->articulos,$request->cantidades,$request->precios);
         for ($i=0; $i < count($request->articulos); $i++){
             if ($i == 0){
                 $proximo = 0;
@@ -170,10 +170,10 @@ class PedidoController extends AppBaseController
                     $proximo ++;
                 }
             }
-            $ultimopedido->articulos()->attach($request->articulos[$i], ['cantidad' => $request->cantidades[$proximo]]);            
+            $ultimopedido->articulos()->attach($request->articulos[$i], ['cantidad' => $request->cantidades[$proximo], 'created_at' => DB::raw('NOW()')]);            
         }
         $gerente_id = Auth::id();
-        $ultimopedido->gerentes()->attach($gerente_id);
+        $ultimopedido->gerentes()->attach($gerente_id, ['created_at' => DB::raw('NOW()')]);
         Flash::success('Pedido guardado exitosamente.');
         return redirect(route('backend.pedidos.index'));
     }
@@ -269,17 +269,30 @@ class PedidoController extends AppBaseController
     public function destroy($id)
     {
         $pedido = $this->pedidoRepository->findWithoutFail($id);
-
         if (empty($pedido)) {
             Flash::error('Pedido no encontrado');
-
             return redirect(route('backend.pedidos.index'));
+        }        
+        $articulos = $pedido->articulos()->get();
+        foreach ($articulos as $articulo){
+            //$pedido->articulos()->detach($articulo);
+            //$pedido->articulos()->update(['deleted_at' => DB::raw('NOW()')]);
+            //$pedido->articulos()->deleted_at = DB::raw('NOW()');
+            //$pedido->articulos()->save();
+            DB::table('articulo_pedido')
+                ->where('pedido_id', $id)
+                ->where('articulo_id', $articulo->id)
+                ->update(['deleted_at' => DB::raw('NOW()')]);
         }
-
-        $this->pedidoRepository->delete($id);
-
+        $gerentes = $pedido->gerentes()->get();
+        foreach ($gerentes as $gerente){
+            DB::table('gerente_pedido')
+                ->where('pedido_id', $id)
+                ->where('gerente_id', $gerente->id)
+                ->update(['deleted_at' => DB::raw('NOW()')]);
+        }
+        $this->pedidoRepository->delete($id);        
         Flash::success('Pedido borrado exitosamente');
-
         return redirect(route('backend.pedidos.index'));
     }
 }

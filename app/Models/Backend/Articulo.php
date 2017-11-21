@@ -84,6 +84,8 @@ class Articulo extends Model
      **/
     public function pedidos()
     {
-        return $this->belongsToMany(\App\Models\Backend\Pedido::class, 'articulo_pedido')->withPivot('cantidad');
+        return $this->belongsToMany(\App\Models\Backend\Pedido::class, 'articulo_pedido')
+                ->whereNull('articulo_pedido.deleted_at')
+                ->withPivot('cantidad');
     }
 }

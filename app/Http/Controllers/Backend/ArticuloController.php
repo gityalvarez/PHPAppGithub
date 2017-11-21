@@ -188,17 +188,25 @@ class ArticuloController extends AppBaseController
     public function destroy($id)
     {
         $articulo = $this->articuloRepository->findWithoutFail($id);
-
         if (empty($articulo)) {
             Flash::error('Articulo no encontrado');
-
             return redirect(route('backend.articulos.index'));
         }
-
-        $this->articuloRepository->delete($id);
-
-        Flash::success('Articulo borrado exitosamente');
-
-        return redirect(route('backend.articulos.index'));
+        $pedidos = $articulo->pedidos()->get();
+        /*$encontrado = false;
+        foreach ($pedidos as $pedido){
+            if ($pedido->estado == "creado"){
+                $encontrado = true;
+            }
+        }*/
+        if (empty($pedidos) /*|| !$encontrado*/){
+            $this->articuloRepository->delete($id);
+            Flash::success('Articulo borrado exitosamente');
+            return redirect(route('backend.articulos.index'));
+        }
+        else {
+            Flash::error('No es posible eliminar el Articulo dado que pertenece a un Pedido');
+            return redirect(route('backend.articulos.index'));
+        }
     }
 }
