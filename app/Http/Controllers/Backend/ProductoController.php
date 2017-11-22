@@ -45,8 +45,9 @@ class ProductoController extends AppBaseController
      */
     public function create()
     {
-        $categorias = Categoria::all();
-        return view('backend.productos.create')->with('categorias',$categorias);
+        $categorias = Categoria::all()->lists('nombre', 'id');
+        return view('backend.productos.create')
+                ->with('categorias',$categorias);
     }
 
     /**
@@ -85,7 +86,8 @@ class ProductoController extends AppBaseController
             return redirect(route('backend.productos.index'));
         }
 
-        return view('backend.productos.show')->with('producto', $producto);
+        return view('backend.productos.show')
+                ->with('producto', $producto);
     }
 
     /**
@@ -104,9 +106,12 @@ class ProductoController extends AppBaseController
 
             return redirect(route('backend.productos.index'));
         }
-        $categorias = Categoria::all();
-
-        return view('backend.productos.edit')->with('producto', $producto)->with('categorias',$categorias);
+        $categorias = Categoria::where('id','<>',$producto->categoria_id)->lists('nombre', 'id');
+        $categoria = Categoria::where('id',$producto->categoria_id)->lists('nombre', 'id');
+        $categorias = $categoria->union($categorias);
+        return view('backend.productos.edit')
+                ->with('producto', $producto)
+                ->with('categorias',$categorias);
     }
 
     /**
@@ -126,7 +131,7 @@ class ProductoController extends AppBaseController
 
             return redirect(route('backend.productos.index'));
         }
-
+        
         $producto = $this->productoRepository->update($request->all(), $id);
 
         Flash::success('Producto actualizado exitosamente');

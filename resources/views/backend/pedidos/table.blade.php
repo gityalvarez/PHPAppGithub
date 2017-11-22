@@ -3,7 +3,7 @@
             <th>Número</th>
             <th>Estado</th>
             <th>Total</th>
-            <th>Cliente Id</th>
+            <th>Cliente</th>
             <th colspan="3">Acciones</th>
         </tr>    
     @foreach($pedidos as $pedido)
@@ -11,7 +11,7 @@
             <td>{!! $pedido->id !!}</td>
             <td>{!! $pedido->estado !!}</td>
             <td>{!! $pedido->total !!}</td>
-            <td>{!! $pedido->user_id !!}</td>
+            <td>{!! App\User::find($pedido->user_id)->name !!}</td>
             <td>
                 {!! Form::open(['route' => ['backend.pedidos.destroy', $pedido->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

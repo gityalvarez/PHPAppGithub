@@ -1,8 +1,8 @@
 {!! Form::model(Request::only(['nombre', 'categoriaident', 'rangoprecios']), ['url' => 'frontend/'.$url, 'method' => 'get', 'class' => 'form-inline']) !!}
-<div class="form-group {!! $errors->has('search') ? 'has-error' : '' !!}"><h4>Nombre:
+Nombre:
     {!! Form::text('nombre', isset($nombre) ? $nombre : null, ['class'=>'form-control', 'placeholder' => 'Ingrese Producto']) !!}        
-    {!! $errors->first('nombre', '<p class="help-block">:message</p>') !!}</h4>
-</div>
+    {!! $errors->first('nombre', ':message') !!}
+
 <div class="form-group"><h4>Categoría:           
     {!! Form::select('categoriaident', ['0' => 'Elija categoría'] + $categorias, null, ['class'=>'form-control']) !!}</h4>
 </div>

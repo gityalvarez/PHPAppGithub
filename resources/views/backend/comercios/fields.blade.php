@@ -6,21 +6,21 @@
 
 <!-- Direccion Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('direccion', 'Direccion:') !!}
+    {!! Form::label('direccion', 'Dirección:') !!}
     {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Latitud Field -->
-<div class="form-group col-sm-6">
+<!--div class="form-group col-sm-6">
     {!! Form::label('latitud', 'Latitud:') !!}
     {!! Form::text('latitud', null, ['class' => 'form-control']) !!}
-</div>
+</div-->
 
 <!-- Longitud Field -->
-<div class="form-group col-sm-6">
+<!--div class="form-group col-sm-6">
     {!! Form::label('longitud', 'Longitud:') !!}
     {!! Form::text('longitud', null, ['class' => 'form-control']) !!}
-</div>
+</div-->
 
 <!-- Logo Field -->
 <div class="form-group col-sm-6">
@@ -30,8 +30,8 @@
 
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'Gerente Id:') !!}<p></p>    
-    {!! Form::select('user_id', $gerentes->pluck('name','id'), ['class' => 'form-control']) !!}
+    {!! Form::label('user_id', 'Gerente:') !!}<p></p>    
+    {!! Form::select('user_id', $gerentes, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

@@ -47,8 +47,9 @@ class ComercioController extends AppBaseController
     {
         $gerentes = User::whereHas('roles',function($query){
             $query->where('id',2);
-        });
-        return view('backend.comercios.create')->with('gerentes',$gerentes);
+        })->lists('name', 'id');
+        return view('backend.comercios.create')
+                ->with('gerentes',$gerentes);
     }
 
     /**
@@ -93,7 +94,8 @@ class ComercioController extends AppBaseController
             return redirect(route('backend.comercios.index'));
         }
 
-        return view('backend.comercios.show')->with('comercio', $comercio);
+        return view('backend.comercios.show')
+                ->with('comercio', $comercio);
     }
 
     /**
@@ -111,10 +113,15 @@ class ComercioController extends AppBaseController
 
             return redirect(route('backend.comercios.index'));
         }
-        $gerentes = User::whereHas('roles',function($query){
-            $query->where('id',2);
-        });    
-        return view('backend.comercios.edit')->with('comercio', $comercio)->with('gerentes',$gerentes);
+        $gerentes = User::where('id','<>',$comercio->user_id)
+                    ->whereHas('roles',function($query){
+                        $query->where('id',2);
+                    })->lists('name', 'id'); 
+        $gerente = User::where('id',$comercio->user_id)->lists('name', 'id');
+        $gerentes = $gerente->union($gerentes);
+        return view('backend.comercios.edit')
+                ->with('comercio', $comercio)
+                ->with('gerentes', $gerentes);
     }
 
     /**
