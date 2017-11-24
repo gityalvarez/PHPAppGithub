@@ -31,7 +31,7 @@
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('user_id', 'Gerente:') !!}<p></p>    
-    {!! Form::select('user_id', $gerentes, ['class' => 'form-control']) !!}
+    {!! Form::select('user_id', $gerentes, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

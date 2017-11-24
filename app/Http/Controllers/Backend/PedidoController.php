@@ -9,7 +9,6 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 //use Illuminate\Pagination\Paginator;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Auth;
 use App\Models\Backend\Comercio;
@@ -160,7 +159,12 @@ class PedidoController extends AppBaseController
         $pedido->save();
         $ultimopedido = Pedido::all()->last();
         for ($i=0; $i < count($request->articulos); $i++){
-            $proximo = $i;
+            if ($i == 0){
+                $proximo = 0;
+            }            
+            else {
+                $proximo ++;
+            }   
             $encontrado = false;
             while ($proximo < count($request->cantidades) && !$encontrado){
                 if ($request->cantidades[$proximo] != ""){
@@ -230,8 +234,18 @@ class PedidoController extends AppBaseController
 
             return redirect(route('backend.pedidos.index'));
         }
-
-        return view('backend.pedidos.edit')->with('pedido', $pedido);
+        $articulos = $pedido->articulos()->get();
+        //dd($articulos);
+        $clientes = User::where('id','<>',$pedido->user_id)
+                    ->whereHas('roles',function($query){
+                        $query->where('id',4);
+                    })->lists('name', 'id'); 
+        $cliente = User::where('id',$pedido->user_id)->lists('name', 'id');
+        $clientes = $cliente->union($clientes);         
+        return view('backend.pedidos.edit')
+                ->with('articulos', $articulos)
+                ->with('clientes', $clientes)
+                ->with('pedido', $pedido);
     }
 
     /**
@@ -251,8 +265,34 @@ class PedidoController extends AppBaseController
 
             return redirect(route('backend.pedidos.index'));
         }
-
-        $pedido = $this->pedidoRepository->update($request->all(), $id);
+        $pedido->user_id = $request->cliente_id;
+        $total = 0;
+        $articulos = $pedido->articulos()->get();
+        $i=0;
+        foreach ($articulos as $articulo){
+        //for ($i=0; $i < count($request->articulos); $i++){
+            //$articulo = Articulo::find($request->articulos[$i]);
+            if ($request->cantidades[$i] > $articulo->pivot->cantidad){
+                $articuloact = Articulo::find($articulo->id);
+                $articuloact->stock = $articuloact->stock - ($request->cantidades[$i] - $articulo->pivot->cantidad);
+                $articuloact->save();
+            }
+            if ($request->cantidades[$i] < $articulo->pivot->cantidad){
+                $articuloact = Articulo::find($articulo->id);
+                $articuloact->stock = $articuloact->stock + ($articulo->pivot->cantidad - $request->cantidades[$i]);
+                $articuloact->save();
+            }            
+            $total = $total + ($request->precios[$i] * $request->cantidades[$i]); 
+            $i++;
+        //}
+        }
+        $pedido->total = $total;        
+        $pedido->save();
+        $ultimopedido = Pedido::all()->last();
+        for ($i=0; $i < count($request->articulos); $i++){
+            $ultimopedido->articulos()->updateExistingPivot($request->articulos[$i], ['cantidad' => $request->cantidades[$i], 'updated_at' => DB::raw('NOW()')]);            
+        }
+        //$pedido = $this->pedidoRepository->update($request->all(), $id);
 
         Flash::success('Pedido actualizado exitosamente');
 
@@ -275,10 +315,6 @@ class PedidoController extends AppBaseController
         }        
         $articulos = $pedido->articulos()->get();
         foreach ($articulos as $articulo){
-            //$pedido->articulos()->detach($articulo);
-            //$pedido->articulos()->update(['deleted_at' => DB::raw('NOW()')]);
-            //$pedido->articulos()->deleted_at = DB::raw('NOW()');
-            //$pedido->articulos()->save();
             DB::table('articulo_pedido')
                 ->where('pedido_id', $id)
                 ->where('articulo_id', $articulo->id)
@@ -288,7 +324,7 @@ class PedidoController extends AppBaseController
         foreach ($gerentes as $gerente){
             DB::table('gerente_pedido')
                 ->where('pedido_id', $id)
-                ->where('gerente_id', $gerente->id)
+                ->where('user_id', $gerente->id)
                 ->update(['deleted_at' => DB::raw('NOW()')]);
         }
         $this->pedidoRepository->delete($id);        

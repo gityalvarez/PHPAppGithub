@@ -8,15 +8,11 @@ use App\Repositories\Backend\ArticuloRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Backend\Producto;
 use App\Models\Backend\Comercio;
 use App\Models\Backend\Articulo;
 use Auth;
-use Illuminate\Database\Eloquent\Collection;
-
-
 
 class ArticuloController extends AppBaseController
 {
@@ -82,12 +78,12 @@ class ArticuloController extends AppBaseController
      */
     public function create()
     {
-        $productos = Producto::all();
+        $productos = Producto::all()->lists('nombre', 'id');
         $id = Auth::id();
-        $comercios = Comercio::where('user_id', $id);
+        $comercio = Comercio::where('user_id', $id)->get()->first();//get()->lists('nombre','id');
         return view('backend.articulos.create')
                 ->with('productos',$productos)
-                ->with('comercios',$comercios);
+                ->with('comercio',$comercio);
     }
 
     /**
@@ -139,8 +135,13 @@ class ArticuloController extends AppBaseController
     public function edit($id)
     {
         $articulo = $this->articuloRepository->findWithoutFail($id);
-        $comercios = $articulo->comercio();
-        $productos = $articulo->producto();
+        //$comercios = $articulo->comercio();
+        //$productos = $articulo->producto();
+        $id = Auth::id();
+        $comercio = Comercio::where('user_id', $id)->get()->first();//->lists('nombre', 'id');
+        $productos = Producto::where('id','<>',$articulo->producto->id)->lists('nombre', 'id');
+        $producto = Producto::where('id',$articulo->producto->id)->lists('nombre', 'id');
+        $productos = $producto->union($productos);
         if (empty($articulo)) {
             Flash::error('Articulo no encontrado');
 
@@ -149,7 +150,7 @@ class ArticuloController extends AppBaseController
 
         return view('backend.articulos.edit')
                 ->with('articulo', $articulo)
-                ->with('comercios',$comercios)
+                ->with('comercio',$comercio)
                 ->with('productos',$productos);
     }
 
