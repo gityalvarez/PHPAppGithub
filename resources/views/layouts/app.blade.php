@@ -55,7 +55,7 @@
                                          class="img-circle" alt="User Image"/>
                                     <p>
                                         {!! Auth::user()->name !!}
-                                        <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
+                                        <small>Miembro desde {!! Auth::user()->created_at->format('M. Y') !!}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
