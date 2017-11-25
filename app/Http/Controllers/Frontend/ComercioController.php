@@ -44,7 +44,7 @@ class ComercioController extends AppBaseController
     {
         $comercio = $this->comercioRepository->findWithoutFail($id);
         if (empty($comercio)) {
-            Flash::error('Comercio no encontrado');
+            Flash::error('Comercio not found');
             return redirect(route('frontend.comercios.index'));
         }
         return view('frontend.comercios.show')

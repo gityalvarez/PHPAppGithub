@@ -60,7 +60,7 @@ class CategoriaController extends AppBaseController
 
         $categoria = $this->categoriaRepository->create($input);
 
-        Flash::success('Categoria guardada exitosamente');
+        Flash::success('Categoria saved successfully.');
 
         return redirect(route('backend.categorias.index'));
     }
@@ -77,7 +77,7 @@ class CategoriaController extends AppBaseController
         $categoria = $this->categoriaRepository->findWithoutFail($id);
 
         if (empty($categoria)) {
-            Flash::error('Categoria no encontrada');
+            Flash::error('Categoria not found');
 
             return redirect(route('backend.categorias.index'));
         }
@@ -97,7 +97,7 @@ class CategoriaController extends AppBaseController
         $categoria = $this->categoriaRepository->findWithoutFail($id);
 
         if (empty($categoria)) {
-            Flash::error('Categoria no encontrada');
+            Flash::error('Categoria not found');
 
             return redirect(route('backend.categorias.index'));
         }
@@ -118,14 +118,14 @@ class CategoriaController extends AppBaseController
         $categoria = $this->categoriaRepository->findWithoutFail($id);
 
         if (empty($categoria)) {
-            Flash::error('Categoria no encontrada');
+            Flash::error('Categoria not found');
 
             return redirect(route('backend.categorias.index'));
         }
 
         $categoria = $this->categoriaRepository->update($request->all(), $id);
 
-        Flash::success('Categoria actualizada exitosamente');
+        Flash::success('Categoria updated successfully.');
 
         return redirect(route('backend.categorias.index'));
     }
@@ -142,19 +142,14 @@ class CategoriaController extends AppBaseController
         $categoria = $this->categoriaRepository->findWithoutFail($id);
 
         if (empty($categoria)) {
-            Flash::error('Categoria no encontrada');
+            Flash::error('Categoria not found');
 
             return redirect(route('backend.categorias.index'));
         }
-        $productos = $categoria->productos()->get();
-        if (!empty($productos)){
-            Flash::error('No es posible eliminar la Categoria dado que tiene Productos asociados');
 
-            return redirect(route('backend.categorias.index'));
-        }
         $this->categoriaRepository->delete($id);
 
-        Flash::success('Categoria borrada exitosamente');
+        Flash::success('Categoria deleted successfully.');
 
         return redirect(route('backend.categorias.index'));
     }

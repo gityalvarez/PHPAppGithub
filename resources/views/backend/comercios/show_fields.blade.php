@@ -17,16 +17,16 @@
 </div>
 
 <!-- Latitud Field -->
-<!--div class="form-group">
+<div class="form-group">
     {!! Form::label('latitud', 'Latitud:') !!}
     <p>{!! $comercio->latitud !!}</p>
-</div-->
+</div>
 
 <!-- Longitud Field -->
-<!--div class="form-group">
+<div class="form-group">
     {!! Form::label('longitud', 'Longitud:') !!}
     <p>{!! $comercio->longitud !!}</p>
-</div-->
+</div>
 
 <!-- Logo Field -->
 <div class="form-group">
@@ -40,8 +40,8 @@
 
 <!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id', 'Gerente:') !!}
-    <p>{!! App\User::find($comercio->user_id)->name !!}</p>
+    {!! Form::label('user_id', 'Gerente Id:') !!}
+    <p>{!! $comercio->user_id !!}</p>
 </div>
 
 <!-- Created At Field -->

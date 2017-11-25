@@ -1,35 +1,38 @@
-<table class="table table-responsive table-striped" id="comercios-table">
-    
+<table class="table table-responsive" id="comercios-table">
+    <thead>
         <tr>
             <th>Nombre</th>
-            <th>Dirección</th>
-            <!--th>Latitud</th>
-            <th>Longitud</th-->
-            <th>Logo</th>
-            <th>Gerente</th>
+        <th>Direccion</th>
+        <th>Latitud</th>
+        <th>Longitud</th>
+        <th>Logo</th>
+        <th>Id de Gerente </th>
             <th colspan="3">Acciones</th>
-        </tr>    
+        </tr>
+    </thead>
+    <tbody>
     @foreach($comercios as $comercio)
         <tr>
             <td>{!! $comercio->nombre !!}</td>
             <td>{!! $comercio->direccion !!}</td>
-            <!--td>{!! $comercio->latitud !!}</td>
-            <td>{!! $comercio->longitud !!}</td-->
+            <td>{!! $comercio->latitud !!}</td>
+            <td>{!! $comercio->longitud !!}</td>
             @if (!empty($comercio->logo))
                 <td><img src="{{ asset('storage/'.$comercio->logo) }}" width="100" height="50"/></td>
             @else
                 <td>Comercio sin logo...</td>
             @endif
-            <td>{!! App\User::find($comercio->user_id)->name !!}</td>
+            <td>{!! $comercio->user_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['backend.comercios.destroy', $comercio->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('backend.comercios.show', [$comercio->id]) !!}" class='btn btn-default'><i class="fa fa-eye"> Ver</i></a>
-                    <a href="{!! route('backend.comercios.edit', [$comercio->id]) !!}" class='btn btn-default'><i class="fa fa-pencil"> Editar</i></a>
-                    {!! Form::button('<i class="fa fa-trash">  Borrar</i>', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Realmente está seguro?')"]) !!}
+                    <a href="{!! route('backend.comercios.show', [$comercio->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('backend.comercios.edit', [$comercio->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Realmente está seguro?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>
         </tr>
-    @endforeach    
+    @endforeach
+    </tbody>
 </table>

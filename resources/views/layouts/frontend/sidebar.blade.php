@@ -6,13 +6,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
-                     alt="User Image"/-->
-                <img src="{{ asset('imagenes/sidebarfrontend.jpg') }}" class="img-circle"
-                     alt="Menu Image"/>
+                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
+                     alt="User Image"/>
             </div>  
             <div class="pull-left info">
-                <p>Menú de Opciones</p>
+                <p>Frontend Sidebar</p>
             </div>
         </div>
 

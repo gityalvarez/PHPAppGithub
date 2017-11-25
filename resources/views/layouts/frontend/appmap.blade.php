@@ -28,14 +28,14 @@
     @yield('css')
 </head>
 
-<body class="skin-green sidebar-mini">
+<body class="skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
 
             <!-- Logo -->
             <a class="logo">
-                <img class="img-responsive" src="{{ asset('imagenes/headerfrontend.jpg') }}"/>
+                <b>Frontend</b>
             </a>
 
             <!-- Header Navbar -->
@@ -51,18 +51,15 @@
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/-->
-                                <img src="{{ asset('imagenes/logofrontend.jpg') }}"
-                                     class="user-image" alt="Enterprise Image"/>
+                                <!-- The user image in the navbar-->
+                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                     class="user-image" alt="User Image"/>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                         class="img-circle" alt="User Image"/-->
-                                    <img src="{{ asset('imagenes/logofrontend.jpg') }}"
-                                         class="img-circle" alt="Entreprise Image"/>     
+                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                         class="img-circle" alt="User Image"/>                                    
                                 </li>                                
                             </ul>
                         </li>

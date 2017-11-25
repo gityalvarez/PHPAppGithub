@@ -18,7 +18,6 @@ class CreateDespachantePedidoTable extends Migration {
 			$table->integer('user_id')->unsigned()->index('despachante_pedido_persona_id_foreign');
 			$table->integer('pedido_id')->unsigned()->index('despachante_pedido_pedido_id_foreign');
 			$table->timestamps();
-                        $table->softDeletes();
 		});
 	}
 

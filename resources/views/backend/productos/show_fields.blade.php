@@ -32,6 +32,12 @@
     <p>{!! $producto->categoria->nombre !!}</p>
 </div>
 
+<!-- User Id Field -->
+<div class="form-group">
+    {!! Form::label('user_id', 'Admin Id:') !!}
+    <p>{!! $producto->user_id !!}</p>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}

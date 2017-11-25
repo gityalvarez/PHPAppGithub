@@ -12,13 +12,15 @@
 
 <!-- Producto Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('producto_id', 'Producto:') !!}
-    {!! Form::select('producto_id', $productos, null, ['class' => 'form-control']) !!}   
+    {!! Form::label('producto_id', 'Producto Id:') !!}  </p>
+    {!! Form::select('producto_id',$productos->pluck('nombre','id'),  ['class' => 'form-control']) !!}
+   
 </div>
 
 <!-- Comercio Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::hidden('comercio_id', $comercio->id) !!}
+    {!! Form::label('comercio_id', 'Comercio Id:') !!}</p>
+    {!! Form::select('comercio_id', $comercios->pluck('nombre','id'), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

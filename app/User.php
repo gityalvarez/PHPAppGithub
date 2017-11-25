@@ -93,13 +93,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
     
     public function despachantePedidos(){
-        return $this->belongsToMany(\App\Models\Backend\Pedido::class, 'despachante_pedido')
-                ->whereNull('despachante_pedido.deleted_at');//->withPivot('pedido_id');       
+        return $this->belongsToMany(\App\Models\Backend\Pedido::class);       
     }
     
     public function gerentePedidos(){
-        return $this->belongsToMany(\App\Models\Backend\Pedido::class, 'gerente_pedido')
-                ->whereNull('gerente_pedido.deleted_at');//->withPivot('pedido_id');       
+        return $this->belongsToMany(\App\Models\Backend\Pedido::class);       
     }
 
 }

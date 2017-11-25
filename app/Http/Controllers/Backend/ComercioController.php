@@ -47,9 +47,8 @@ class ComercioController extends AppBaseController
     {
         $gerentes = User::whereHas('roles',function($query){
             $query->where('id',2);
-        })->lists('name', 'id');
-        return view('backend.comercios.create')
-                ->with('gerentes',$gerentes);
+        });
+        return view('backend.comercios.create')->with('gerentes',$gerentes);
     }
 
     /**
@@ -73,7 +72,7 @@ class ComercioController extends AppBaseController
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
         $input['logo'] =$newFilename;
         $comercio = $this->comercioRepository->create($input);
-        Flash::success('Comercio guardado exitosamente');
+        Flash::success('Comercio saved successfully.');
         return redirect(route('backend.comercios.index'));
     }
 
@@ -89,13 +88,12 @@ class ComercioController extends AppBaseController
         $comercio = $this->comercioRepository->findWithoutFail($id);
 
         if (empty($comercio)) {
-            Flash::error('Comercio no encontrado');
+            Flash::error('Comercio not found');
 
             return redirect(route('backend.comercios.index'));
         }
 
-        return view('backend.comercios.show')
-                ->with('comercio', $comercio);
+        return view('backend.comercios.show')->with('comercio', $comercio);
     }
 
     /**
@@ -109,19 +107,14 @@ class ComercioController extends AppBaseController
     {
         $comercio = $this->comercioRepository->findWithoutFail($id);
         if (empty($comercio)) {
-            Flash::error('Comercio no encontrado');
+            Flash::error('Comercio not found');
 
             return redirect(route('backend.comercios.index'));
         }
-        $gerentes = User::where('id','<>',$comercio->user_id)
-                    ->whereHas('roles',function($query){
-                        $query->where('id',2);
-                    })->lists('name', 'id'); 
-        $gerente = User::where('id',$comercio->user_id)->lists('name', 'id');
-        $gerentes = $gerente->union($gerentes);
-        return view('backend.comercios.edit')
-                ->with('comercio', $comercio)
-                ->with('gerentes', $gerentes);
+        $gerentes = User::whereHas('roles',function($query){
+            $query->where('id',2);
+        });    
+        return view('backend.comercios.edit')->with('comercio', $comercio)->with('gerentes',$gerentes);
     }
 
     /**
@@ -137,14 +130,14 @@ class ComercioController extends AppBaseController
         $comercio = $this->comercioRepository->findWithoutFail($id);
 
         if (empty($comercio)) {
-            Flash::error('Comercio no encontrado');
+            Flash::error('Comercio not found');
 
             return redirect(route('backend.comercios.index'));
         }
 
         $comercio = $this->comercioRepository->update($request->all(), $id);
 
-        Flash::success('Comercio actualizado exitosamente');
+        Flash::success('Comercio updated successfully.');
 
         return redirect(route('backend.comercios.index'));
     }
@@ -161,19 +154,14 @@ class ComercioController extends AppBaseController
         $comercio = $this->comercioRepository->findWithoutFail($id);
 
         if (empty($comercio)) {
-            Flash::error('Comercio no encontrado');
+            Flash::error('Comercio not found');
 
             return redirect(route('backend.comercios.index'));
         }
-        $articulos = $comercio->articulos()->get();
-        if (!empty($articulos)){
-            Flash::error('No es posible eliminar el Comercio dado que tiene Articulos asociados');
 
-            return redirect(route('backend.categorias.index'));
-        }
         $this->comercioRepository->delete($id);
 
-        Flash::success('Comercio borrado exitosamente.');
+        Flash::success('Comercio deleted successfully.');
 
         return redirect(route('backend.comercios.index'));
     }

@@ -8,11 +8,15 @@ use App\Repositories\Backend\ArticuloRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Backend\Producto;
 use App\Models\Backend\Comercio;
 use App\Models\Backend\Articulo;
 use Auth;
+use Illuminate\Database\Eloquent\Collection;
+
+
 
 class ArticuloController extends AppBaseController
 {
@@ -32,43 +36,12 @@ class ArticuloController extends AppBaseController
      */
     public function index(Request $request)
     {  
-        $user = Auth::user();
-        if ($user -> hasRole('gerente'))
-        {
-            if (empty($request->input('search')))
-            {
-                $comercio = Comercio::where('user_id', $user->id)->get()->first();
-                $articulos = Articulo::where('comercio_id', $comercio->id)->get();
-                if ($articulos->count() > 0)
-                {
-                    return view('backend.articulos.index')
-                        -> with('articulos', $articulos); 
-                }
-                else 
-                {
-                    Flash::error('No existen Articulos asociados');             
-                    return view('backend.articulos.index')
-                        -> with('articulos', $articulos);
-                }   
-            }
-            else
-            {
-                $producto = '%'.$request->input('search').'%';
-                $comercio = Comercio::where('user_id', $user->id)->get()->first();
-                $articulos = Articulo::where('comercio_id', $comercio->id)
-                    ->whereHas('producto',function($query) use($producto){
-                        $query->where('nombre', 'like', $producto);
-                    })->get();
-                return view('backend.articulos.index')
-                    ->with('articulos', $articulos);             
-            }           
-        }        
         $palabra = '%'.$request->input('search').'%';
         $articulos = Articulo::whereHas('producto',function($query) use($palabra){
-                $query->where('nombre', 'like', $palabra);
-            })->get();
+            $query->where('nombre', 'like', $palabra);
+        })->get();
         return view('backend.articulos.index')
-            ->with('articulos', $articulos); 
+            ->with('articulos', $articulos);
     }
 
     /**
@@ -78,12 +51,11 @@ class ArticuloController extends AppBaseController
      */
     public function create()
     {
-        $productos = Producto::all()->lists('nombre', 'id');
+        $productos = Producto::all();
         $id = Auth::id();
-        $comercio = Comercio::where('user_id', $id)->get()->first();//get()->lists('nombre','id');
-        return view('backend.articulos.create')
-                ->with('productos',$productos)
-                ->with('comercio',$comercio);
+        $comercios = Comercio::where('user_id', $id);
+        //$comercios = Comercio::all()->where('user_id','=', $id);
+        return view('backend.articulos.create')->with('productos',$productos)->with('comercios',$comercios);
     }
 
     /**
@@ -99,7 +71,7 @@ class ArticuloController extends AppBaseController
 
         $articulo = $this->articuloRepository->create($input);
 
-        Flash::success('Articulo guardado exitosamente');
+        Flash::success('Articulo saved successfully.');
 
         return redirect(route('backend.articulos.index'));
     }
@@ -116,13 +88,12 @@ class ArticuloController extends AppBaseController
         $articulo = $this->articuloRepository->findWithoutFail($id);
 
         if (empty($articulo)) {
-            Flash::error('Articulo no encontrado');
+            Flash::error('Articulo not found');
 
             return redirect(route('backend.articulos.index'));
         }
 
-        return view('backend.articulos.show')
-                ->with('articulo', $articulo);
+        return view('backend.articulos.show')->with('articulo', $articulo);
     }
 
     /**
@@ -135,23 +106,15 @@ class ArticuloController extends AppBaseController
     public function edit($id)
     {
         $articulo = $this->articuloRepository->findWithoutFail($id);
-        //$comercios = $articulo->comercio();
-        //$productos = $articulo->producto();
-        $id = Auth::id();
-        $comercio = Comercio::where('user_id', $id)->get()->first();//->lists('nombre', 'id');
-        $productos = Producto::where('id','<>',$articulo->producto->id)->lists('nombre', 'id');
-        $producto = Producto::where('id',$articulo->producto->id)->lists('nombre', 'id');
-        $productos = $producto->union($productos);
+        $comercios = $articulo->comercio();
+        $productos = $articulo->producto();
         if (empty($articulo)) {
-            Flash::error('Articulo no encontrado');
+            Flash::error('Articulo not found');
 
             return redirect(route('backend.articulos.index'));
         }
 
-        return view('backend.articulos.edit')
-                ->with('articulo', $articulo)
-                ->with('comercio',$comercio)
-                ->with('productos',$productos);
+        return view('backend.articulos.edit')->with('articulo', $articulo)->with('comercios',$comercios)->with('productos',$productos);
     }
 
     /**
@@ -167,14 +130,14 @@ class ArticuloController extends AppBaseController
         $articulo = $this->articuloRepository->findWithoutFail($id);
 
         if (empty($articulo)) {
-            Flash::error('Articulo no encontrado');
+            Flash::error('Articulo not found');
 
             return redirect(route('backend.articulos.index'));
         }
 
         $articulo = $this->articuloRepository->update($request->all(), $id);
 
-        Flash::success('Articulo actualizado exitosamente');
+        Flash::success('Articulo updated successfully.');
 
         return redirect(route('backend.articulos.index'));
     }
@@ -189,25 +152,17 @@ class ArticuloController extends AppBaseController
     public function destroy($id)
     {
         $articulo = $this->articuloRepository->findWithoutFail($id);
+
         if (empty($articulo)) {
-            Flash::error('Articulo no encontrado');
+            Flash::error('Articulo not found');
+
             return redirect(route('backend.articulos.index'));
         }
-        $pedidos = $articulo->pedidos()->get();
-        /*$encontrado = false;
-        foreach ($pedidos as $pedido){
-            if ($pedido->estado == "creado"){
-                $encontrado = true;
-            }
-        }*/
-        if (empty($pedidos) /*|| !$encontrado*/){
-            $this->articuloRepository->delete($id);
-            Flash::success('Articulo borrado exitosamente');
-            return redirect(route('backend.articulos.index'));
-        }
-        else {
-            Flash::error('No es posible eliminar el Articulo dado que pertenece a un Pedido');
-            return redirect(route('backend.articulos.index'));
-        }
+
+        $this->articuloRepository->delete($id);
+
+        Flash::success('Articulo deleted successfully.');
+
+        return redirect(route('backend.articulos.index'));
     }
 }

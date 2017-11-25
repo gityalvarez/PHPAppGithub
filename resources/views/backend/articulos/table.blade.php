@@ -1,33 +1,30 @@
-<table class="table table-responsive table-striped" id="articulos-table">    
+<table class="table table-responsive" id="articulos-table">
+    <thead>
         <tr>
-            <th>Producto</th>            
-            <th>Precio</th>
             <th>Stock</th>
-            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Producto</th>
             <th>Comercio</th>
             <th colspan="3">Acciones</th>
-        </tr>    
+        </tr>
+    </thead>
+    <tbody>
     @foreach($articulos as $articulo)
         <tr>
-            <td>{!! $articulo->producto->nombre !!}</td>             
-            <td>{!! $articulo->precio !!}</td> 
             <td>{!! $articulo->stock !!}</td>
-            @if (!empty($articulo->producto->imagen))
-                <td><img src="{{ asset('storage/'.$articulo->producto->imagen) }}" width="100" height="80"/></td>
-            @else
-                <td>Articulo sin imagen...</td>
-            @endif
+            <td>{!! $articulo->precio !!}</td>
+            <td>{!! $articulo->producto->nombre !!}</td>
             <td>{!! $articulo->comercio->nombre !!}</td>
             <td>
                 {!! Form::open(['route' => ['backend.articulos.destroy', $articulo->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('backend.articulos.show', [$articulo->id]) !!}" class='btn btn-default'><i class="fa fa-eye"> Ver</i></a>
-            
-                    <a href="{!! route('backend.articulos.edit', [$articulo->id]) !!}" class='btn btn-default'><i class="fa fa-pencil"> Editar</i></a>
-                    {!! Form::button('<i class="fa fa-trash"> Borrar</i>', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Realmente está seguro?')"]) !!}
+                    <a href="{!! route('backend.articulos.show', [$articulo->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('backend.articulos.edit', [$articulo->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Realmente está seguro?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>
         </tr>
-    @endforeach    
+    @endforeach
+    </tbody>
 </table>

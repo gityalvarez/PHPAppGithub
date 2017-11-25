@@ -45,9 +45,8 @@ class ProductoController extends AppBaseController
      */
     public function create()
     {
-        $categorias = Categoria::all()->lists('nombre', 'id');
-        return view('backend.productos.create')
-                ->with('categorias',$categorias);
+        $categorias = Categoria::all();
+        return view('backend.productos.create')->with('categorias',$categorias);
     }
 
     /**
@@ -65,7 +64,7 @@ class ProductoController extends AppBaseController
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
         $input['imagen'] = /*storage_path('app/public'). DIRECTORY_SEPARATOR .*/$newFilename;
         $producto = $this->productoRepository->create($input);
-        Flash::success('Producto guardado exitosamente');
+        Flash::success('Producto saved successfully.');
         return redirect(route('backend.productos.index'));
     }
 
@@ -81,13 +80,12 @@ class ProductoController extends AppBaseController
         $producto = $this->productoRepository->findWithoutFail($id);
 
         if (empty($producto)) {
-            Flash::error('Producto no encontrado');
+            Flash::error('Producto not found');
 
             return redirect(route('backend.productos.index'));
         }
 
-        return view('backend.productos.show')
-                ->with('producto', $producto);
+        return view('backend.productos.show')->with('producto', $producto);
     }
 
     /**
@@ -102,16 +100,13 @@ class ProductoController extends AppBaseController
         $producto = $this->productoRepository->findWithoutFail($id);
 
         if (empty($producto)) {
-            Flash::error('Producto no encontrado');
+            Flash::error('Producto not found');
 
             return redirect(route('backend.productos.index'));
         }
-        $categorias = Categoria::where('id','<>',$producto->categoria_id)->lists('nombre', 'id');
-        $categoria = Categoria::where('id',$producto->categoria_id)->lists('nombre', 'id');
-        $categorias = $categoria->union($categorias);
-        return view('backend.productos.edit')
-                ->with('producto', $producto)
-                ->with('categorias',$categorias);
+        $categorias = Categoria::all();
+
+        return view('backend.productos.edit')->with('producto', $producto)->with('categorias',$categorias);
     }
 
     /**
@@ -127,14 +122,14 @@ class ProductoController extends AppBaseController
         $producto = $this->productoRepository->findWithoutFail($id);
 
         if (empty($producto)) {
-            Flash::error('Producto no encontrado');
+            Flash::error('Producto not found');
 
             return redirect(route('backend.productos.index'));
         }
-        
+
         $producto = $this->productoRepository->update($request->all(), $id);
 
-        Flash::success('Producto actualizado exitosamente');
+        Flash::success('Producto updated successfully.');
 
         return redirect(route('backend.productos.index'));
     }
@@ -151,19 +146,14 @@ class ProductoController extends AppBaseController
         $producto = $this->productoRepository->findWithoutFail($id);
 
         if (empty($producto)) {
-            Flash::error('Producto no encontrado');
+            Flash::error('Producto not found');
 
             return redirect(route('backend.productos.index'));
         }
-        $articulos = $producto->articulos()->get();
-        if (!empty($articulos)){
-            Flash::error('No es posible eliminar el Producto dado que tiene Articulos asociados');
 
-            return redirect(route('backend.categorias.index'));
-        }
         $this->productoRepository->delete($id);
 
-        Flash::success('Producto borrado exitosamente');
+        Flash::success('Producto deleted successfully.');
 
         return redirect(route('backend.productos.index'));
     }
