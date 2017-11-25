@@ -70,26 +70,30 @@ class Pedido extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function articulos()
     {
-        return $this->hasMany(\App\Models\Backend\Articulo::class);
+        return $this->belongsToMany(\App\Models\Backend\Articulo::class, 'articulo_pedido')
+                ->whereNull('articulo_pedido.deleted_at')
+                ->withPivot('cantidad');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function despachantes()
     {
-        return $this->hasMany(\App\User::class);
+        return $this->belongsToMany(\App\User::class, 'despachante_pedido')
+                ->whereNull('despachante_pedido.deleted_at');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTMany
      **/
     public function gerentes()
     {
-        return $this->hasMany(\App\User::class);
-    }
+        return $this->belongsToMany(\App\User::class, 'gerente_pedido')
+                ->whereNull('gerente_pedido.deleted_at');
+    }     
 }

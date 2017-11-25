@@ -28,14 +28,14 @@
     @yield('css')
 </head>
 
-<body class="skin-blue sidebar-mini">
+<body class="skin-green sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
 
             <!-- Logo -->
             <a class="logo">
-                <b>Frontend</b>
+                <img class="img-responsive" src="{{ asset('imagenes/headerfrontend.jpg') }}"/>
             </a>
 
             <!-- Header Navbar -->
@@ -51,15 +51,18 @@
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/>
+                                <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                     class="user-image" alt="User Image"/-->
+                                <img src="{{ asset('imagenes/logofrontend.jpg') }}"
+                                     class="user-image" alt="Enterprise Image"/>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                         class="img-circle" alt="User Image"/>                                    
+                                    <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                         class="img-circle" alt="User Image"/-->
+                                    <img src="{{ asset('imagenes/logofrontend.jpg') }}"
+                                         class="img-circle" alt="Entreprise Image"/>     
                                 </li>                                
                             </ul>
                         </li>
