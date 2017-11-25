@@ -4,7 +4,8 @@
     <section class="content-header">
         <h1 class="pull-left">Articulos
             <p></p>
-            @include('backend.buscar',['url'=>'articulos?search'])
+            @include('backend.buscar',['url'=>'articulos?search'])            
+            <p></p>
         </h1>
         
         <h1 class="pull-right">

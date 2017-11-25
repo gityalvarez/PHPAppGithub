@@ -4,7 +4,6 @@ namespace App\Models\Backend;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 /**
  * Class Articulo
  * @package App\Models\Backend
@@ -81,10 +80,12 @@ class Articulo extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function pedidos()
     {
-        return $this->hasMany(\App\Models\Backend\Pedido::class);
+        return $this->belongsToMany(\App\Models\Backend\Pedido::class, 'articulo_pedido')
+                ->whereNull('articulo_pedido.deleted_at')
+                ->withPivot('cantidad');
     }
 }

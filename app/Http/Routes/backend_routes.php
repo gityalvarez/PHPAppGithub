@@ -51,6 +51,8 @@ Route::group(['prefix' => '/', 'middleware' => 'role:gerente'], function() {
 
 Route::group(['prefix' => '/', 'middleware' => ['role:gerente|despachador']], function() {
     Route::get('backend/pedidos', ['as'=> 'backend.pedidos.index', 'uses' => 'Backend\PedidoController@index']);
+    Route::get('backend/pedidos/dispatch', ['middleware' => 'role:despachador', 'as'=> 'backend.pedidos.dispatch', 'uses' => 'Backend\PedidoController@despatch']);
+    Route::post('backend/pedidos/dispatch', ['middleware' => 'role:despachador', 'as'=> 'backend.pedidos.send', 'uses' => 'Backend\PedidoController@send']);
     Route::post('backend/pedidos', ['as'=> 'backend.pedidos.store', 'uses' => 'Backend\PedidoController@store']);    
     Route::get('backend/pedidos/create', ['middleware' => 'role:gerente', 'as'=> 'backend.pedidos.create', 'uses' => 'Backend\PedidoController@create']);
     Route::put('backend/pedidos/{pedidos}', ['as'=> 'backend.pedidos.update', 'uses' => 'Backend\PedidoController@update']);
