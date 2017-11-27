@@ -14,7 +14,7 @@
     <label for="password">Contraseña</label>
     <input type="password" class="form-control" id="password" placeholder="Contraseña" name="password">
     @if(Route::currentRouteName() == 'entrust-gui::users.edit')
-        <div class="alert alert-info">
+        <div class="alert alert-info" id="aviso">
           <span class="fa fa-info-circle"></span> Deja la contraseña en blanco si quieres conservar la misma.
         </div>
     @endif
@@ -29,6 +29,7 @@
     <label for="calle">Calle o Avenida</label>
     <input type="name" class="form-control" id="calle" placeholder="nombre de la calle" name="calle" value="" onchange="geolocalizar()">
 </div>
+
 <div class="form-group">
     <label for="puerta">Num de Puerta</label>
     <input type="name" class="form-control" id="nopuerta" placeholder="puerta" name="puerta" value="" onchange="geolocalizar()" >
@@ -57,6 +58,16 @@
 </div>
 
 <script type="text/javascript">
+ @if(Route::currentRouteName() == 'entrust-gui::users.edit')
+    document.getElementById("aviso").onload = recuperadir();
+@endif
+    function recuperadir(){
+        var dir ="{{ (Session::has('errors')) ? old('direccion', '') : $user->direccion }}"
+      console.log(dir);
+    var arr = dir.split(",");
+    document.getElementById("nopuerta").value =arr[0];
+    document.getElementById("calle").value=arr[1];
+    }
     
     function geolocalizar() {
 
