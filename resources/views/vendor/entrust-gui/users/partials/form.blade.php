@@ -27,12 +27,12 @@
 @endif
 <div class="form-group">
     <label for="calle">Calle o Avenida</label>
-    <input type="text" class="form-control" id="calle" placeholder="nombre de la calle" name="calle" value="" onchange="geolocalizar()">
+    <input type="text" class="form-control" id="calle" placeholder="Nombre de la Calle" name="calle" value="" onchange="geolocalizar()">
 </div>
 
 <div class="form-group">
     <label for="puerta">Número de Puerta</label>
-    <input type="text" class="form-control" id="nopuerta" placeholder="puerta" name="puerta" value="" onchange="geolocalizar()" >
+    <input type="text" class="form-control" id="nopuerta" placeholder="Número de Puerta" name="puerta" value="" onchange="geolocalizar()" >
 </div>
 <div class="form-group hidden">
     <label for="direccion">Dirección</label>

@@ -9,11 +9,6 @@
         <!--Estos br son para darle el espacio del search-->
         <br/>
         <br/>
-        <!--br/>
-        <br/>
-        <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('entrust-gui::users.index') !!}">Volver a Usuarios</a>
-        </h1-->
 </section>
 
 <div class="content">

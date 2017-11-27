@@ -27,7 +27,7 @@
           <tr>
             <th>Nombre</th>
             <th>Email</th>
-            <th>Direccion</th>
+            <th>Dirección</th>
             <th>Acciones</th>
           </tr>
           @foreach($users as $user)
