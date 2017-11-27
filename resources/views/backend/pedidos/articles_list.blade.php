@@ -69,7 +69,7 @@ $(document).ready(function(){
                 <td>Articulo sin imagen...</td>
             @endif
             <td><input name="articulos[]" type="checkbox" value="{!! $articulo->id !!}" class="checkbox"></td>
-            <td><input name="cantidades[]" type="number" style="display:none" class="form-control cantidad" min=0></td>
+            <td><input name="cantidades[]" type="number" style="display:none" class="form-control cantidad" min=1></td>
         </tr>        
     @endforeach
     </tbody>

@@ -3,7 +3,7 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <div class="form-group">
     <label for="name">Nombre</label>
-    <input type="name" class="form-control" id="name" placeholder="Nombre" name="name" value="{{ (Session::has('errors')) ? old('name', '') : $user->name }}">
+    <input type="text" class="form-control" id="name" placeholder="Nombre" name="name" value="{{ (Session::has('errors')) ? old('name', '') : $user->name }}">
 </div>
 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
     <label for="email">Email</label>
@@ -27,30 +27,30 @@
 @endif
 <div class="form-group">
     <label for="calle">Calle o Avenida</label>
-    <input type="name" class="form-control" id="calle" placeholder="nombre de la calle" name="calle" value="" onchange="geolocalizar()">
+    <input type="text" class="form-control" id="calle" placeholder="nombre de la calle" name="calle" value="" onchange="geolocalizar()">
 </div>
 
 <div class="form-group">
-    <label for="puerta">Num de Puerta</label>
-    <input type="name" class="form-control" id="nopuerta" placeholder="puerta" name="puerta" value="" onchange="geolocalizar()" >
+    <label for="puerta">Número de Puerta</label>
+    <input type="text" class="form-control" id="nopuerta" placeholder="puerta" name="puerta" value="" onchange="geolocalizar()" >
 </div>
-<div class="form-group" hidden="true">
-    <label for="direccion">Direccion</label>
-    <input type="name" class="form-control" id="direccion" placeholder="Direccion" name="direccion" value="{{ (Session::has('errors')) ? old('direccion', '') : $user->direccion }}" >
+<div class="form-group hidden">
+    <label for="direccion">Dirección</label>
+    <input type="text" class="form-control" id="direccion" placeholder="Direccion" name="direccion" value="{{ (Session::has('errors')) ? old('direccion', '') : $user->direccion }}" >
 </div>
-<div class="form-group" hidden="true">
+<div class="form-group hidden">
     <label for="latitud">Latitud</label>
-    <input type="name" class="form-control" id="latitud" placeholder="Latitud" name="latitud" value="{{ (Session::has('errors')) ? old('latitud', '') : $user->latitud }}">
+    <input type="text" class="form-control" id="latitud" placeholder="Latitud" name="latitud" value="{{ (Session::has('errors')) ? old('latitud', '') : $user->latitud }}">
 </div>
-<div class="form-group" hidden="true">
+<div class="form-group hidden">
     <label for="longitud">Longitud</label>
-    <input type="name" class="form-control" id="longitud" placeholder="Longitud" name="longitud" value="{{ (Session::has('errors')) ? old('longitud', '') : $user->longitud }}" >
+    <input type="text" class="form-control" id="longitud" placeholder="Longitud" name="longitud" value="{{ (Session::has('errors')) ? old('longitud', '') : $user->longitud }}" >
 </div>
 
 
 <div class="form-group">
     <label for="roles">Roles</label>
-    <select name="roles[]" id="roles" multiple class="form-control">
+    <select name="roles[]" id="roles" class="form-control">
         @foreach($roles as $index => $role)
             <option value="{{ $index }}" {{ ((in_array($index, old('roles', []))) || ( ! Session::has('errors') && $user->roles->contains('id', $index))) ? 'selected' : '' }}>{{ $role }}</option>
         @endforeach

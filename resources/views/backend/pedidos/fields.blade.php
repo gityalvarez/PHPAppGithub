@@ -51,7 +51,7 @@ $(document).ready(function(){
             @else
                 <td>Articulo sin imagen...</td>
             @endif
-            <td><input name="cantidades[]" type="number" class="form-control cantidad" value="{!! $articulo->pivot->cantidad !!}" min=0 placeholder="{!! $articulo->pivot->cantidad !!}"></td>
+            <td><input name="cantidades[]" type="number" class="form-control cantidad" value="{!! $articulo->pivot->cantidad !!}" min=1 placeholder="{!! $articulo->pivot->cantidad !!}"></td>
         </tr>        
     @endforeach
     </tbody>
@@ -60,7 +60,7 @@ $(document).ready(function(){
 </div>
 <div class="form-group col-sm-6">
 <b>Total:   </b>
-<input name="total" type="number" class="total" value="{!! $pedido->total !!}" min=0 placeholder="{!! $pedido->total !!}" readonly="readonly" size="1">
+<input name="total" type="number" class="total" value="{!! $pedido->total !!}" placeholder="{!! $pedido->total !!}" readonly="readonly" size="1">
 </div>
 <div class="form-group col-sm-6">
 <b>Total Actualizado:   </b><span class="total"></span>
