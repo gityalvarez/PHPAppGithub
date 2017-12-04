@@ -90,16 +90,33 @@ class PedidoController extends AppBaseController
     {
         $pedidos = $request->pedidos;
         $user = Auth::user();
+
+        //va a cargar un arreglo con la latitud longitud y nombre del cliente
+        
         foreach ($pedidos as $id)
         {
           $pedido = Pedido::find($id);
+          $cliente =User::where('id',$pedido->user_id);
+          $clientes[] = ['nombre' => $cliente->lists('name')[0],
+                         'lat' => $cliente->lists('latitud')[0],
+                         'long'=> $cliente->lists('longitud')[0]]
+          ;
+
+          //$cliente =$pedido->cliente();
+         // var_dump($clientes);
+          /*
+          $arr[]=['nombre'=>$pedido->cliente,
+                    'lat'=>'11250',
+                    'long'=>'111254'];*/
           $pedido->update(['estado' => 'despachado']);
           $pedido->despachantes()->attach($user->id, ['created_at' => DB::raw('NOW()')]);
         }
         $pedidos = Pedido::where('estado', 'creado')->get();
-        return view('backend.pedidos.index')
+       // var_dump($clientes);
+        return view('backend.pedidos.map')
             -> with('user', $user)
-            -> with('pedidos', $pedidos);
+            -> with('pedidos', $pedidos)
+            -> with('clientes',$clientes);
     }
 
 

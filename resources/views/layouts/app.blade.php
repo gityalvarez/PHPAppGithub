@@ -11,7 +11,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">
-
+    <link rel="stylesheet" href="{{ URL::asset('recursosmapa/css/style.css')}}">
+<!--todo lo relacionado al mapeo-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+            integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+            crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+            integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+            crossorigin="">
+    </script>
+    
+    <script type="text/javascript" src="{{ URL::asset('recursosmapa/js/bouncemarker.js')}}"></script>
+    <script type="text/javascript" src="{{ URL::asset('recursosmapa/dist/graphhopper-client.js?v=0.9.0-2')}}"></script>
+    <!-- map matching currently needs togeojson.js -->
+    <script type="text/javascript" src="{{ URL::asset('recursosmapa/js/togeojson.js')}}"></script>
+    
+    
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -142,7 +157,7 @@
 
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
-
+    <script type="text/javascript" src="{{ URL::asset('recursosmapa/js/demo.js?v=0.9.0-2')}}"></script>
     @yield('scripts')
 </body>
 </html>
