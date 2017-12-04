@@ -25,7 +25,7 @@ var App = {
   
   home: function() {  
     //e.preventDefault();
-    var contentHome = '<h1>Welcome</h1>'
+    var contentHome = '<h1>Bienvenido</h1>'
 
                       + '<form>'
                       + '<div class="ui-field-contain">'
