@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,14 +8,15 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="{{ URL::asset('mobile/jscript.js')}}"></script>
     <style media="screen">
       #fb-btn{margin-top:20px;}
-      #profile, #logout, #feed{display:none}
+      #profile, #fblogout, #feed{display:none}
     </style>
   </head>
   <body>
     <script>
+      /*
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '497791170577350',
@@ -108,68 +108,142 @@
           setElements(false);
         });
       }
+      */
     </script>
-    <script>
 
-      $("#loginForm").submit(function(e) {
 
-        var url = "http://localhost:8000/api/v1/oauth/access_token"; // the script where you handle the form input.
+<script>  
+/*
+$(document).ready(function() {
 
+    // process the form
+    $('loginform').submit(function(event) {
+
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+            'name'              : $('input[name=name]').val(),
+            'email'             : $('input[name=email]').val(),
+            'superheroAlias'    : $('input[name=superheroAlias]').val()
+        };
+
+        // process the form
         $.ajax({
-           type: "POST",
-           url: url,
-           data: $("#loginForm").serialize(), // serializes the form's elements.
-           success: function(data)
-            {
-                alert(data); // show response from the php script.
-            }
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : route('api/v1/oauth/access_token'), // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+                        encode          : true
+        })
+            // using the done promise callback
+            .done(function(data) {
+
+                // log data to the console so we can see
+                console.log(data); 
+
+                // here we will handle errors and validation messages
             });
 
-            e.preventDefault(); // avoid to execute the actual submit of the form.
-        });
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+    });
 
+});
 
-
-/*
-
-
-
-
-      $('#loginForm').submit(function(){
-      e.preventDefault();
-      jQuery.support.cors = true; 
+*/  /*
+      $('#loginform').submit(function(){
+        var url = $(this).attr("action");
+     // jQuery.support.cors = true; 
       $.ajax({ 
-        url: 'http://localhost:8000/api/v1/oauth/access_token.php',
-        crossDomain: true,
+        url: url, 
+        //crossDomain: true,
         type: 'post',
-        contentType: "application/x-www-form-urlencoded",
-        data: $("#loginForm").serialize(), 
+        //dataType: 'JSONP',
+        ContentType:'application/x-www-form-urlencoded',
+        data: $("#loginform").serialize(), 
+        
         success: function(data){
           if(data.status == 'success'){
-              alert("Uruguay nomaaaaaa");
-             //window.location.href = 'http://www.test.com/mobile/main.html'; 
+              
+              console.log('entre con el access token');
+             
           }else if(data.status == 'error'){
              alert("Authentication Invalid. Please try again!");
              return false;        
           }
-
         }
       }); 
-
     });
-    */ 
-  </script>
+    */
+
+   /* $(function(){
+      $('#login').click(function(event){
+        $.ajax({
+          type:'POST',
+          url:'http://localhost:8000/api/v1/oauth/access_token',
+          contentType: 'application/x-www-form-urlencoded',
+          dataType: 'jsonp',
+          jsonp: 'callback',
+          jsonpCallback: 'jsonpCallback',
+          data: {username: $('#username').val(),
+                 password: $('#password').val(),
+                 grant_type: 'password',
+                 client_id: 'f3d259ddd3ed8ff3843839b',
+                 client_secret: '4c7f6f8fa93d59c45502c0ae8c4a95b' },
+          success: function(datos){
+            localStorage.setItem('token',token);
+            console.log(datos);
+           // $.simpleStorage.set('nombre',datos.firstname);
+            $.mobile.changePage('articulos',{transition: 'slideup'});
+            
+          }
+        });
+      });
+
+      function jsonpCallback(data){
+        alert("entre al jsonpCallback");
+      }
+    })
+
+*/
+/*
+$(function(){
+    $('#login').click(function(event){
+      $.ajax({
+        type: 'POST',
+        url:'http://localhost:8000/api/v1/oauth/access_token',
+        data: {username: $('#username').val(),
+                 password: $('#password').val(),
+                 grant_type: 'password',
+                 client_id: 'f3d259ddd3ed8ff3843839b',
+                 client_secret: '4c7f6f8fa93d59c45502c0ae8c4a95b' },
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            sessionStorage.setItem('token', data.access_token);
+            var token = sessionStorage.getItem('token');
+            console.log(token);   
+            var nextlink = 'articulos';
+            $("body").pagecontainer("change", nextlink, {transition : 'slide'}); 
+        },
+      });
+    });
+})
+*/
 
 
-    <div data-role="page" data-theme='b'>
+  </script> 
+
+  
+
+    <div data-role="page" id='index' data-theme='b'>
         <div data-role="header">
             <h1>Envios App</h1>
         </div>
-
-        <div role="main" class="ui-content">
-            <h1 >Bienvenido!</h1>
-            <h2><b>Usuario Registrado</b></h2>
-            <form id='loginform'>
+        <div role="main" class="ui-content" id='app'>
+           <!-- 
+            <form id='loginform' action='http://localhost:8000/api/v1/oauth/access_token' method='post' enctype='application/x-www-form-urlencoded'>-->
+              <!--<form id='loginform' action='http://localhost:8000/api/v1/oauth/access_token' method='post'>
               <div data-role="fieldcontain" class="ui-hide-label">
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" value="" placeholder="Username" />
@@ -180,29 +254,41 @@
                 <input type="password" name="password" id="password" value="" placeholder="Password" />
               </div>
               <div data-role="fieldcontain" class="ui-hide-label">
-                <input  id="grant_type" value="password"  />
+                <input  id="grant_type" name="grant_type" value="password"  />
               </div>
-              <div data-role="fieldcontain" class="ui-hide-label hidden">
-                <input  id="client_id" value="f3d259ddd3ed8ff3843839b"  />
+              <div data-role="fieldcontain" class="ui-hide-label">
+                <input  id="client_id" name="client_id" value="f3d259ddd3ed8ff3843839b"  />
               </div>
-              <div data-role="fieldcontain" class="ui-hide-label hidden">
-                <input  id="client_secret" value="4c7f6f8fa93d59c45502c0ae8c4a95b"  />
+              <div data-role="fieldcontain" class="ui-hide-label">
+                <input  id="client_secret" name="client_secret" value="4c7f6f8fa93d59c45502c0ae8c4a95b"  />
               </div>
-
-
-              <input type="submit" value="Login" id="submitButton">
+              <input type="submit" value="Login">
              </form> 
+            
+
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" value="" placeholder="Username" />
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" value="" placeholder="Password" />
+            <a href='#' class='ui-shadow ui-btn ui-corner-all ui-btn-inline' id='login'>Login</a>
+
             <h2><b>No tienes cuenta?</b></h2>
-            <button data-theme="b" class="ui-btn-hidden" id='registrar' data-disabled="false">Registrarse</button>
+            <a href='#' class='ui-shadow ui-btn ui-corner-all ui-btn-inline' id='registro'>Registrar</a>
+            <p></p>
+            <a href='#' class='ui-shadow ui-btn ui-corner-all ui-btn-inline' id='registro'>Logout</a>
+            
             <h2><b>Ingresar con Facebook</b></h2>
             <fb:login-button 
             id="fb-btn" scope="public_profile,email,user_birthday,user_location,user_posts" onlogin="checkLoginState();">
             </fb:login-button>
-            <a id="logout" href="#" onclick="logout()">Logout</a>
+            -->
             <p></p>
         </div>
     </div>
 </body>
+</html>
 
 
 

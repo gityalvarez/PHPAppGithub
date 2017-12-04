@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users=Articulo::all();
+        $users=User::all();
         return response()->json($users,200);
     }
 }

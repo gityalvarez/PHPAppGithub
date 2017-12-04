@@ -15,7 +15,7 @@ Route::post('oauth/access_token', function() {
 });
 
 
-/*
+
 Route::group(['middleware' => ['oauth']], function () {
     Route::resource('user', 'UserController');
     Route::resource('articulo', 'ArticuloController');
@@ -23,10 +23,10 @@ Route::group(['middleware' => ['oauth']], function () {
     Route::resource('envio', 'EnvioController');
 
 });
-*/
 
-	Route::resource('articulo', 'ArticuloController');
-	Route::resource('producto', 'ProductoController');
+
+	//Route::resource('articulo', 'ArticuloController');
+	//Route::resource('producto', 'ProductoController');
 	 
 
 

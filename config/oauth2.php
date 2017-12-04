@@ -30,7 +30,8 @@ return [
     */
 
 
-'grant_types' => [
+
+    'grant_types' => [
     'password' => [
         'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
         'callback' => '\App\OAuth2\Verifier\PasswordGrantVerifier@verify',
@@ -196,6 +197,6 @@ return [
     |
     */
 
-    'http_headers_only' => false,
+    'http_headers_only' => true,
 
 ];
