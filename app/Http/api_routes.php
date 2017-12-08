@@ -14,6 +14,10 @@ Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
 });
 
+/*
+Route::get('login/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+*/
 
 
 Route::group(['middleware' => ['oauth']], function () {

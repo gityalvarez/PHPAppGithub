@@ -8,6 +8,10 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Socialite;
+use Redirect;
+use Authorizer;
+use Response;
 
 class AuthController extends Controller
 {
@@ -76,30 +80,5 @@ class AuthController extends Controller
     }
 
 
-/**
-     * Redirect the user to the google authentication page.
-     *
-     * @return Response
-     */
-/*
-    public function redirectToProvider()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    /**
-     * Obtain the user information from google.
-     *
-     * @return Response
-     */
-    /*
-    public function handleProviderCallback()
-    {
-        $user = Socialite::driver('google')->user();
-        return $user->name;
-        return $user->email;
-
-        // $user->token;
-    }
-    */
+    
 }

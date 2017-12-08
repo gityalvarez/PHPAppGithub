@@ -14,6 +14,8 @@
         <div class="box box-primary">
             <div class="box-body">
                     @include('frontend.articulos.table')
+                     <a href="http://localhost:8000/login/google" class="btn btn-block btn-social btn-google"><i class="fa fa-google-plus"></i></a>
+
             </div>
         </div>
     </div>
