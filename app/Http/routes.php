@@ -56,7 +56,7 @@ Route::group(['prefix' => 'frontend', 'namespace' => 'Frontend'], function () {
     require __DIR__ . '/Routes/frontend_routes.php';
 });
 
-Route::group(['prefix' => 'mobile', 'namespace' => 'WebMobile'], function () {
+Route::group(['prefix' => 'mobile', /*'namespace' => 'WebMobile'*/], function () {
     require __DIR__ . '/Routes/webmobile_routes.php';
 });
 

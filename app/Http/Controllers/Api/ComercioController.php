@@ -11,6 +11,7 @@ class ComercioController extends Controller
 {
     public function index()
     {
-        return Comercio::all();
+        $comercios = Comercio::all()->toArray();
+        return response()->json($comercios,200);
     }
 }

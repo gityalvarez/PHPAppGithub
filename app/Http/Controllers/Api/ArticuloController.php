@@ -13,8 +13,7 @@ class ArticuloController extends Controller
     public function index()
     { 
     	
-    	
-    	$articulos=Articulo::all();
+    	$articulos=Articulo::all()->toArray();
         return response()->json($articulos,200);
         
     }

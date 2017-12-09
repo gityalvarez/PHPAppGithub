@@ -51,17 +51,12 @@
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/-->
                                 <img src="{{ asset('imagenes/logofrontend.jpg') }}"
                                      class="user-image" alt="Enterprise Image"/>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <!--img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                         class="img-circle" alt="User Image"/-->
+                                <li class="user-header">                                    
                                     <img src="{{ asset('imagenes/logofrontend.jpg') }}"
                                          class="img-circle" alt="Entreprise Image"/>     
                                 </li>                                

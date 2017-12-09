@@ -21,3 +21,12 @@
 3.Para probar el frontend la direccion es http://localhost:8000/frontend
 4.Funcionan Ver Lista Articulos y Ver Lista Comercios por ahora...
 
+Agregar en el archivo .env las credenciales de las aplicaciones:
+
+FACEBOOK_ID=165641307516600
+FACEBOOK_SECRET=22ea87cb8b4147e737205b2f422978c8
+FACEBOOK_REDIRECT=http://localhost:8000/mobile/login/facebook/callback
+
+GOOGLE_ID=573164205583-a2hdo7l2efsf5m87lj7177jrb2batkq5.apps.googleusercontent.com
+GOOGLE_SECRET=7Jw3aJssndV1aV2Yti-AhTPg
+GOOGLE_REDIRECT=http://localhost:8000/mobile/login/google/callback

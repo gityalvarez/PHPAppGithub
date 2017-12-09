@@ -9,6 +9,6 @@ class LocalController extends Controller
 {
     public function index()
     {
-        return view('webmobile.locales');
+        return view('webmobile.comercios');
     }
 }

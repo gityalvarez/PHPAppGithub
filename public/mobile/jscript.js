@@ -80,6 +80,28 @@ var User = {
           }); 
         });
       })
+      
+      $('#comercios').on('pageinit',function(){
+        var token = sessionStorage.getItem('token');
+        $(document).on('pagebeforeshow',function(){        
+          $.ajax({
+            url : 'http://localhost:8000/api/v1/comercio',
+            type : 'GET',
+            headers: {'Authorization': 'Bearer ' + token },
+            success : function(data) {
+              console.log(token);
+              //var items = [];
+              var tblRowTitles = "<label align='center'> Id  Nombre  Dirección   Logo </label>";
+              $(tblRowTitles).appendTo("#comercios");
+              $.each(data, function(key, val){
+                var tblRow = "<label align='center' for=" + val.id + ">" + val.id + " " + val.nombre + " " + val.direccion + " <img src='../storage/" + val.logo + "' width='30' height=30'/></label>"
+                $(tblRow).appendTo("#comercios");
+              });
+            }
+          }); 
+        });
+      })
+      
     });
   },
 

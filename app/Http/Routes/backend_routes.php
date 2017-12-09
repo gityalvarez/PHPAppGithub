@@ -36,6 +36,7 @@ Route::group(['prefix' => '/', 'middleware' => 'role:admin'], function() {
     Route::delete('backend/productos/{productos}', ['as'=> 'backend.productos.destroy', 'uses' => 'Backend\ProductoController@destroy']);
     Route::get('backend/productos/{productos}', ['as'=> 'backend.productos.show', 'uses' => 'Backend\ProductoController@show']);
     Route::get('backend/productos/{productos}/edit', ['as'=> 'backend.productos.edit', 'uses' => 'Backend\ProductoController@edit']);
+    //Route::post('backend/users/uploadimage', ['as'=> 'backend.users.uploadimage', 'uses' => 'UserController@uploadimage']);
 });
 
 Route::group(['prefix' => '/', 'middleware' => 'role:gerente'], function() {

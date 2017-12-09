@@ -19,7 +19,7 @@
 
     <div data-role="page" id='index' data-theme='b'>
         <div data-role="header">
-            <h1>Envios App</h1>
+            <h1>Envios App Inicio</h1>            
         </div>
         <div role="main" class="ui-content" id='app'>           
           <label for="username">Username:</label>
@@ -28,7 +28,9 @@
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" value="" placeholder="Password" />
             <p></p>
-            <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" id="login">Login</a>     
+            <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" id="login">Login</a> 
+            <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
+            <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
         </div>
     </div>
 
@@ -41,7 +43,7 @@
           <div class="ui-field-contain">
             <label for="dropdown">Ir A:</label>
               <select name="dropdown" id="dropdown">
-                <option value="0">Seleccione una Pagina</option>
+                <option value="0">Seleccione una Página</option>
                 <option value="1">articulos</option>
                 <option value="2">comercios</option>
                 <option value="3">pedidos</option>
@@ -70,6 +72,9 @@
         <h1>Envios App Comercios</h1>
       </div>
       <div role="main" class="ui-content">
+        <form>
+          <input type="text" data-type="search" id="filterable-input">
+        </form>
       </div>
     </div>
 

@@ -40,13 +40,18 @@ return [
         'client_secret' => env('FACEBOOK_SECRET'),
         'redirect'      => env('FACEBOOK_REDIRECT'),
     ],
-
     
-     'google' => [ 
+    'google' => [
+        'client_id'     => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect'      => env('GOOGLE_REDIRECT'),
+    ],   
+    
+    /* 'google' => [ 
                 'client_id' => '959657861738-vt29ppi0qsdhp8ub88edfjgu8p1knapo.apps.googleusercontent.com',
                 'client_secret' => 'IpX4p3K1j_He9LSFSiPSREAX',
                 'redirect' => 'http://localhost:8000/login/google/callback' 
         ],
-
+        */
 
 ];
