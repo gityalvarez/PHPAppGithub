@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
     <title>SocialAuth</title>
     <link rel="stylesheet" src="themes/B.css" />
     <link rel="stylesheet" src="themes/jquery.mobile.icons.min.css" />
@@ -9,10 +9,7 @@
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('mobile/jscript.js')}}"></script>
-    <style media="screen">
-      #fb-btn{margin-top:20px;}
-      #profile, #fblogout, #feed{display:none}
-    </style>
+    
   </head>
   <body>
    <!-- <script type="text/javascript" src="{{ URL::asset('mobile/FBscript.js')}}"></script>-->

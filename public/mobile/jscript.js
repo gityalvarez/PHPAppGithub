@@ -144,6 +144,9 @@ var User = {
         console.log(token); 
         $.mobile.navigate('#selectpage');
       },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.responseText);
+      }
     });
   },
 
