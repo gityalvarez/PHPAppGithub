@@ -79,11 +79,12 @@ var User = {
             headers: {'Authorization': 'Bearer ' + token },
             success : function(data) {
               console.log(token);
-              var tblRowTitles = "<label align='center'> Id  Nombre  Dirección   Logo </label>";              
-              $('#contenedor').append(tblRowTitles);
+              //var items = [];
+              var tblRowTitles = "<label align='center'> Id  Nombre  Dirección   Logo </label>";
+              $(tblRowTitles).appendTo("#comercios");
               $.each(data, function(key, val){
                 var tblRow = "<label align='center' for=" + val.id + ">" + val.id + " " + val.nombre + " " + val.direccion + " <img src='../storage/" + val.logo + "' width='30' height=30'/></label>"
-                $('#contenedor').append(tblRow);
+                $(tblRow).appendTo("#comercios");
               });
             }
           }); 

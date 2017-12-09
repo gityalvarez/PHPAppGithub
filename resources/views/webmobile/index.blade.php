@@ -115,13 +115,10 @@
         <h1>Envios App Comercios</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
-      <div data-role="content" id='contenedor' class="ui-content">
+      <div role="main" class="ui-content">
         <form>
           <input type="text" data-type="search" id="filterable-input">
         </form>
-      </div>
-      <div data-role="footer" data-theme='c'>
-        <h2>Copyright © 2017 Company. All rights reserved.</h2>
       </div>
     </div>
 
