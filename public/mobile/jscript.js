@@ -12,22 +12,6 @@ var App = {
   },
 
   home: function() {  
-    //e.preventDefault();
-    /*var contentHome = '<h1>Bienvenido</h1>'
-
-                      + '<form>'
-                      +   '<div class="ui-field-contain">'
-                      +     '<label for="dropdown">Ir A:</label>'
-                      +     '<select name="dropdown" id="dropdown">'
-                      +       '<option value="0">Seleccione una Pagina</option>'
-                      +       '<option value="1">articulos</option>'
-                      +       '<option value="2">comercios</option>'
-                      +       '<option value="3">pedidos</option>'
-                      +       '<option value="4">perfil</option>'
-                      +     '</select>'
-                      +   '</div>'
-                      + '</form>'
-    $('#app').html(contentHome);*/
   },
 
 
@@ -40,6 +24,11 @@ var User = {
       $(document).on('click','#login',function(e){
         e.preventDefault();
         User.login();
+      });
+
+      $(document).on('click','#registrar',function(e){
+        e.preventDefault();
+        User.registrar();
       });
 
       $(document).on('click', '#logout', function(e){
@@ -108,12 +97,10 @@ var User = {
   autenticar : function(){
     var token = sessionStorage.getItem('token');
     if( token == null ) {
-      //App.splash();
-      
+      $.mobile.navigate('#index');      
     }
     else{
       User.tokenValido(token);
-
     }
   },
 
@@ -131,8 +118,6 @@ var User = {
         else{
           console.log('todo bien');
           $.mobile.navigate('#selectpage');
-          //App.dirigir('articulos');
-
         }
       },
       error: function(a,b,c) {
@@ -162,14 +147,18 @@ var User = {
     });
   },
 
+  registrar : function(){
+
+  },
+
   logout : function(){
-    App.splash();
     sessionStorage.removeItem('token');
+    $.mobile.navigate('#index'); 
   },
 
   seleccionar : function(){
 
-  }
+  },
 
 
 };
