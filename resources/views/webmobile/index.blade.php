@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
-    <title>SocialAuth</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>PediloYa Mobile</title>
     <link rel="stylesheet" src="themes/B.css" />
     <link rel="stylesheet" src="themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+            integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+            crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+            integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+            crossorigin="">
+    </script>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 
@@ -34,7 +41,7 @@
     <div data-role="page" id='loginpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed'>
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-          <h1>Envios App Login</h1>            
+          <h1>PediloYa Mobile Login</h1>            
         </div>
         <div role="main" class="ui-content" id='app'>           
           <label for="username">Username:</label>
@@ -52,7 +59,7 @@
     <div data-role="page" id='registrarpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed'>
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-          <h1>Envios App Login</h1>            
+          <h1>PediloYa Mobile Registro</h1>            
         </div>
         <div role="main" class="ui-content">           
           <label for="Nombre">Nombre:</label>
@@ -78,7 +85,7 @@
     <div data-role="page" id='selectpage' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed'>
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>              
-        <h1>Envios App Select</h1>
+        <h1>PediloYa Mobile</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content">
@@ -100,7 +107,7 @@
     <div data-role="page" id='articulos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed'>
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>Envios App Articulos</h1>
+        <h1>PediloYa Mobile Articulos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content">
@@ -118,7 +125,7 @@
     <div data-role="page" id='comercios' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed'>
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>Envios App Comercios</h1>
+        <h1>PediloYa Mobile Comercios</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedor' class="ui-content">
@@ -134,7 +141,7 @@
     <div data-role="page" id='pedidos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed'>
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>Envios App Pedidos</h1>
+        <h1>PediloYa Mobile Pedidos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content"></div>
@@ -144,7 +151,7 @@
     <div data-role="page" id='perfil' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed'>
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>Envios App Perfil</h1>
+        <h1>PediloYa Mobile Perfil</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content"></div>
