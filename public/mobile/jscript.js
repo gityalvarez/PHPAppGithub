@@ -65,7 +65,7 @@ var User = {
               $.each(data, function(key, val){
                 //var tblRow = "<label for="+val.id+"> id: " + val.id +" nombre "+val.nombre+"stock "+val.stock+" precio  "+val.precio+"<input type='checkbox'   id=" + val.id +">" + "</label>"
                 //$(tblRow).appendTo("#articulos");
-                output += '<li><img src="http://localhost:8000/storage/'+val.imagen+'">' + val.nombre +' $'+ val.precio + '</li>';
+                output += '<li> <img src="http://localhost:8000/storage/'+val.imagen+'">' + val.nombre +' $'+ val.precio + '</li>';
               });
               $('#articulos2').html(output).listview("refresh");
             }
@@ -87,7 +87,8 @@ var User = {
               $.each(data, function(key, val){
                 var tblRow = "<label align='center' for=" + val.id + ">" + val.id + " " + val.nombre + " " + val.direccion + " <img src='../storage/" + val.logo + "' width='30' height=30'/></label>"
                 $('#contenedor').append(tblRow);
-              });             
+              });
+              
             }
           }); 
         });
