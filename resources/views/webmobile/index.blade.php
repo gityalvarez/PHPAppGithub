@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+
+
+
     <script type="text/javascript" src="{{ URL::asset('mobile/jscript.js')}}"></script>
     
   </head>
@@ -53,15 +56,18 @@
         </div>
         <div role="main" class="ui-content">           
           <label for="Nombre">Nombre:</label>
-          <input type="text" name="Nombre" id="Nombre" value="" placeholder="Nombre" />
+          <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" />
           <label for="Email">Email:</label>
-          <input type="text" name="Email" id="Email" value="" placeholder="Email" />
+          <input type="text" name="email" id="email" value="" placeholder="Email" />
+          <p></p>
+          <label for="Password">Password:</label>
+          <input type="password" name="password" id="password" value="" placeholder="Password" />
           <p></p>
           <label for="Calle">Calle o Avenida:</label>
-          <input type="text" name="Calle" id="Calle" value="" placeholder="Calle o Avenida" />
+          <input type="text" name="calle" id="calle" value="" placeholder="Calle o Avenida" />
           <p></p>
           <label for="Numero">Numero de Puerta:</label>
-          <input type="text" name="Numero" id="Numero" value="" placeholder="Numero de Puerta" />
+          <input type="text" name="numero" id="numero" value="" placeholder="Numero de Puerta" />
           <p></p>
           <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" id="registrar">Resgistrar</a> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
@@ -98,11 +104,14 @@
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content">
-        <form>
+        <!--<form>
           <input type="text" data-type="search" id="filterable-input">
         </form>
         <form data-role="controlgroup" data-filter="true" data-input="#filterable-input" id="articulos">      
-        </form>
+        </form>-->
+        <div data-role="content">
+          <ul data-role="listview" data-inset="true" id="articulos2"></ul>
+        </div>
       </div>
     </div>
 

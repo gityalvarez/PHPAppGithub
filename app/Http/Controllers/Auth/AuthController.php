@@ -73,8 +73,29 @@ class AuthController extends Controller
         ]);
         $user->attachRole('4'); //los usuarios que se registran son clientes
         $user->save();
-        return $user;
+
     }
+
+
+    protected function registrar(array $data)
+    {
+        dd($data);
+        $user = User::create([
+            'name' => 'marquitos',
+            'email' => 'marquitos@gmail.com',
+            'password' => bcrypt('123456'),
+            'direccion' => 'avenida rivera',
+            'latitud' => -3546513, 
+            'longitud' => -545658,             
+        ]);
+        $user->attachRole('4'); //los usuarios que se registran son clientes
+        $user->save();
+        return redirect()->to('http://localhost:8000/mobile/index');
+    }
+
+
+
+
 
     /**
      * Redirect the user to the GitHub authentication page.

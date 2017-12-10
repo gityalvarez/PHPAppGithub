@@ -15,3 +15,5 @@ Route::get('articulos', ['as'=> 'articulos', 'uses' => 'WebMobile\ArticuloContro
 Route::get('comercios', ['as'=> 'comercios', 'uses' => 'WebMobile\ComercioController@index']);
 Route::get('pedidos', ['as'=> 'pedidos', 'uses' => 'WebMobile\PedidoController@index']);
 Route::get('perfil', ['as'=> 'perfil', 'uses' => 'WebMobile\PerfilController@index']);
+
+Route::post('registrar','Auth\AuthController@registrar');

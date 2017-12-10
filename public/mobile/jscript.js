@@ -60,11 +60,14 @@ var User = {
             headers: {'Authorization': 'Bearer ' + token },
             'success' : function(data) {
               console.log(token);
-              var items = [];
+              //var items = [];
+              var output = '';
               $.each(data, function(key, val){
-                var tblRow = "<label for="+val.id+"> id: " + val.id +" stock "+val.stock+" precio  "+val.precio+" <input type='checkbox'   id=" + val.id +">" + "</label>"
-                $(tblRow).appendTo("#articulos");
+                //var tblRow = "<label for="+val.id+"> id: " + val.id +" nombre "+val.nombre+"stock "+val.stock+" precio  "+val.precio+"<input type='checkbox'   id=" + val.id +">" + "</label>"
+                //$(tblRow).appendTo("#articulos");
+                output += '<li><img src="http://localhost:8000/storage/'+val.imagen+'">' + val.nombre +' $'+ val.precio + '</li>';
               });
+              $('#articulos2').html(output).listview("refresh");
             }
           }); 
         });
@@ -84,7 +87,7 @@ var User = {
               $.each(data, function(key, val){
                 var tblRow = "<label align='center' for=" + val.id + ">" + val.id + " " + val.nombre + " " + val.direccion + " <img src='../storage/" + val.logo + "' width='30' height=30'/></label>"
                 $('#contenedor').append(tblRow);
-              });
+              });             
             }
           }); 
         });
@@ -150,6 +153,30 @@ var User = {
   },
 
   registrar : function(){
+    $.ajax({
+      type: 'POST',
+      url:'http://localhost:8000/mobile/registrar',
+          data: {email: 'marcos@gmail.com',
+          password: '123456',
+          nombre: 'nombre',
+      },
+      dataType: 'json',
+      success: function(data) {
+        console.log(data);
+        //sessionStorage.setItem('token', data.access_token);
+        //var token = sessionStorage.getItem('token');
+        console.log('success register'); 
+        //$.mobile.navigate('#index');
+      },
+      //error: function (xhr, ajaxOptions, thrownError) {
+        //alert(xhr.responseText);
+      error: function(a,b,c) {
+                console.log('error');
+                console.log(a,b,c);
+      },
+      
+    });
+
 
   },
 

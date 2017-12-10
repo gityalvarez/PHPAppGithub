@@ -14,6 +14,8 @@ Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
 });
 
+Route::post('registrar', ['uses' => 'Auth\AuthController@registrar']);
+
 /*
 Route::get('login/facebook', 'Auth\AuthController@redirectToProvider');
 Route::get('login/facebook/callback', 'Auth\AuthController@handleProviderCallback');
