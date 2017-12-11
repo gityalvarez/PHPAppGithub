@@ -7,6 +7,9 @@ use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Articulo;
+use LucaDegasperi\OAuth2Server\Authorizer;
+
+
 
 class UserController extends Controller
 {
@@ -14,6 +17,12 @@ class UserController extends Controller
     {
         $users=User::all();
         return response()->json($users,200);
+    }
+
+    public function user(Authorizer $authorizer){
+        $user_id=$authorizer->getResourceOwnerId();        
+        $user=User::find($user_id);
+        return response()->json($user,200);
     }
     
     public static function create(Request $request)

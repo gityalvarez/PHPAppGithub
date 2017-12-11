@@ -180,7 +180,11 @@
         <h1>PediloYa Mobile Perfil</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
-      <div role="main" class="ui-content"></div>
+      <div role="main" class="ui-content">
+        <div data-role="content">
+          <ul data-role="listview" data-inset="true" id="listaperfil"></ul>
+        </div>
+      </div>
       <div data-role='footer' data-position='fixed' data-theme='b'>
         <div data-role="navbar">
           <ul>

@@ -61,8 +61,8 @@ var User = {
 
 
       $('#articulos').on('pageinit',function(){
-        var token = sessionStorage.getItem('token');
         $(document).on('pagebeforeshow',function(){        
+          var token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/articulo',
             type : 'GET',
@@ -83,8 +83,8 @@ var User = {
       });
       
       $('#comercios').on('pageinit',function(){
-        var token = sessionStorage.getItem('token');
         $(document).on('pagebeforeshow',function(){        
+          var token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/comercio',
             type : 'GET',
@@ -102,16 +102,42 @@ var User = {
 
               var mymap = L.map('mapid').locate({setView: true, maxZoom: 16});
               L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-                {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(mymap);
-              $.each(data, function(key, val){
-                var marker = L.marker([val.latitud,val.longitud]).addTo(mymap).bindPopup("<p>"+val.nombre+"</p><br />"+val.direccion);  
+                 {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+               }).addTo(mymap);
 
-                });//end del each marker
+              $.each(data, function(key, val){
+                 var marker = L.marker([val.latitud,val.longitud]).addTo(mymap).bindPopup("<p>"+val.nombre+"</p><br />"+val.direccion);  
+ 
+                 
+               });//end del each marker
+
             }
           }); 
         });
-      })
+      });
+
+
+      $('#perfil').on('pageinit',function(){
+        $(document).on('pagebeforeshow',function(){        
+          var token = sessionStorage.getItem('token');
+          $.ajax({
+            url : 'http://localhost:8000/api/v1/user',
+            type : 'GET',
+            headers: {'Authorization': 'Bearer ' + token },
+            'success' : function(data) {
+              console.log(token);
+              console.log(data);
+              var output = '';
+              output += '<li> Nombre: ' + data.name +'</li>'+'<li>Email:  ' + data.email +'</li>'+'<li>Direccion:  ' + data.direccion +'</li>';
+              $('#listaperfil').html(output).listview("refresh");
+              
+            }
+          }); 
+        });
+      });
+
+
+
       
     });
   },
@@ -196,6 +222,7 @@ var User = {
 
   logout : function(){
     sessionStorage.removeItem('token');
+    var token= null;
     $.mobile.navigate('#index'); 
   },
 

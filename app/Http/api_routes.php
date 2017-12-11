@@ -24,7 +24,7 @@ Route::get('login/facebook/callback', 'Auth\AuthController@handleProviderCallbac
 
 
 Route::group(['middleware' => ['oauth']], function () {
-    Route::resource('user', 'UserController');
+    Route::resource('user', 'UserController@user');
     Route::resource('articulo', 'ArticuloController');
     Route::resource('comercio', 'ComercioController');
     Route::resource('envio', 'EnvioController');
