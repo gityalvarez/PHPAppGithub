@@ -110,6 +110,7 @@
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedor' class="ui-content" >
+          <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
           <ul data-role="listview" data-inset="true" id="articulos2"></ul>
        </div>      
       <div data-role='footer' data-position='fixed' data-theme='b'>

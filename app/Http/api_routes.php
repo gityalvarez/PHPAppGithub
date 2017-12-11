@@ -23,6 +23,6 @@ Route::group(['middleware' => ['oauth']], function () {
     //Route::resource('articulo', 'ArticuloController');
     Route::get('comercio', 'ComercioController@index');   
     Route::get('pedido', 'PedidoController@index');
-    //Route::post('pedido/registrar', 'PedidoController@create');
+    Route::post('pedido/registrar', 'PedidoController@create');
 
 });

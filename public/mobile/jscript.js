@@ -74,7 +74,7 @@ var User = {
               $.each(data, function(key, val){
                 //var tblRow = "<label for="+val.id+"> id: " + val.id +" nombre "+val.nombre+"stock "+val.stock+" precio  "+val.precio+"<input type='checkbox'   id=" + val.id +">" + "</label>"
                 //$(tblRow).appendTo("#articulos");
-                output += '<li><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" name="precios" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" name="stocks" value=' + val.stock + '>' + '<input type="checkbox" name="articulos" value=' + val.id + '>' + '<input type="number" name="cantidades" min="1">' +'</li>';
+                output += '<li><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" name="precios[]" class="precios" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" name="stocks[]" class="stocks" value=' + val.stock + '>' + '<input type="checkbox" name="articulos[]" class="articulos" value=' + val.id + '>' + '<input type="text" name="cantidades[]" class="cantidades" min="1">' +'</li>';
               });
               $('#articulos2').html(output).listview("refresh");
             }
@@ -127,7 +127,7 @@ var User = {
             headers: {'Authorization': 'Bearer ' + token },
             success : function(data) {
               console.log(token);
-              //console.log(data);               
+              console.log(data);               
               var output = '';
               $.each(data, function(key, val){
                 output += '<li>' + val.id + ' $' + val.total + ' ' + val.created_at + ' ' + val.estado + '<input type="button" value="Ver"/>' + '</li>';
@@ -195,7 +195,7 @@ var User = {
   },
 
   login : function(){
-    sessionStorage.setItem('email', $('#username').val()); 
+    //sessionStorage.setItem('email', $('#username').val()); 
     $.ajax({
       type: 'POST',
       url:'http://localhost:8000/api/v1/oauth/access_token',
@@ -217,7 +217,7 @@ var User = {
         $.mobile.navigate('#articulos');
       },
       error: function (xhr, ajaxOptions, thrownError) {
-        sessionStorage.removeItem('email');  
+        //sessionStorage.removeItem('email');  
         alert(xhr.responseText);
       }
     });
@@ -247,34 +247,39 @@ var User = {
   
   registrarpedido: function(){
     var token = sessionStorage.getItem('token');         
-    console.log('Entro a registrarpedido');  
+    console.log('Entro a registrarpedido');
+    var articulos = $('input:hidden.articulos').serialize();
+    var stocks = $('input:hidden.stocks').serialize();
+    var precios = $('input:hidden.precios').serialize();
+    var cantidades = $('input:text.cantidades').serialize();
     $.ajax({
       url : 'http://localhost:8000/api/v1/pedido/registrar',
       type : 'POST',
       headers: {'Authorization': 'Bearer ' + token },
       data: {
-        articulos: $('#articulos').val(),
-        stocks: $('#stocks').val(),
-        precios: $('#precios').val(),
-        cantidades: $('#cantidades').val()                
+        articulos: articulos,
+        stocks: stocks,
+        precios: precios,
+        cantidades: cantidades                
       },
       dataType: 'json',         
       success : function(data) {
         console.log(data);
-        alert("Pedido realizado con exito!!")
+        alert("Pedido realizado con exito!!");
       },
-      error: function (xhr, ajaxOptions, thrownError) {
+      error: function(xhr, ajaxOptions, thrownError, data) {
+        console.log("Datos: " + data);
         alert(xhr.responseText);
       }
     });
   },
 
   logout : function(){
-    var token= '';
-    var email = '';  
-    sessionStorage.setItem('token', token);
-    sessionStorage.setItem('email', email);
-    sessionStorage.clear();    
+    sessionStorage.removeItem('token');
+    //sessionStorage.removeItem('email');
+    sessionStorage.clear();
+    var token = null;
+    //var email = null;
     $.mobile.navigate('#index'); 
   },
 

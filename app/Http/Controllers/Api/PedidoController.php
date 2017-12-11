@@ -21,10 +21,10 @@ class PedidoController extends Controller
         return response()->json($pedidos,200);
     }
     
-    public function create(Request $request){        
+    public function create(Request $request, Authorizer $authorizer){        
         $pedido = new Pedido();
         $pedido->estado = "creado";
-        $cliente_id = Auth::id();
+        $cliente_id = $authorizer->getResourceOwnerId();
         $pedido->user_id = $cliente_id;
         $total = 0;
         for ($i=0; $i < count($request->articulos); $i++){
