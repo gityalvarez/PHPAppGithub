@@ -70,7 +70,7 @@ var User = {
             headers: {'Authorization': 'Bearer ' + token },
             success : function(data) {
               console.log(token);
-              var output = '';
+              var output = '';              
               $.each(data, function(key, val){
                 //var tblRow = "<label for="+val.id+"> id: " + val.id +" nombre "+val.nombre+"stock "+val.stock+" precio  "+val.precio+"<input type='checkbox'   id=" + val.id +">" + "</label>"
                 //$(tblRow).appendTo("#articulos");
@@ -211,7 +211,7 @@ var User = {
         console.log(data);
         sessionStorage.setItem('token', data.access_token);
         var token = sessionStorage.getItem('token');
-        var email = sessionStorage.getItem('email');
+        //var email = sessionStorage.getItem('email');
         console.log(token);
         console.log(email);
         $.mobile.navigate('#articulos');
@@ -248,6 +248,11 @@ var User = {
   registrarpedido: function(){
     var token = sessionStorage.getItem('token');         
     console.log('Entro a registrarpedido');
+    var i=0;
+    var form = $('#form').find( "input[name='articulos[]']" ).val();
+    console.log('Articulos: ' + form);
+    //console.log('Articulos: ' + $('input:hidden.articulos')[i]);
+    console.log('Stocks: ' + $('input:hidden.stocks'));
     var articulos = $('input:hidden.articulos').serialize();
     var stocks = $('input:hidden.stocks').serialize();
     var precios = $('input:hidden.precios').serialize();

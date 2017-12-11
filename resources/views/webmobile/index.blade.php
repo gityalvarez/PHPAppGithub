@@ -109,9 +109,11 @@
         <h1>PediloYa Mobile Artículos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
-      <div data-role="content" id='contenedor' class="ui-content" >
+      <div data-role="content" id='contenedorarticulos' class="ui-content" >
+          <form id="form">
           <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
           <ul data-role="listview" data-inset="true" id="articulos2"></ul>
+          </form>
        </div>      
       <div data-role='footer' data-position='fixed' data-theme='b'>
         <div data-role="navbar">
@@ -154,7 +156,7 @@
         <h1>PediloYa Mobile Pedidos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
-      <div data-role="content" class="ui-content">
+      <div data-role="content" class="ui-content" id="contenedorpedidos">
         <ul data-role="listview" data-inset="true" id="listapedidos"></ul>
       </div>
       <div data-role='footer' data-position='fixed' data-theme='b'>
