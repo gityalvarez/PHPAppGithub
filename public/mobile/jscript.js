@@ -7,14 +7,6 @@ var App = {
       });
   },
 
-  dirigir : function(to){
-      $("body").pagecontainer("change", to, {transition : 'slide'});
-  },
-
-  home: function() {  
-  },
-
-
 
 };
 
@@ -43,26 +35,8 @@ var User = {
       });
 
 
-
-
-      /*
-      $(document).on('change', '#dropdown',function(e){
-        console.log('entre al select');
-        //e.preventDefault();
-        //if(!selected || selected.length === 0){
-          console.log('antes de pagina');
-          var pagina = $("#dropdown option:selected").text();
-        //var pagina = document.getElementById('dropdown').value.text;
-          console.log('despues de pagina', pagina);
-          $.mobile.navigate('#'+pagina);
-          //App.dirigir('#'+pagina);
-
-        //}
-      });
-      */
-
       $('#articulos').on('pageinit',function(){
-        $(document).on('pagebeforeshow',function(){        
+               
           var token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/articulo',
@@ -70,7 +44,7 @@ var User = {
             headers: {'Authorization': 'Bearer ' + token },
             success : function(data) {
               console.log(token);
-              var output = '';              
+              var output = '';
               $.each(data, function(key, val){
                 //var tblRow = "<label for="+val.id+"> id: " + val.id +" nombre "+val.nombre+"stock "+val.stock+" precio  "+val.precio+"<input type='checkbox'   id=" + val.id +">" + "</label>"
                 //$(tblRow).appendTo("#articulos");
@@ -79,11 +53,11 @@ var User = {
               $('#articulos2').html(output).listview("refresh");
             }
           }); 
-        });
+        
       });
       
       $('#comercios').on('pageinit',function(){
-        $(document).on('pagebeforeshow',function(){        
+               
           var token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/comercio',
@@ -113,13 +87,13 @@ var User = {
 
             }
           }); 
-        });
+        
       });
 
       $('#pedidos').on('pageinit',function(){
         //var email = sessionStorage.getItem('email');  
         var token = sessionStorage.getItem('token');
-        $(document).on('pagebeforeshow',function(){        
+               
           $.ajax({
             //url : 'http://localhost:8000/api/v1/pedido?email='+email,
             url : 'http://localhost:8000/api/v1/pedido',
@@ -138,11 +112,11 @@ var User = {
               alert(xhr.responseText);
             }
           }); 
-        });
+        
       });
       
       $('#perfil').on('pageinit',function(){
-        $(document).on('pagebeforeshow',function(){        
+              
           var token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/user/perfil',
@@ -156,7 +130,7 @@ var User = {
               $('#listaperfil').html(output).listview("refresh");              
             }
           }); 
-        });
+        
       });      
     });
   },
@@ -211,7 +185,7 @@ var User = {
         console.log(data);
         sessionStorage.setItem('token', data.access_token);
         var token = sessionStorage.getItem('token');
-        //var email = sessionStorage.getItem('email');
+        var email = sessionStorage.getItem('email');
         console.log(token);
         console.log(email);
         $.mobile.navigate('#articulos');
@@ -248,11 +222,6 @@ var User = {
   registrarpedido: function(){
     var token = sessionStorage.getItem('token');         
     console.log('Entro a registrarpedido');
-    var i=0;
-    var form = $('#form').find( "input[name='articulos[]']" ).val();
-    console.log('Articulos: ' + form);
-    //console.log('Articulos: ' + $('input:hidden.articulos')[i]);
-    console.log('Stocks: ' + $('input:hidden.stocks'));
     var articulos = $('input:hidden.articulos').serialize();
     var stocks = $('input:hidden.stocks').serialize();
     var precios = $('input:hidden.precios').serialize();
