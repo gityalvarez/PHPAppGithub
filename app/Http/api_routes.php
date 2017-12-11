@@ -16,26 +16,13 @@ Route::post('oauth/access_token', function() {
 
 Route::post('registrar','UserController@create');
 
-
-/*
-Route::get('login/facebook', 'Auth\AuthController@redirectToProvider');
-Route::get('login/facebook/callback', 'Auth\AuthController@handleProviderCallback');
-*/
-
-
 Route::group(['middleware' => ['oauth']], function () {
-    Route::resource('user', 'UserController@user');
-    Route::resource('articulo', 'ArticuloController');
-    Route::resource('comercio', 'ComercioController');
-    Route::resource('envio', 'EnvioController');
+    Route::get('user', 'UserController@index');
+    Route::get('user/perfil', 'UserController@user');
+    Route::get('articulo', 'ArticuloController@index');
+    //Route::resource('articulo', 'ArticuloController');
+    Route::get('comercio', 'ComercioController@index');   
+    Route::get('pedido', 'PedidoController@index');
+    //Route::post('pedido/registrar', 'PedidoController@create');
 
 });
-
-
-	//Route::resource('articulo', 'ArticuloController');
-	//Route::resource('producto', 'ProductoController');
-	 
-
-
-
-

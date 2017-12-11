@@ -37,7 +37,7 @@
 
     <div data-role="page" id='loginpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed'>
-          <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
+          <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
           <h1>PediloYa Mobile Login</h1>            
         </div>
         <div role="main" class="ui-content" id='app'>           
@@ -55,8 +55,8 @@
 
     <div data-role="page" id='registrarpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed'>
-          <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-          <h1>PediloYa Mobile Login</h1>            
+          <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+          <h1>PediloYa Mobile Registro</h1>            
         </div>
         <div role="main" class="ui-content">           
           <label for="nombre">Nombre:</label>
@@ -73,7 +73,7 @@
           <label for="numero">Numero de Puerta:</label>
           <input type="text" name="numero" id="numero" value="" placeholder="Numero de Puerta" />
           <p></p>
-          <a href="#" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Resgistrar</a> 
+          <a href="#" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Registrar</a> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
         </div>
@@ -105,24 +105,17 @@
   -->
     <div data-role="page" id='articulos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed'>
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>PediloYa Mobile Articulos</h1>
+        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+        <h1>PediloYa Mobile Artículos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
-      <div role="main" class="ui-content">
-        <!--<form>
-          <input type="text" data-type="search" id="filterable-input">
-        </form>
-        <form data-role="controlgroup" data-filter="true" data-input="#filterable-input" id="articulos">      
-        </form>-->
-        <div data-role="content">
+      <div data-role="content" id='contenedor' class="ui-content" >
           <ul data-role="listview" data-inset="true" id="articulos2"></ul>
-        </div>
-      </div>
+       </div>      
       <div data-role='footer' data-position='fixed' data-theme='b'>
         <div data-role="navbar">
           <ul>
-            <li><a href="#articulos" class="ui-btn-active ui-state-persist" data-icon="bullets">Articulos</a></li>
+            <li><a href="#articulos" class="ui-btn-active ui-state-persist" data-icon="bullets">Artículos</a></li>
             <li><a href="#comercios" data-icon="location">Comercios</a></li>
             <li><a href="#pedidos" data-icon="shop">Pedidos</a></li>
             <li><a href="#perfil" data-icon="user">Perfil</a></li>
@@ -156,15 +149,17 @@
 
     <div data-role="page" id='pedidos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed'>
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
+        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
         <h1>PediloYa Mobile Pedidos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
-      <div role="main" class="ui-content"></div>
+      <div data-role="content" class="ui-content">
+        <ul data-role="listview" data-inset="true" id="listapedidos"></ul>
+      </div>
       <div data-role='footer' data-position='fixed' data-theme='b'>
         <div data-role="navbar">
           <ul>
-            <li><a href="#articulos"  data-icon="bullets">Articulos</a></li>
+            <li><a href="#articulos"  data-icon="bullets">Artículos</a></li>
             <li><a href="#comercios"  data-icon="location">Comercios</a></li>
             <li><a href="#pedidos" class="ui-btn-active ui-state-persist" data-icon="shop">Pedidos</a></li>
             <li><a href="#perfil" data-icon="user">Perfil</a></li>
