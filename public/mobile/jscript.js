@@ -1,9 +1,10 @@
-var access_token;
+var token;
 var App = {
   init : function(){
       $(document).ready(function(){
         console.log('estoy en el init');
-        User.autenticar();
+        token = sessionStorage.getItem('token');
+        User.autenticar(token);
       });
   },
 
@@ -37,7 +38,7 @@ var User = {
 
       $('#articulos').on('pageinit',function(){
                
-          var token = sessionStorage.getItem('token');
+          token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/articulo',
             type : 'GET',
@@ -58,7 +59,7 @@ var User = {
       
       $('#comercios').on('pageinit',function(){
                
-          var token = sessionStorage.getItem('token');
+          token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/comercio',
             type : 'GET',
@@ -92,7 +93,7 @@ var User = {
 
       $('#pedidos').on('pageinit',function(){
         //var email = sessionStorage.getItem('email');  
-        var token = sessionStorage.getItem('token');
+        token = sessionStorage.getItem('token');
                
           $.ajax({
             //url : 'http://localhost:8000/api/v1/pedido?email='+email,
@@ -117,7 +118,7 @@ var User = {
       
       $('#perfil').on('pageinit',function(){
               
-          var token = sessionStorage.getItem('token');
+          token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/user/perfil',
             type : 'GET',
@@ -135,8 +136,8 @@ var User = {
     });
   },
 
-  autenticar : function(){
-    var token = sessionStorage.getItem('token');
+  autenticar : function(token){
+    //var token = sessionStorage.getItem('token');
     if( token == null ) {
       $.mobile.navigate('#index');      
     }
@@ -184,10 +185,10 @@ var User = {
       success: function(data) {
         console.log(data);
         sessionStorage.setItem('token', data.access_token);
-        var token = sessionStorage.getItem('token');
-        var email = sessionStorage.getItem('email');
+        token = sessionStorage.getItem('token');
+        //var email = sessionStorage.getItem('email');
         console.log(token);
-        console.log(email);
+        //console.log(email);
         $.mobile.navigate('#articulos');
       },
       error: function (xhr, ajaxOptions, thrownError) {
@@ -220,7 +221,7 @@ var User = {
   },
   
   registrarpedido: function(){
-    var token = sessionStorage.getItem('token');         
+    token = sessionStorage.getItem('token');         
     console.log('Entro a registrarpedido');
     var articulos = $('input:hidden.articulos').serialize();
     var stocks = $('input:hidden.stocks').serialize();
@@ -252,9 +253,10 @@ var User = {
     sessionStorage.removeItem('token');
     //sessionStorage.removeItem('email');
     sessionStorage.clear();
-    var token = null;
+    token = null;
     //var email = null;
     $.mobile.navigate('#index'); 
+    location.reload();
   },
 
 };
