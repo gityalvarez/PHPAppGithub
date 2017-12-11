@@ -15,4 +15,19 @@ class UserController extends Controller
         $users=User::all();
         return response()->json($users,200);
     }
+    
+    public static function create(Request $request)
+    {
+        $user = User::create([
+            'name' => $request['nombre'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
+            'direccion' => $request['direccion'],
+            'latitud' => $request['latitud'],
+            'longitud' => $request['longitud'],
+        ]);
+        $user->attachRole('4'); //los usuarios que se registran son clientes
+        $user->save();
+        return response()->json($user,200);
+    }
 }

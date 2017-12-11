@@ -26,8 +26,8 @@ var User = {
         User.login();
       });
 
-      $(document).on('click','#registrar',function(e){
-        e.preventDefault();
+      $(document).on('click','#registrar2',function(){
+        //e.preventDefault();
         User.registrar();
       });
 
@@ -37,6 +37,10 @@ var User = {
         User.logout();
       });
 
+
+
+
+      /*
       $(document).on('change', '#dropdown',function(e){
         console.log('entre al select');
         //e.preventDefault();
@@ -50,6 +54,11 @@ var User = {
 
         //}
       });
+      */
+
+
+
+
 
       $('#articulos').on('pageinit',function(){
         var token = sessionStorage.getItem('token');
@@ -71,7 +80,7 @@ var User = {
             }
           }); 
         });
-      })
+      });
       
       $('#comercios').on('pageinit',function(){
         var token = sessionStorage.getItem('token');
@@ -82,13 +91,23 @@ var User = {
             headers: {'Authorization': 'Bearer ' + token },
             success : function(data) {
               console.log(token);
+              var divmapa ="<div id='mapid' style='height: 300px;'></div>";
+              $('#contenedor').append(divmapa);//fin y comienzo de la tabla
               var tblRowTitles = "<label align='center'> Id  Nombre  Dirección   Logo </label>";              
               $('#contenedor').append(tblRowTitles);
               $.each(data, function(key, val){
                 var tblRow = "<label align='center' for=" + val.id + ">" + val.id + " " + val.nombre + " " + val.direccion + " <img src='../storage/" + val.logo + "' width='30' height=30'/></label>"
                 $('#contenedor').append(tblRow);
               });
-              
+
+              var mymap = L.map('mapid').locate({setView: true, maxZoom: 16});
+              L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+                {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(mymap);
+              $.each(data, function(key, val){
+                var marker = L.marker([val.latitud,val.longitud]).addTo(mymap).bindPopup("<p>"+val.nombre+"</p><br />"+val.direccion);  
+
+                });//end del each marker
             }
           }); 
         });
@@ -120,7 +139,7 @@ var User = {
         }
         else{
           console.log('todo bien');
-          $.mobile.navigate('#selectpage');
+          $.mobile.navigate('#articulos');
         }
       },
       error: function(a,b,c) {
@@ -145,7 +164,7 @@ var User = {
         sessionStorage.setItem('token', data.access_token);
         var token = sessionStorage.getItem('token');
         console.log(token); 
-        $.mobile.navigate('#selectpage');
+        $.mobile.navigate('#articulos');
       },
       error: function (xhr, ajaxOptions, thrownError) {
         alert(xhr.responseText);
@@ -156,40 +175,29 @@ var User = {
   registrar : function(){
     $.ajax({
       type: 'POST',
-      url:'http://localhost:8000/mobile/registrar',
-          data: {email: 'marcos@gmail.com',
-          password: '123456',
-          nombre: 'nombre',
-      },
+      url:'http://localhost:8000/api/v1/registrar',
+      data: {
+        "nombre": $('#nombre').val(),
+        "email": $('#email').val(),
+        "password": $('#password2').val(),
+        "direccion": $('#calle').val(),
+        "latitud": -356987,
+        "longitud": -56897 },
       dataType: 'json',
       success: function(data) {
         console.log(data);
-        //sessionStorage.setItem('token', data.access_token);
-        //var token = sessionStorage.getItem('token');
-        console.log('success register'); 
-        //$.mobile.navigate('#index');
+        $.mobile.navigate('#index'); 
       },
-      //error: function (xhr, ajaxOptions, thrownError) {
-        //alert(xhr.responseText);
-      error: function(a,b,c) {
-                console.log('error');
-                console.log(a,b,c);
-      },
-      
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.responseText);
+      }
     });
-
-
   },
 
   logout : function(){
     sessionStorage.removeItem('token');
     $.mobile.navigate('#index'); 
   },
-
-  seleccionar : function(){
-
-  },
-
 
 };
 
