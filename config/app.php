@@ -172,7 +172,7 @@ return [
         //Dingo\Api\Provider\LaravelServiceProvider::class,
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        
         
 
     ],
@@ -225,7 +225,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        
         
     ],
 
