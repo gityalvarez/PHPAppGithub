@@ -46,12 +46,43 @@ var User = {
             success : function(data) {
               console.log(token);
               var output = '';
+              //var i=0;
               $.each(data, function(key, val){
-                //var tblRow = "<label for="+val.id+"> id: " + val.id +" nombre "+val.nombre+"stock "+val.stock+" precio  "+val.precio+"<input type='checkbox'   id=" + val.id +">" + "</label>"
-                //$(tblRow).appendTo("#articulos");
-                output += '<li><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" name="precios[]" class="precios" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" name="stocks[]" class="stocks" value=' + val.stock + '>' + '<input type="checkbox" name="articulos[]" class="articulos" value=' + val.id + '>' + '<input type="text" name="cantidades[]" class="cantidades" min="1">' +'</li>';
+                output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
+                console.log(val.id);
               });
               $('#articulos2').html(output).listview("refresh");
+              //se crea una tabla cantidad y un json, despues vemos qué se ajusta más
+              var cantidad = [];
+              var json = {};
+              var count = 0;
+              var id;
+              $( ".spin" ).each(function() {    //al hacer click en cantidad se activa la funcion
+                var spin = $( this );
+                var count = 0;
+                spin.click(function() {
+                  id = $( this ).closest('li').attr('id');    //se toma el id del articulo
+                  stock = $(this).prev().attr('value');       //se toma el stock del articulo
+                  precio = $(this).prev().prev().attr('value');   //se toma el precio del articul
+
+                  count++;
+
+                  //se muestra la cantidad en pantalla (falta perfeccionar el spin, boton de más y de menos por ejemplo)
+                  //así como la funcion de restar, que va a ser similar 
+
+                  spin.find( "span" ).text(count ); 
+                  cantidad[id]=count;       //se agrega la cantidad al arreglo cantidad
+                  json[id]={};              //se rellena el json con todos los datos
+                  json[id].id = id;
+                  json[id].cantidad = count;
+                  json[id].stock = stock;
+                  json[id].precio = precio;
+
+                  console.log(cantidad);
+                  console.log(json);
+
+                });
+              });
             }
           }); 
         
@@ -137,7 +168,6 @@ var User = {
   },
 
   autenticar : function(token){
-    //var token = sessionStorage.getItem('token');
     if( token == null ) {
       $.mobile.navigate('#index');      
     }
@@ -170,7 +200,6 @@ var User = {
   },
 
   login : function(){
-    //sessionStorage.setItem('email', $('#username').val()); 
     $.ajax({
       type: 'POST',
       url:'http://localhost:8000/api/v1/oauth/access_token',
@@ -211,11 +240,14 @@ var User = {
         "longitud": -56897 },
       dataType: 'json',
       success: function(data) {
-        console.log(data);
-        $.mobile.navigate('#index'); 
+        alert(data.errors);
+        console.log(data.errors);
+        $.mobile.navigate('#registrarpage'); 
       },
-      error: function (xhr, ajaxOptions, thrownError) {
-        alert(xhr.responseText);
+      error: function (data) {
+        //console.log(data.error);
+        alert(data.errors);
+
       }
     });
   },
@@ -223,10 +255,8 @@ var User = {
   registrarpedido: function(){
     token = sessionStorage.getItem('token');         
     console.log('Entro a registrarpedido');
-    var articulos = $('input:hidden.articulos').serialize();
-    var stocks = $('input:hidden.stocks').serialize();
-    var precios = $('input:hidden.precios').serialize();
-    var cantidades = $('input:text.cantidades').serialize();
+    //verificar que datos pasarle al ajax para ser procesados por la api
+    /*
     $.ajax({
       url : 'http://localhost:8000/api/v1/pedido/registrar',
       type : 'POST',
@@ -246,7 +276,7 @@ var User = {
         console.log("Datos: " + data);
         alert(xhr.responseText);
       }
-    });
+    });*/
   },
 
   logout : function(){
