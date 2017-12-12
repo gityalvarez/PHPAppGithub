@@ -112,7 +112,7 @@
       <div data-role="content" id='contenedorarticulos' class="ui-content" >
           <form id="form" name="form">
           <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
-          <ul data-role="listview" data-inset="true" id="articulos2"></ul>
+          <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..." data- data-inset="true" id="articulos2"></ul>
           </form>
        </div>      
       <div data-role='footer' data-position='fixed' data-theme='b'>
