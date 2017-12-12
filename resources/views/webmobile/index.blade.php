@@ -73,7 +73,7 @@
           <p></p>
           <label for="numero">Numero de Puerta:</label>
           <input type="text" name="numero" id="numero" value="" placeholder="Numero de Puerta" />
-          <p></p>
+          <p id="errorregistrar"></p>
           <a href="#" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Registrar</a> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
@@ -113,7 +113,7 @@
       <div data-role="content" id='contenedorarticulos' class="ui-content" >
           <form id="form" name="form">
           <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
-          <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..." data- data-inset="true" id="articulos2"></ul>
+          <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..."  data-inset="true" id="articulos2"></ul>
           </form>
        </div>      
       <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">

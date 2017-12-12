@@ -49,7 +49,6 @@ var User = {
               var output = '';
               $.each(data, function(key, val){
                 output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
-                console.log(val.id);
               });
               $('#articulos2').html(output).listview("refresh");
               //se crea una tabla cantidad y un json, despues vemos qué se ajusta más
@@ -237,13 +236,24 @@ var User = {
         "longitud": -56897 },
       dataType: 'json',
       success: function (xhr, ajaxOptions, thrownError) {
-        alert(thrownError.statusText);
-        console.log(thrownError);
-        $.mobile.navigate('#registrarpage'); 
+        //alert(thrownError.statusText);
+        //console.log('success '+thrownError.statusText);
+        //console.log('success '+thrownError.responseText);
+        if (thrownError.statusText=='Accepted'){
+            //var jsonResponse = JSON.parse(thrownError.responseText);
+            $('#errorregistrar').html(thrownError.responseText);
+            
+        }else{
+          $.mobile.navigate('#loginpage');           
+        }
       },
       error: function (xhr, ajaxOptions, thrownError) {
         //sessionStorage.removeItem('email');  
-        alert(xhr.responseText);
+        //alert('error '+xhr.responseText);
+        //console.log('error '+xhr);
+        //var jsonResponse = JSON.parse(xhr);
+        console.log(jsonResponse);
+        $('#errorregistrar').html(thrownError.responseText);
       }
     });
   },
