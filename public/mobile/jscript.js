@@ -44,17 +44,19 @@ var User = {
             type : 'GET',
             headers: {'Authorization': 'Bearer ' + token },
             success : function(data) {
-              console.log(token);
+              console.log('token' + token);
+              console.log('data length  '+ data.length);
               var output = '';
-              //var i=0;
               $.each(data, function(key, val){
                 output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
                 console.log(val.id);
+
               });
               $('#articulos2').html(output).listview("refresh");
               //se crea una tabla cantidad y un json, despues vemos qué se ajusta más
-              var cantidad = [];
-              var json = {};
+              var cantidad = new Array(data.length);
+              cantidad.fill(0);
+              //var json = {};
               var count = 0;
               var id;
               $( ".spin" ).each(function() {    //al hacer click en cantidad se activa la funcion
@@ -71,16 +73,13 @@ var User = {
                   //así como la funcion de restar, que va a ser similar 
 
                   spin.find( "span" ).text(count ); 
-                  cantidad[id]=count;       //se agrega la cantidad al arreglo cantidad
-                  json[id]={};              //se rellena el json con todos los datos
+                  cantidad[id-1]=count;       //se agrega la cantidad al arreglo cantidad
+                  /*json[id]={};              //se rellena el json con todos los datos
                   json[id].id = id;
                   json[id].cantidad = count;
                   json[id].stock = stock;
                   json[id].precio = precio;
-
-                  console.log(cantidad);
-                  console.log(json);
-
+                  */
                 });
               });
             }
