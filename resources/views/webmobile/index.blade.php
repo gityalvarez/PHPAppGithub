@@ -37,7 +37,7 @@
 
 
     <div data-role="page" id='loginpage' data-theme='a'>
-        <div data-role="header" data-theme='b' data-position='fixed'>
+        <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false" >
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
           <h1>PediloYa Mobile Login</h1>            
         </div>
@@ -47,7 +47,7 @@
             <p></p>
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" value="" placeholder="Password" />
-            <p></p>
+            <p id='errorlogin'></p>
             <a href="#" class="ui-btn ui-btn-b ui-corner-all" id="login">Login</a> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
@@ -55,7 +55,7 @@
     </div>
 
     <div data-role="page" id='registrarpage' data-theme='a'>
-        <div data-role="header" data-theme='b' data-position='fixed'>
+        <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
           <h1>PediloYa Mobile Registro</h1>            
         </div>
@@ -105,7 +105,7 @@
     </div>
   -->
     <div data-role="page" id='articulos' data-theme='a'>
-      <div data-role="header" data-theme='b' data-position='fixed'>
+      <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
         <h1>PediloYa Mobile Artículos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
@@ -116,7 +116,7 @@
           <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..." data- data-inset="true" id="articulos2"></ul>
           </form>
        </div>      
-      <div data-role='footer' data-position='fixed' data-theme='b'>
+      <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
         <div data-role="navbar">
           <ul>
             <li><a href="#articulos" class="ui-btn-active ui-state-persist" data-icon="bullets">Artículos</a></li>
@@ -129,7 +129,7 @@
     </div> 
 
     <div data-role="page" id='comercios' data-theme='a'>
-      <div data-role="header" data-theme='b' data-position='fixed'>
+      <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
         <h1>PediloYa Mobile Comercios</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
@@ -139,7 +139,7 @@
           <input type="text" data-type="search" id="filterable-input">
         </form>
       </div>
-      <div data-role='footer' data-position='fixed' data-theme='b'>
+      <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
         <div data-role="navbar">
           <ul>
             <li><a href="#articulos"  data-icon="bullets">Articulos</a></li>
@@ -152,7 +152,7 @@
     </div>
 
     <div data-role="page" id='pedidos' data-theme='a'>
-      <div data-role="header" data-theme='b' data-position='fixed'>
+      <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
         <h1>PediloYa Mobile Pedidos</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
@@ -160,7 +160,7 @@
       <div data-role="content" class="ui-content" id="contenedorpedidos">
         <ul data-role="listview" data-inset="true" id="listapedidos"></ul>
       </div>
-      <div data-role='footer' data-position='fixed' data-theme='b'>
+      <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
         <div data-role="navbar">
           <ul>
             <li><a href="#articulos"  data-icon="bullets">Artículos</a></li>
@@ -174,7 +174,7 @@
 
 
     <div data-role="page" id='perfil' data-theme='a'>
-      <div data-role="header" data-theme='b' data-position='fixed'>
+      <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
         <h1>PediloYa Mobile Perfil</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
@@ -184,7 +184,7 @@
           <ul data-role="listview" data-inset="true" id="listaperfil"></ul>
         </div>
       </div>
-      <div data-role='footer' data-position='fixed' data-theme='b'>
+      <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
         <div data-role="navbar">
           <ul>
             <li><a href="#articulos"  data-icon="bullets">Articulos</a></li>

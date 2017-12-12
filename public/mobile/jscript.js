@@ -50,7 +50,6 @@ var User = {
               $.each(data, function(key, val){
                 output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
                 console.log(val.id);
-
               });
               $('#articulos2').html(output).listview("refresh");
               //se crea una tabla cantidad y un json, despues vemos qué se ajusta más
@@ -66,9 +65,7 @@ var User = {
                   id = $( this ).closest('li').attr('id');    //se toma el id del articulo
                   stock = $(this).prev().attr('value');       //se toma el stock del articulo
                   precio = $(this).prev().prev().attr('value');   //se toma el precio del articul
-
                   count++;
-
                   //se muestra la cantidad en pantalla (falta perfeccionar el spin, boton de más y de menos por ejemplo)
                   //así como la funcion de restar, que va a ser similar 
 
@@ -220,8 +217,9 @@ var User = {
         $.mobile.navigate('#articulos');
       },
       error: function (xhr, ajaxOptions, thrownError) {
-        //sessionStorage.removeItem('email');  
-        alert(xhr.responseText);
+        var jsonResponse = JSON.parse(xhr.responseText);
+        $('#errorlogin').html(jsonResponse['error']+'</br>'+jsonResponse['error_description']);
+        
       }
     });
   },
@@ -238,15 +236,14 @@ var User = {
         "latitud": -356987,
         "longitud": -56897 },
       dataType: 'json',
-      success: function(data) {
-        alert(data.errors);
-        console.log(data.errors);
+      success: function (xhr, ajaxOptions, thrownError) {
+        alert(thrownError.statusText);
+        console.log(thrownError);
         $.mobile.navigate('#registrarpage'); 
       },
-      error: function (data) {
-        //console.log(data.error);
-        alert(data.errors);
-
+      error: function (xhr, ajaxOptions, thrownError) {
+        //sessionStorage.removeItem('email');  
+        alert(xhr.responseText);
       }
     });
   },
