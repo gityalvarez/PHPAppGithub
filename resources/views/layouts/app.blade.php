@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>PediloYA BACKEND</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,14 +31,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     @yield('css')
-    
-    <style>
-        @media only screen and (min-width: 100px) {
-            #logo {
-                
-            }
-        }
-    </style>
 </head>
 
 <body class="skin-red fixed">
@@ -107,7 +99,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2017 <a href="#">PediloYA</a>.</strong> All rights reserved.
+            <strong>Copyright © 2017 <a href="#">PediloYA</a>.</strong> Todos los derechos reservados.
         </footer>
 
     </div>
