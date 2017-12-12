@@ -110,7 +110,7 @@
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedorarticulos' class="ui-content" >
-          <form id="form">
+          <form id="form" name="form">
           <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
           <ul data-role="listview" data-inset="true" id="articulos2"></ul>
           </form>

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Backend\Pedido;
+use App\Models\Backend\Articulo;
 use App\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
+Use DB;
 use LucaDegasperi\OAuth2Server\Authorizer;
 
 class PedidoController extends Controller
@@ -21,7 +23,9 @@ class PedidoController extends Controller
         return response()->json($pedidos,200);
     }
     
-    public function create(Request $request, Authorizer $authorizer){        
+    public function create(Request $request, Authorizer $authorizer){  
+        $precios = Articulo::all()->select("precio")->toArray();
+        //$stocks = Articulo::all()->select("stock")->toArray();
         $pedido = new Pedido();
         $pedido->estado = "creado";
         $cliente_id = $authorizer->getResourceOwnerId();
@@ -35,6 +39,7 @@ class PedidoController extends Controller
                 $proximo ++;
             }            
             $encontrado = false;
+            //dd(count($request->cantidades));
             while ($proximo < count($request->cantidades) && !$encontrado){
                 if ($request->cantidades[$proximo] != ""){
                     $encontrado = true;
@@ -42,13 +47,15 @@ class PedidoController extends Controller
                 else {
                     $proximo ++;
                 }
-            }
+            }            
             $articulo = Articulo::find($request->articulos[$i]);
             $articulo->stock = $articulo->stock - $request->cantidades[$proximo];
             $articulo->save();
-            $total = $total + ($request->precios[$proximo] * $request->cantidades[$proximo]);            
+            //dd($request->precios[$proximo]);
+            $total = $total + ($precios[$proximo] * $request->cantidades[$proximo]);            
         }
-        $pedido->total=$total;        
+        $pedido->total=$total;
+        //dd($total);
         $pedido->save();
         $ultimopedido = Pedido::all()->last();
         for ($i=0; $i < count($request->articulos); $i++){
@@ -68,9 +75,6 @@ class PedidoController extends Controller
                 }
             }
             $ultimopedido->articulos()->attach($request->articulos[$i], ['cantidad' => $request->cantidades[$proximo], 'created_at' => DB::raw('NOW()')]);            
-        }
-        $gerente_id = Auth::id();
-        $ultimopedido->gerentes()->attach($gerente_id, ['created_at' => DB::raw('NOW()')]);
-        return true;
+        }        
     }
 }
