@@ -23,7 +23,8 @@
 
     <div data-role="page" id='index' data-theme='a'>
       <div role="main" class="ui-content">
-        <h2 class="mc-text-center">BIENVENIDO</h2>
+        <h2 class="mc-text-center">Bienvenido a</h2>
+        <img style="width:80%; margin:auto; display:block" src="{{ URL::asset('imagenes\PediloYA-LogoNaranja.svg')}}">
         <p class="mc-top-margin-1-5"><b>Usuarios</b></p>
         <a href="#loginpage" class="ui-btn ui-btn-b ui-corner-all">Loguearse</a>
         <p class="mc-top-margin-1-5"><b>No tienes Cuenta?</b></p>
