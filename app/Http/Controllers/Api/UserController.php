@@ -38,22 +38,16 @@ class UserController extends Controller
             'longitud' => $request['longitud'],
             ]);
         } catch (ValidationException $e) {
-            return Response()->json(['errors'=>$e->getErrors()]);
-        }
-        $user->attachRole('4'); //los usuarios que se registran son clientes
-        $user->save();
 
-        return Response()->json($user,'success');
-        /*$user = User::create([
-            'name' => $request['nombre'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'direccion' => $request['direccion'],
-            'latitud' => $request['latitud'],
-            'longitud' => $request['longitud'],
-        ]);
-        $user->attachRole('4'); //los usuarios que se registran son clientes
-        $user->save();
-        return response()->json($user,200);*/
+            return Response()->json($e->getErrors(),400);
+        }try {
+            $user->attachRole('4'); //los usuarios que se registran son clientes
+            $user->save();
+        } catch (ValidationException $e){
+            return Response()->json($e->getErrors(),500);
+        }        
+
+        return Response()->json($user, 200);
+ 
     }
 }
