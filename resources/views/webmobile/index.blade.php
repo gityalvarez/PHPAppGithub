@@ -134,8 +134,11 @@
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedor' class="ui-content">
+        <div id='mapid' style='height: 300px;'></div>
         <form>
           <input type="text" data-type="search" id="filterable-input">
+
+          <ul data-role="listview" data-inset="true" id="comercios2"></ul>
         </form>
       </div>
       <div data-role='footer' data-position='fixed' data-theme='b'>
