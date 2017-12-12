@@ -39,7 +39,7 @@ class UserController extends Controller
             ]);
         } catch (ValidationException $e) {
 
-            return Response()->json($e->getErrors(),400);
+            return Response()->json($e->getErrors(),202);
         }try {
             $user->attachRole('4'); //los usuarios que se registran son clientes
             $user->save();
