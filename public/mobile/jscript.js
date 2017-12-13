@@ -159,7 +159,12 @@ var User = {
               console.log(token);
               console.log(data);
               var output = '';
-              output += '<li> Nombre: ' + data.name +'</li>'+'<li>Email:  ' + data.email +'</li>'+'<li>Direccion:  ' + data.direccion +'</li>';
+              output += '<li data-role="list-divider">Nombre</li> <li>'+
+                        data.name +'</li>'+
+                        '<li data-role="list-divider">Email</li> <li>'+
+                        data.email +'</li>'+
+                        '<li data-role="list-divider">Dirección</li> <li>'+
+                        data.direccion +'</li>';
               $('#listaperfil').html(output).listview("refresh");              
             }
           }); 
