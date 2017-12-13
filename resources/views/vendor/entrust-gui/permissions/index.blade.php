@@ -33,13 +33,15 @@
                 </tr>
                 @foreach($models as $model)
                     <tr>
-                        <td>{{ $model->display_name }}</th>
+                        <td>{{ $model->display_name }}</td>
                         <td class="col-xs-3">
                             <form action="{{ route('entrust-gui::permissions.destroy', $model->id) }}" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <a class="btn btn-labeled btn-default" href="{{ route('entrust-gui::permissions.edit', $model->id) }}"><span class="btn-label"><i class="fa fa-pencil"></i></span> {{ trans('entrust-gui::button.edit') }}</a>
-                                <button type="submit" class="btn btn-labeled btn-danger" onclick='confirm("Realmente está seguro?")'><span class="btn-label"><i class="fa fa-trash"></i></span> {{ trans('entrust-gui::button.delete') }}</button>
+                                <div class='btn-group'>
+                                    <a class="btn btn-labeled btn-default" href="{{ route('entrust-gui::permissions.edit', $model->id) }}"><span class="btn-label"><i class="fa fa-pencil"></i></span> {{ trans('entrust-gui::button.edit') }}</a>
+                                    <button type="submit" class="btn btn-labeled btn-danger" onclick='confirm("Realmente está seguro?")'><span class="btn-label"><i class="fa fa-trash"></i></span> {{ trans('entrust-gui::button.delete') }}</button>
+                                </div>
                             </form>
                         </td>
                     </tr>

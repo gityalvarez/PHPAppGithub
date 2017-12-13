@@ -5,7 +5,7 @@
             <th>Dirección</th>
             <th>Logo</th>
             <th>Gerente Id</th>
-            <th colspan="3">Action</th>
+            <th >Datos</th>
         </tr>
     </thead>
     <tbody>

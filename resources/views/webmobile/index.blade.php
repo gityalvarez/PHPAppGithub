@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1 user-scalable=no"/>
-    <title>PediloYa Mobile</title>
+    <title>PediloYa MOBILE</title>
     <link rel="stylesheet" src="themes/B.css" />
     <link rel="stylesheet" src="themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
@@ -17,10 +17,17 @@
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('mobile/jscript.js')}}"></script>
     
+    <style>
+      .leaflet-top, .leaftet-bottom {
+        z-index: auto;
+      }
+    </style>
+    
   </head>
   <body>
    <!-- <script type="text/javascript" src="{{ URL::asset('mobile/FBscript.js')}}"></script>-->
 
+    <!--INDEX-->
     <div data-role="page" id='index' data-theme='a'>
       <div role="main" class="ui-content">
         <h2 class="mc-text-center">Bienvenido a</h2>
@@ -33,13 +40,11 @@
       </div>
     </div>
 
-
-
-
+    <!--LOGIN-->
     <div data-role="page" id='loginpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false" >
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-          <h1>PediloYa Mobile Login</h1>            
+          <h1>PediloYa MOBILE</h1>            
         </div>
         <div role="main" class="ui-content" id='app'>           
           <label for="username">Email:</label>
@@ -54,10 +59,11 @@
         </div>
     </div>
 
+    <!--REGISTRO-->
     <div data-role="page" id='registrarpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-          <h1>PediloYa Mobile Registro</h1>            
+          <h1>PediloYa MOBILE</h1>            
         </div>
         <div role="main" class="ui-content">           
           <label for="nombre">Nombre:</label>
@@ -81,12 +87,11 @@
         </div>
     </div>
 
-
-   
+    <!--ARTICULOS-->
     <div data-role="page" id='articulos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-        <h1>PediloYa Mobile Artículos</h1>
+        <h1>PediloYa MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedorarticulos' class="ui-content" >
@@ -107,10 +112,11 @@
       </div>
     </div> 
 
+    <!--COMERCIOS-->
     <div data-role="page" id='comercios' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>PediloYa Mobile Comercios</h1>
+        <h1>PediloYa MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedor' class="ui-content">
@@ -132,10 +138,11 @@
       </div>
     </div>
 
+    <!--PEDIDOS-->
     <div data-role="page" id='pedidos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-        <h1>PediloYa Mobile Pedidos</h1>
+        <h1>PediloYa MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" class="ui-content" id="contenedorpedidos">
@@ -153,11 +160,11 @@
       </div>
     </div>
 
-
+    <!--PERFIL-->
     <div data-role="page" id='perfil' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>PediloYa Mobile Perfil</h1>
+        <h1>PediloYa MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content">
@@ -176,7 +183,8 @@
         </div>
       </div>
     </div>
-<script>
+      
+    <script>
       function geolocalizar() {
 
        // console.log( document.getElementById("direccion").value);
@@ -194,9 +202,9 @@
          document.getElementById("calle").dataset.latitud = items['lati'];
          document.getElementById("calle").dataset.longitud = items['long'];
 
-     });
+       });
 
-    }
-  </script>
-</body>
+      }
+    </script>
+  </body>
 </html>

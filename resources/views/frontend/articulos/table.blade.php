@@ -8,7 +8,7 @@
             <th>Categoria</th>
             <th>Imagen</th>
             <th>Comercio</th>
-            <th colspan="3">Action</th>
+            <th>Datos</th>
         </tr>
     </thead>
     <tbody>
