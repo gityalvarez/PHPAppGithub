@@ -115,11 +115,12 @@ var User = {
               console.log('data length  '+ data.length);
               var output = '';
               $.each(data, function(key, val){
-                output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
+                output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" name="articulos[]" value=' + val.id +'>' + '<input type="hidden" name="precios[]" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" name="stocks[]" value=' + val.stock + '>' + '<input type="number" name="cantidades[]" class="cantidades" min="0" value="0">' + '</li>';  
+                //output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
               });
               $('#articulos2').html(output).listview("refresh");
               //se crea una tabla cantidad y un json, despues vemos qué se ajusta más
-              var cantidad = new Array(data.length);
+              /*var cantidad = new Array(data.length);
               cantidad.fill(0);
               //var json = {};
               var count = 0;
@@ -137,17 +138,16 @@ var User = {
 
                   spin.find( "span" ).text(count ); 
                   cantidad[id-1]=count;       //se agrega la cantidad al arreglo cantidad
-                  /*json[id]={};              //se rellena el json con todos los datos
-                  json[id].id = id;
-                  json[id].cantidad = count;
-                  json[id].stock = stock;
-                  json[id].precio = precio;
-                  */
+                  //json[id]={};              //se rellena el json con todos los datos
+                  //json[id].id = id;
+                  //json[id].cantidad = count;
+                  //json[id].stock = stock;
+                  //json[id].precio = precio;
+                  
                 });
-              });
+              });*/
             }
-          }); 
-        
+          });         
       });
       
       $('#comercios').on('pageinit',function(){
@@ -346,28 +346,46 @@ var User = {
   registrarpedido: function(){
     token = sessionStorage.getItem('token');         
     console.log('Entro a registrarpedido');
-    //verificar que datos pasarle al ajax para ser procesados por la api
-    /*
+    //var stocks = [];
+    var precios = [];
+    var articulos = [];
+    var cantidades = [];
+    var i=0;
+    $("input[name='cantidades[]']").each(function() {
+        cantidades.push(this.value);
+    });
+    i=0;
+    $("input[name='articulos[]']").each(function() {
+        articulos.push(this.value);
+    });
+    i=0;
+    $("input[name='precios[]']").each(function() {
+        precios.push(this.value);
+    });    
+    var articulos_json = JSON.stringify(articulos);
+    var cantidades_json = JSON.stringify(cantidades);
+    var precios_json = JSON.stringify(precios);
+    console.log(articulos_json);
+    console.log(cantidades_json);
+    console.log(precios_json);
     $.ajax({
       url : 'http://localhost:8000/api/v1/pedido/registrar',
       type : 'POST',
       headers: {'Authorization': 'Bearer ' + token },
       data: {
-        articulos: articulos,
-        stocks: stocks,
-        precios: precios,
-        cantidades: cantidades                
+           articulos : articulos_json,
+           cantidades : cantidades_json,
+           precios : precios_json
       },
-      dataType: 'json',         
+      dataType: 'json', 
       success : function(data) {
-        console.log(data);
-        alert("Pedido realizado con exito!!");
+        console.log(data.cantidades);
+        alert(data);
       },
-      error: function(xhr, ajaxOptions, thrownError, data) {
-        console.log("Datos: " + data);
+      error: function(xhr, ajaxOptions, thrownError) {
         alert(xhr.responseText);
       }
-    });*/
+    });
   },
 
   logout : function(){

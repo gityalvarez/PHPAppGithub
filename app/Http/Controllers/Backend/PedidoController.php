@@ -335,6 +335,7 @@ class PedidoController extends AppBaseController
             DB::table('articulo_pedido')
                 ->where('pedido_id', $id)
                 ->where('articulo_id', $articulo->id)
+                //->delete();
                 ->update(['deleted_at' => DB::raw('NOW()')]);
         }
         $gerentes = $pedido->gerentes()->get();
@@ -342,6 +343,7 @@ class PedidoController extends AppBaseController
             DB::table('gerente_pedido')
                 ->where('pedido_id', $id)
                 ->where('user_id', $gerente->id)
+                //->delete();
                 ->update(['deleted_at' => DB::raw('NOW()')]);
         }
         $this->pedidoRepository->delete($id);        
