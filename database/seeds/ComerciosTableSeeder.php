@@ -25,7 +25,7 @@ class ComerciosTableSeeder extends Seeder
                 'latitud' => '-34.8858712',
                 'longitud' => '-56.1798994',
                 'logo' => 'logo-comercio-devoto.jpg',
-                'user_id' => 3,
+                'user_id' => 2,
                 'created_at' => '2017-10-20 02:01:16',
                 'updated_at' => '2017-10-20 02:01:16',
                 'deleted_at' => NULL,
@@ -33,8 +33,8 @@ class ComerciosTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 2,
-                'nombre' => 'Tata Suc Union',
-                'direccion' => 'Avenida 8 de Octubre 3723',
+                'nombre' => 'Tata Suc union',
+                'direccion' => 'avenida 8 de Octubre 3723',
                 'latitud' => '-34.87525805',
                 'longitud' => '-56.1414468957355',
                 'logo' => 'logo-comercio-tata.jpg',

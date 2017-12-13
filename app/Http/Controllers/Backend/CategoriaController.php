@@ -140,20 +140,18 @@ class CategoriaController extends AppBaseController
     public function destroy($id)
     {
         $categoria = $this->categoriaRepository->findWithoutFail($id);
-        //dd($categoria->nombre);
+
         if (empty($categoria)) {
             Flash::error('Categoria no encontrada');
 
             return redirect(route('backend.categorias.index'));
         }
-        $productos = $categoria->productos()->get();        
-        if (!empty($productos->items)){ 
-            
+        $productos = $categoria->productos()->get();
+        if (!empty($productos)){
             Flash::error('No es posible eliminar la Categoria dado que tiene Productos asociados');
-            
+
             return redirect(route('backend.categorias.index'));
         }
-        
         $this->categoriaRepository->delete($id);
 
         Flash::success('Categoria borrada exitosamente');
