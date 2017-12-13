@@ -42,7 +42,7 @@
           <h1>PediloYa Mobile Login</h1>            
         </div>
         <div role="main" class="ui-content" id='app'>           
-          <label for="username">Username:</label>
+          <label for="username">Email:</label>
             <input type="text" name="username" id="username" value="" placeholder="Username" />
             <p></p>
             <label for="password">Password:</label>
@@ -69,10 +69,11 @@
           <input type="password" name="password2" id="password2" value="" placeholder="Password" />
           <p></p>
           <label for="calle">Calle o Avenida:</label>
-          <input type="text" name="calle" id="calle" value="" placeholder="Calle o Avenida" />
+          <input type="text" name="calle" id="calle" value="" placeholder="Calle o Avenida" data-direccion="" data-latitud="" data-longitud=""oninput="geolocalizar()"/>
           <p></p>
           <label for="numero">Numero de Puerta:</label>
-          <input type="text" name="numero" id="numero" value="" placeholder="Numero de Puerta" />
+          <input type="text" name="nopuerta" id="nopuerta" value="" placeholder="Numero de Puerta" oninput="geolocalizar()" />
+          
           <p id="errorregistrar"></p>
           <a href="#" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Registrar</a> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
@@ -175,6 +176,27 @@
         </div>
       </div>
     </div>
+<script>
+      function geolocalizar() {
 
+       // console.log( document.getElementById("direccion").value);
+        var dircomp = document.getElementById("nopuerta").value + ", "+ document.getElementById("calle").value + ", montevideo, uruguay";
+        inp =encodeURI(dircomp);
+        console.log(inp);
+        $.getJSON('http://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + inp, function(data) {
+            var items = {lati:'',long:''};
+
+            $.each(data, function(key, val) {
+                items['lati'] = val.lat;
+                items['long']= val.lon;
+            });
+         document.getElementById("calle").dataset.direccion = dircomp;
+         document.getElementById("calle").dataset.latitud = items['lati'];
+         document.getElementById("calle").dataset.longitud = items['long'];
+
+     });
+
+    }
+  </script>
 </body>
 </html>

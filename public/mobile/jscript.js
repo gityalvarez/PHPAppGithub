@@ -244,9 +244,9 @@ var User = {
         "nombre": $('#nombre').val(),
         "email": $('#email').val(),
         "password": $('#password2').val(),
-        "direccion": $('#calle').val(),
-        "latitud": -356987,
-        "longitud": -56897 },
+        "direccion": $('#calle').attr("data-direccion"),
+        "latitud": $('#calle').attr("data-latitud"),
+        "longitud": $('#calle').attr("data-longitud"), },
       dataType: 'json',
       success: function (xhr, ajaxOptions, thrownError) {
         //alert(thrownError.statusText);
