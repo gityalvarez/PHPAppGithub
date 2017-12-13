@@ -28,7 +28,7 @@
     @yield('css')
 </head>
 
-<body class="skin-red fixed">
+<body class="skin-red">
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">

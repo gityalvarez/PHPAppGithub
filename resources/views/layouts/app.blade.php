@@ -33,7 +33,7 @@
     @yield('css')
 </head>
 
-<body class="skin-red fixed">
+<body class="skin-red">
 @if (!Auth::guest())
     <div class="wrapper">
         <!-- Main Header -->

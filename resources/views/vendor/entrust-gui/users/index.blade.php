@@ -44,8 +44,8 @@
                       <span class="btn-label">
                         <i class="fa fa-pencil">
                         </i>
-                      </span>{{ trans('entrust-gui::button.edit') }}</a>
-                    <button type="submit" class="btn btn-labeled btn-danger" onclick='confirm("Realmente está seguro?")'><span class="btn-label"><i class="fa fa-trash"></i></span>{{ trans('entrust-gui::button.delete') }}</button>
+                      </span> {{ trans('entrust-gui::button.edit') }}</a>
+                    <button type="submit" class="btn btn-labeled btn-danger" onclick='confirm("Realmente está seguro?")'><span class="btn-label"><i class="fa fa-trash"></i></span> {{ trans('entrust-gui::button.delete') }}</button>
                   </div>
                 </form>
 
