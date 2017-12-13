@@ -96,7 +96,7 @@ var User = {
             console.log(data);
             var output = '';
             $.each(data, function(key, val){
-              output += '<li><a style="display:flex;align-items:center;" href="#" class ="listacomercios" id="comercio'+key+'" data-latitud='+val.latitud+' data-longitud='+val.longitud+'><img  src="../storage/' + val.logo + '">'+'    ' + val.nombre +'</a></li>';
+              output += '<li data-icon="location"><a style="display:flex;align-items:center;" href="#" class ="listacomercios" id="comercio'+key+'" data-latitud='+val.latitud+' data-longitud='+val.longitud+'><img style="top:auto;" src="../storage/' + val.logo + '">'+'    ' + val.nombre +'</a></li>';
                });
             $('#comercios2').html(output).listview("refresh");
             var mymap = L.map('mapid').setView([-34.866944, -56.166667], 11);
