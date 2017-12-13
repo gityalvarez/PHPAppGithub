@@ -61,12 +61,13 @@ class ComercioController extends AppBaseController
      */
     public function store(CreateComercioRequest $request)
     {   
-        /*if(!$request->validate([
+        if(!$request->validate([
             'logo_comercio' =>'required|image|mimes:jpg,png|image_size:<=300'
         ])){
             abort(404);
-        }*/
-        $file = $request->file('logo_comercio');        
+        }
+        $file = $request->file('logo_comercio');
+        
         $input = $request->except(['logo_comercio']);
         $newFilename =  'logo-comercio-'.$file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
@@ -165,7 +166,7 @@ class ComercioController extends AppBaseController
             return redirect(route('backend.comercios.index'));
         }
         $articulos = $comercio->articulos()->get();
-        if (!empty($articulos->items)){
+        if (!empty($articulos)){
             Flash::error('No es posible eliminar el Comercio dado que tiene Articulos asociados');
 
             return redirect(route('backend.categorias.index'));
