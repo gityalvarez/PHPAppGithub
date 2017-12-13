@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1 user-scalable=no"/>
-    <title>PediloYa MOBILE</title>
+    <title>PediloYA MOBILE</title>
     <link rel="stylesheet" src="themes/B.css" />
     <link rel="stylesheet" src="themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
@@ -46,7 +46,7 @@
     <div data-role="page" id='loginpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false" >
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-          <h1>PediloYa Mobile Login</h1>            
+          <h1>PediloYA MOBILE</h1>            
         </div>
 
         <div role="main" class="ui-content" id='app'>  
@@ -71,7 +71,7 @@
     <div data-role="page" id='registrarpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-          <h1>PediloYa MOBILE</h1>            
+          <h1>PediloYA MOBILE</h1>            
         </div>
         <div role="main" class="ui-content">   
           <form id="registrarform"> 
@@ -108,13 +108,13 @@
     <div data-role="page" id='articulos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-        <h1>PediloYa MOBILE</h1>
+        <h1>PediloYA MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedorarticulos' class="ui-content" >
           <form id="form" name="form">
           <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
-          <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..."  data-inset="true" id="articulos2"></ul>
+          <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..."  data-inset="true" id="articulos2" data-split-icon="delete" data-split-theme="a"></ul>
           </form>
        </div>      
       <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
@@ -133,7 +133,7 @@
     <div data-role="page" id='comercios' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>PediloYa MOBILE</h1>
+        <h1>PediloYA MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedor' class="ui-content">
@@ -159,7 +159,7 @@
     <div data-role="page" id='pedidos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-        <h1>PediloYa MOBILE</h1>
+        <h1>PediloYA MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" class="ui-content" id="contenedorpedidos">
@@ -181,7 +181,7 @@
     <div data-role="page" id='perfil' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
-        <h1>PediloYa MOBILE</h1>
+        <h1>PediloYA MOBILE</h1>
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content">

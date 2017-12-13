@@ -115,10 +115,26 @@ var User = {
               console.log('data length  '+ data.length);
               var output = '';
               $.each(data, function(key, val){
-                output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" name="articulos[]" value=' + val.id +'>' + '<input type="hidden" name="precios[]" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" name="stocks[]" value=' + val.stock + '>' + '<input type="number" name="cantidades[]" class="cantidades" min="0" value="0">' + '</li>';  
+                output += '<li class="articulo" style="display:flex;align-items:center;" id='+ val.id +'>'
+                + '<img style="top:auto;" src="../storage/' + val.imagen + '">'
+                + '<div style="width:48px; margin-right:10px;" class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">'
+                + '<input type="number" name="cantidades[]" pattern="[0-9]*" class="cantidades" id="cant'+val.id+'" min="0" value="0"></div>'
+                + val.nombre + '<input type="hidden" name="articulos[]" value=' + val.id +'>'
+                + '<input type="hidden" name="precios[]" value=' + val.precio +'>' + ' $' + val.precio
+                + '<input type="hidden" name="stocks[]" value=' + val.stock + '>' 
+                + '</li>';  
                 //output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
               });
               $('#articulos2').html(output).listview("refresh");
+
+              $('.articulo').on('click',  function(evento){
+                var a = document.getElementById("cant"+evento.target.id);
+                a.value=Number(a.value)+1;
+              });
+              $('.articulo').on('dblclick',  function(evento){
+                var a = document.getElementById("cant"+evento.target.id);
+                a.value=0;
+              });
               //se crea una tabla cantidad y un json, despues vemos qué se ajusta más
               /*var cantidad = new Array(data.length);
               cantidad.fill(0);
