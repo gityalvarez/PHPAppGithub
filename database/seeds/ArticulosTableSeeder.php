@@ -14,8 +14,7 @@ class ArticulosTableSeeder extends Seeder
         \DB::table('articulos')->insert(array (
             0 => 
             array (
-                'id' => 1,
-                
+                'id' => 1,                
                 'stock' => 100,
                 'precio' => 78,
                 'producto_id' => 1,
@@ -26,8 +25,7 @@ class ArticulosTableSeeder extends Seeder
             ),
             1 => 
             array (
-                'id' => 2,
-                
+                'id' => 2,                
                 'stock' => 80,
                 'precio' => 70,
                 'producto_id' => 2,
@@ -38,8 +36,7 @@ class ArticulosTableSeeder extends Seeder
             ),
             2 => 
             array (
-                'id' => 3,
-                
+                'id' => 3,                
                 'stock' => 50,
                 'precio' => 120,
                 'producto_id' => 3,
@@ -50,8 +47,7 @@ class ArticulosTableSeeder extends Seeder
             ),
             3 => 
             array (
-                'id' => 4,
-                
+                'id' => 4,                
                 'stock' => 8,
                 'precio' => 5600,
                 'producto_id' => 4,
@@ -62,8 +58,7 @@ class ArticulosTableSeeder extends Seeder
             ),
             4 => 
             array (
-                'id' => 5,
-                
+                'id' => 5,                
                 'stock' => 90,
                 'precio' => 72,
                 'producto_id' => 1,

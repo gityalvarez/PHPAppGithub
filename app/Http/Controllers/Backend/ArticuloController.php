@@ -134,9 +134,7 @@ class ArticuloController extends AppBaseController
      */
     public function edit($id)
     {
-        $articulo = $this->articuloRepository->findWithoutFail($id);
-        //$comercios = $articulo->comercio();
-        //$productos = $articulo->producto();
+        $articulo = $this->articuloRepository->findWithoutFail($id);        
         $id = Auth::id();
         $comercio = Comercio::where('user_id', $id)->get()->first();//->lists('nombre', 'id');
         $productos = Producto::where('id','<>',$articulo->producto->id)->lists('nombre', 'id');
@@ -200,7 +198,7 @@ class ArticuloController extends AppBaseController
                 $encontrado = true;
             }
         }*/
-        if (empty($pedidos) /*|| !$encontrado*/){
+        if (empty($pedidos->items) /*|| !$encontrado*/){
             $this->articuloRepository->delete($id);
             Flash::success('Articulo borrado exitosamente');
             return redirect(route('backend.articulos.index'));
