@@ -155,8 +155,11 @@ class ProductoController extends AppBaseController
 
             return redirect(route('backend.productos.index'));
         }
+        
         $articulos = $producto->articulos()->get();
-        if (!empty($articulos)){
+        
+        if (!empty($articulos->items)){
+            
             Flash::error('No es posible eliminar el Producto dado que tiene Articulos asociados');
 
             return redirect(route('backend.categorias.index'));

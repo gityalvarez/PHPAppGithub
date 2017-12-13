@@ -26,12 +26,33 @@ class PedidoController extends Controller
     public function create(Request $request, Authorizer $authorizer){  
         $precios = Articulo::all()->select("precio")->toArray();
         //$stocks = Articulo::all()->select("stock")->toArray();
+        $articulos = Articulo::all()->select("id")->toArray();
+        $cantidades = json_decode(stripslashes($request->cantidades));
+        dd($cantidades);
         $pedido = new Pedido();
         $pedido->estado = "creado";
         $cliente_id = $authorizer->getResourceOwnerId();
         $pedido->user_id = $cliente_id;
         $total = 0;
-        for ($i=0; $i < count($request->articulos); $i++){
+        for ($i=0; $i < count($articulos); $i++){
+            if ($cantidades[$i] != 0){
+              $articulo = Articulo::find($articulos[$i]);
+              $articulo->stock = $articulo->stock - $cantidades[$i];
+              $articulo->save();
+              //dd($request->precios[$proximo]);
+              $total = $total + ($precios[$i] * $cantidades[$i]);
+            }                       
+        }
+        $pedido->total=$total;
+        //dd($total);
+        $pedido->save();
+        $ultimopedido = Pedido::all()->last();
+        for ($i=0; $i < count($articulos); $i++){
+            if ($cantidades[$i] != 0){
+              $ultimopedido->articulos()->attach($articulos[$i], ['cantidad' => $cantidades[$i], 'created_at' => DB::raw('NOW()')]); 
+            }                       
+        }       
+        /*for ($i=0; $i < count($request->articulos); $i++){
             if ($i == 0){
                 $proximo = 0;
             }            
@@ -75,6 +96,10 @@ class PedidoController extends Controller
                 }
             }
             $ultimopedido->articulos()->attach($request->articulos[$i], ['cantidad' => $request->cantidades[$proximo], 'created_at' => DB::raw('NOW()')]);            
-        }        
+        }*/        
+    }
+    
+    public function show(Request $request){
+        
     }
 }
