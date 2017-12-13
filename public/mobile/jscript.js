@@ -190,6 +190,13 @@ var User = {
       error: function(a,b,c) {
                 console.log('error');
                 console.log(a,b,c);
+                sessionStorage.removeItem('token');
+                //sessionStorage.removeItem('email');
+                sessionStorage.clear();
+                token = null;
+                //var email = null;
+                $.mobile.navigate('#index'); 
+                location.reload();
       },
     });
   },
