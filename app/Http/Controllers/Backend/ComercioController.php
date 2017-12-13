@@ -12,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Storage;
 use App\User;
+use App\Models\Backend\Comercio;
 
 class ComercioController extends AppBaseController
 {
@@ -45,11 +46,16 @@ class ComercioController extends AppBaseController
      */
     public function create()
     {
-        $gerentes = User::whereHas('roles',function($query){
+        /*$gerentes = User::whereHas('roles',function($query){
+            $query->where('id',2);
+        })->lists('name', 'id');*/
+        $gerentestodos = User::whereHas('roles',function($query){
             $query->where('id',2);
         })->lists('name', 'id');
+        $gerentesasignados = User::join('comercios', 'users.id', '=', 'comercios.user_id')->lists('name', 'user_id as id');;
+        $gerentesdisponibles = $gerentestodos->diff($gerentesasignados);        
         return view('backend.comercios.create')
-                ->with('gerentes',$gerentes);
+                ->with('gerentes',$gerentesdisponibles);
     }
 
     /**
@@ -112,15 +118,17 @@ class ComercioController extends AppBaseController
 
             return redirect(route('backend.comercios.index'));
         }
-        $gerentes = User::where('id','<>',$comercio->user_id)
+        $gerentestodos = User::where('id','<>',$comercio->user_id)
                     ->whereHas('roles',function($query){
                         $query->where('id',2);
                     })->lists('name', 'id'); 
-        $gerente = User::where('id',$comercio->user_id)->lists('name', 'id');
-        $gerentes = $gerente->union($gerentes);
+        $gerentesasignados = User::join('comercios', 'users.id', '=', 'comercios.user_id')->lists('name', 'user_id as id');;
+        $gerentesdisponibles = $gerentestodos->diff($gerentesasignados);        
+        $gerenteactual = User::where('id',$comercio->user_id)->lists('name', 'id');
+        $gerentesdisponibles = $gerenteactual->union($gerentesdisponibles);
         return view('backend.comercios.edit')
                 ->with('comercio', $comercio)
-                ->with('gerentes', $gerentes);
+                ->with('gerentes', $gerentesdisponibles);
     }
 
     /**
