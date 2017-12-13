@@ -25,7 +25,7 @@ class ComerciosTableSeeder extends Seeder
                 'latitud' => '-34.8858712',
                 'longitud' => '-56.1798994',
                 'logo' => 'logo-comercio-devoto.jpg',
-                'user_id' => 2,
+                'user_id' => 3,
                 'created_at' => '2017-10-20 02:01:16',
                 'updated_at' => '2017-10-20 02:01:16',
                 'deleted_at' => NULL,
