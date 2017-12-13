@@ -81,29 +81,7 @@
     </div>
 
 
-    <!--
-    <div data-role="page" id='selectpage' data-theme='a'>
-      <div data-role="header" data-theme='b' data-position='fixed'>
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>              
-        <h1>PediloYa Mobile Select</h1>
-        <a id="logout" href="#" data-transition='slide'>Logout</a>
-      </div>
-      <div role="main" class="ui-content">
-        <form>
-          <div class="ui-field-contain">
-            <label for="dropdown">Ir A:</label>
-              <select name="dropdown" id="dropdown">
-                <option value="0">Seleccione una Página</option>
-                <option value="1">articulos</option>
-                <option value="2">comercios</option>
-                <option value="3">pedidos</option>
-                <option value="4">perfil</option>
-              </select>
-          </div>
-        </form>
-      </div>
-    </div>
-  -->
+   
     <div data-role="page" id='articulos' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
@@ -135,8 +113,10 @@
         <a id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedor' class="ui-content">
+        <div id='mapid' style='height: 300px;'></div>
         <form>
           <input type="text" data-type="search" id="filterable-input">
+           <ul data-role="listview" data-inset="true" id="comercios2"></ul>
         </form>
       </div>
       <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">

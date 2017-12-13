@@ -84,36 +84,42 @@ var User = {
       });
       
       $('#comercios').on('pageinit',function(){
-               
-          token = sessionStorage.getItem('token');
-          $.ajax({
-            url : 'http://localhost:8000/api/v1/comercio',
-            type : 'GET',
-            headers: {'Authorization': 'Bearer ' + token },
-            success : function(data) {
-              console.log(token);
-              var divmapa ="<div id='mapid' style='height: 300px;'></div>";
-              $('#contenedor').append(divmapa);//fin y comienzo de la tabla
-              var tblRowTitles = "<label align='center'> Id  Nombre  Dirección   Logo </label>";              
-              $('#contenedor').append(tblRowTitles);
-              $.each(data, function(key, val){
-                var tblRow = "<label align='center' for=" + val.id + ">" + val.id + " " + val.nombre + " " + val.direccion + " <img src='../storage/" + val.logo + "' width='30' height=30'/></label>"
-                $('#contenedor').append(tblRow);
-              });
+                      
+        token = sessionStorage.getItem('token');
+        $.ajax({
+          url : 'http://localhost:8000/api/v1/comercio',
+          type : 'GET',
+          headers: {'Authorization': 'Bearer ' + token },
+          success : function(data) {
+            console.log(token);
+            console.log("Datos de comercios");
+            console.log(data);
+            var output = '';
+            $.each(data, function(key, val){
+              output += '<li><a href="#" class ="listacomercios"id="comercio'+key+'" data-latitud='+val.latitud+' data-longitud='+val.longitud+'><img  src="../storage/' + val.logo + '">'+'    ' + val.nombre +'</a></li>';
+               });
+            $('#comercios2').html(output).listview("refresh");
+            var mymap = L.map('mapid').setView([-34.866944, -56.166667], 11);
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+               {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+             }).addTo(mymap);
 
-              var mymap = L.map('mapid').locate({setView: true, maxZoom: 16});
-              L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-                 {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-               }).addTo(mymap);
+            $.each(data, function(key, val){
+               var marker = L.marker([val.latitud,val.longitud]).addTo(mymap).bindPopup("<p>"+val.nombre+"</p><br />"+val.direccion);  
+              });//end del each marker
 
-              $.each(data, function(key, val){
-                 var marker = L.marker([val.latitud,val.longitud]).addTo(mymap).bindPopup("<p>"+val.nombre+"</p><br />"+val.direccion);  
- 
-                 
-               });//end del each marker
-
-            }
-          }); 
+            
+            $('.listacomercios').on('click',  function(evento){
+               console.log(evento.target.dataset.latitud);
+                mymap.setView([evento.target.dataset.latitud, evento.target.dataset.longitud], 16);
+            });
+             $('.listacomercios').on('dblclick',  function(evento){
+               console.log(evento.target.dataset.latitud);
+                mymap.setView([-34.866944, -56.166667], 11);
+            });           
+           
+          }
+        }); 
         
       });
 
