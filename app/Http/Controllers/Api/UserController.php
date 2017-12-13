@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Articulo;
 use LucaDegasperi\OAuth2Server\Authorizer;
+use Watson\Validating\ValidationException;
 
 
 
@@ -26,17 +27,27 @@ class UserController extends Controller
     }
     
     public static function create(Request $request)
-    {
-        $user = User::create([
+    {   
+        try {
+            $user = User::create([
             'name' => $request['nombre'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
             'direccion' => $request['direccion'],
             'latitud' => $request['latitud'],
             'longitud' => $request['longitud'],
-        ]);
-        $user->attachRole('4'); //los usuarios que se registran son clientes
-        $user->save();
-        return response()->json($user,200);
+            ]);
+        } catch (ValidationException $e) {
+
+            return Response()->json($e->getErrors(),202);
+        }try {
+            $user->attachRole('4'); //los usuarios que se registran son clientes
+            $user->save();
+        } catch (ValidationException $e){
+            return Response()->json($e->getErrors(),500);
+        }        
+
+        return Response()->json($user, 200);
+ 
     }
 }

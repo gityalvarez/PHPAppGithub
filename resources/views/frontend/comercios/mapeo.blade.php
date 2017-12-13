@@ -1,4 +1,4 @@
-@extends('layouts.frontend.appmap')
+@extends('layouts.frontend.app')
 
 @section('content')
     <section class="content-header">
@@ -16,4 +16,13 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+       var map = L.map('map').setView([-34.866944, -56.166667], 13);
+       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        @foreach ($comercios as $comercio)
+          var marker = L.marker([{!! $comercio->latitud !!},{!! $comercio->longitud !!}]).addTo(map).bindPopup("<p>{!! $comercio->nombre !!}</p><br />{!! $comercio->direccion !!}");  
+        @endforeach        
+    </script>
 @endsection

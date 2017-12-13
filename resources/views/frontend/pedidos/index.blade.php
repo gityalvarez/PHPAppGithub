@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Búsqueda de Pedidos
+        <h1 class="pull-left">Buscador de Pedidos
             <p></p>
         </h1>        
     </section>
