@@ -14,6 +14,8 @@
              crossorigin="">
     </script>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    
     <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('mobile/jscript.js')}}"></script>
     
@@ -44,47 +46,62 @@
     <div data-role="page" id='loginpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false" >
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
-          <h1>PediloYa MOBILE</h1>            
+          <h1>PediloYa Mobile Login</h1>            
         </div>
-        <div role="main" class="ui-content" id='app'>           
-          <label for="username">Email:</label>
-            <input type="text" name="username" id="username" value="" placeholder="Username" />
-            <p></p>
+
+        <div role="main" class="ui-content" id='app'>  
+        <form id="loginform" >    
+          <div>
+              <label for="username">Email:</label>
+              <input type="email" name="username" id="username" value="" placeholder="Username">
+          </div>     
+              <p></p>
+          <div>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" value="" placeholder="Password" />
+            <input type="password" name="password" id="password" value="" placeholder="Password"> 
+          </div>    
             <p id='errorlogin'></p>
-            <a href="#" class="ui-btn ui-btn-b ui-corner-all" id="login">Login</a> 
+            <button type="submit" class="ui-btn ui-btn-b ui-corner-all" id="login">Login</button> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
+        </form>  
         </div>
     </div>
-
     <!--REGISTRO-->
     <div data-role="page" id='registrarpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
           <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
           <h1>PediloYa MOBILE</h1>            
         </div>
-        <div role="main" class="ui-content">           
-          <label for="nombre">Nombre:</label>
-          <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" />
-          <label for="email">Email:</label>
-          <input type="text" name="email" id="email" value="" placeholder="Email" />
-          <p></p>
-          <label for="password2">Password:</label>
-          <input type="password" name="password2" id="password2" value="" placeholder="Password" />
-          <p></p>
-          <label for="calle">Calle o Avenida:</label>
-          <input type="text" name="calle" id="calle" value="" placeholder="Calle o Avenida" data-direccion="" data-latitud="" data-longitud=""oninput="geolocalizar()"/>
-          <p></p>
-          <label for="numero">Numero de Puerta:</label>
+        <div role="main" class="ui-content">   
+          <form id="registrarform"> 
+            <div>  
+              <label for="nombre">Nombre:</label>
+              <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre" />
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <input type="email" name="email" id="email" value="" placeholder="Email" />
+            </div>
+            <p></p>
+            <div>
+              <label for="password2">Password:</label>
+              <input type="password" name="password2" id="password2" value="" placeholder="Password" />
+            </div>
+            <p></p>
+            <div>
+              <label for="calle">Calle o Avenida:</label>
+              <input type="text" name="calle" id="calle" value="" placeholder="Calle o Avenida" data-direccion="" data-latitud="" data-longitud=""oninput="geolocalizar()"/>
+            </div>
+            <p></p>
+          <label for="nopuerta">Numero de Puerta:</label>
           <input type="text" name="nopuerta" id="nopuerta" value="" placeholder="Numero de Puerta" oninput="geolocalizar()" />
           
           <p id="errorregistrar"></p>
-          <a href="#" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Registrar</a> 
+          <button type="submit" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Registrar</button> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
-        </div>
+          </div>
     </div>
 
     <!--ARTICULOS-->

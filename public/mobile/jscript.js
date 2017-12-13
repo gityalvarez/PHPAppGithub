@@ -14,11 +14,7 @@ var App = {
 var User = {
   init : function(){
     $(document).ready(function(){
-      $(document).on('click','#login',function(e){
-        e.preventDefault();
-        User.login();
-      });
-
+      
       $(document).on('click','#registrar2',function(){
         //e.preventDefault();
         User.registrar();
@@ -33,6 +29,77 @@ var User = {
         console.log('entre al logout');
         e.preventDefault();
         User.logout();
+      });
+
+      $('#loginpage').on('pageinit',function(){
+          $("#loginform").validate({
+            rules: {
+              username: {
+                required: true,
+                email: true
+              },
+              password: {
+                required: true,
+                minlength: 5
+              }
+            },
+            // Specify validation error messages
+            messages: {
+              password: {
+                required: "El password no puede ser vacío",
+                minlength: "El password debe ser mayor a 5 caracteres"
+              },
+              username: {
+                required: "El username no puede ser vacío",
+                email: "Digite un email válido por favor"
+              },
+            },
+            submitHandler: function(form) {
+              User.login();
+            }
+          });
+      });
+
+      $('#registrarpage').on('pageinit',function(){
+          $("#registrarform").validate({
+            rules: {
+              email: {
+                required: true,
+                email: true
+              },
+              password2: {
+                required: true,
+                minlength: 5
+              },
+              nombre: {
+                required: true
+              },
+              calle: {
+                required: true
+              },
+              nopuerta: {
+                required: true
+              },
+            },
+            // Specify validation error messages
+            messages: {
+              password2: {
+                required: "El password no puede ser vacío",
+                minlength: "El password debe ser mayor a 5 caracteres"
+              },
+              email: {
+                required: "El email no puede ser vacío",
+                email: "Digite un email válido por favor"
+              },
+              nombre: "El nombre no puede ser vacío",
+              calle: "La calle no puede ser vacía",
+              nopuerta: "El número de puerta no puede ser vacío",
+
+            },
+            submitHandler: function(form) {
+              User.registrar();
+            }
+          });
       });
 
 
