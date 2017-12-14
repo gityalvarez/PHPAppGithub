@@ -3,9 +3,9 @@
   <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1 user-scalable=no"/>
     <title>PediloYA MOBILE</title>
-    <link rel="stylesheet" src="themes/B.css" />
-    <link rel="stylesheet" src="themes/jquery.mobile.icons.min.css" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+    <link rel="stylesheet" href="themes/PediloYA.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
              integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
              crossorigin=""/>
@@ -13,10 +13,9 @@
              integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
              crossorigin="">
     </script>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-    
-    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
     <script type="text/javascript" src="{{ URL::asset('mobile/jscript.js')}}"></script>
     
     <style>
@@ -35,9 +34,9 @@
         <h2 class="mc-text-center">Bienvenido a</h2>
         <img style="width:80%; margin:auto; display:block" src="{{ URL::asset('imagenes\PediloYA-LogoNaranja.svg')}}">
         <p class="mc-top-margin-1-5"><b>Usuarios</b></p>
-        <a href="#loginpage" class="ui-btn ui-btn-b ui-corner-all">Loguearse</a>
+        <a href="#loginpage" class="ui-btn ui-btn-a ui-corner-all">Loguearse</a>
         <p class="mc-top-margin-1-5"><b>No tienes Cuenta?</b></p>
-        <a href="#registrarpage" class="ui-btn ui-btn-b ui-corner-all">Registrarse</a>
+        <a href="#registrarpage" class="ui-btn ui-btn-a ui-corner-all">Registrarse</a>
         <p></p>
       </div>
     </div>
@@ -45,7 +44,7 @@
     <!--LOGIN-->
     <div data-role="page" id='loginpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false" >
-          <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+          <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
           <h1>PediloYA MOBILE</h1>            
         </div>
 
@@ -61,7 +60,7 @@
             <input type="password" name="password" id="password" value="" placeholder="Password"> 
           </div>    
             <p id='errorlogin'></p>
-            <button type="submit" class="ui-btn ui-btn-b ui-corner-all" id="login">Login</button> 
+            <button type="submit" class="ui-btn ui-btn-a ui-corner-all" id="login">Login</button> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
         </form>  
@@ -70,7 +69,7 @@
     <!--REGISTRO-->
     <div data-role="page" id='registrarpage' data-theme='a'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
-          <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+          <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
           <h1>PediloYA MOBILE</h1>            
         </div>
         <div role="main" class="ui-content">   
@@ -106,17 +105,17 @@
     </div>
 
     <!--ARTICULOS-->
-    <div data-role="page" id='articulos' data-theme='a'>
+    <div data-role="page" id='articulos' data-theme='b'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+        <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
         <h1>PediloYA MOBILE</h1>
-        <a id="logout" href="#" data-transition='slide'>Logout</a>
+        <a  style="height:12px" id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedorarticulos' class="ui-content" >
           <form id="form" name="form">
-            <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
-            <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..."  data-inset="true" id="articulos2" data-split-icon="delete" data-split-theme="a"></ul>
-            <input type="reset" data-role="button" data-theme="b" href="#" value="Limpiar Pedido">
+            <a id="registrarpedido" data-role="button" data-theme="a" href="#" data-transition="slide">Confirmar Pedido</a>
+            <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..."  data-inset="true" id="articulos2" data-split-icon="delete" data-split-theme="b"></ul>
+            <input type="reset" data-role="button" data-theme="a" href="#" value="Limpiar Pedido">
           </form>
        </div>      
       <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
@@ -132,11 +131,11 @@
     </div> 
 
     <!--COMERCIOS-->
-    <div data-role="page" id='comercios' data-theme='a'>
+    <div data-role="page" id='comercios' data-theme='b'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
+        <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
         <h1>PediloYA MOBILE</h1>
-        <a id="logout" href="#" data-transition='slide'>Logout</a>
+        <a style="height:12px" id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" id='contenedor' class="ui-content">
         <div id='mapid' style='height: 300px;'></div>
@@ -158,11 +157,11 @@
     </div>
 
     <!--PEDIDOS-->
-    <div data-role="page" id='pedidos' data-theme='a'>
+    <div data-role="page" id='pedidos' data-theme='b'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+        <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
         <h1>PediloYA MOBILE</h1>
-        <a id="logout" href="#" data-transition='slide'>Logout</a>
+        <a style="height:12px" id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" class="ui-content" id="contenedorpedidos">
         <ul data-role="listview" data-inset="true" id="listapedidos"></ul>
@@ -182,9 +181,9 @@
     <!--ARTICULOS-->
     <div data-role="page" id='articulospedido' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+        <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
         <h1>PediloYA MOBILE</h1>
-        <a id="logout" href="#" data-transition='slide'>Logout</a>
+        <a style="height:12px" id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div data-role="content" class="ui-content" id="contenedorarticulospedido">
         <ul data-role="listview" data-inset="true" id="listarticulospedido"></ul>
@@ -204,9 +203,9 @@
     <!--PERFIL-->
     <div data-role="page" id='perfil' data-theme='a'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
-        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atras</a>
+        <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
         <h1>PediloYA MOBILE</h1>
-        <a id="logout" href="#" data-transition='slide'>Logout</a>
+        <a style="height:12px" id="logout" href="#" data-transition='slide'>Logout</a>
       </div>
       <div role="main" class="ui-content">
         <div data-role="content">
