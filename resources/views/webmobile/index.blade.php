@@ -42,7 +42,7 @@
     </div>
 
     <!--LOGIN-->
-    <div data-role="page" id='loginpage' data-theme='a'>
+    <div data-role="page" id='loginpage' data-theme='b'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false" >
           <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
           <h1>PediloYA MOBILE</h1>            
@@ -67,7 +67,7 @@
         </div>
     </div>
     <!--REGISTRO-->
-    <div data-role="page" id='registrarpage' data-theme='a'>
+    <div data-role="page" id='registrarpage' data-theme='b'>
         <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
           <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
           <h1>PediloYA MOBILE</h1>            
@@ -97,7 +97,7 @@
           <input type="text" name="nopuerta" id="nopuerta" value="" placeholder="Numero de Puerta" oninput="geolocalizar()" />
           
           <p id="errorregistrar"></p>
-          <button type="submit" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Registrar</button> 
+          <button type="submit" class="ui-btn ui-btn-a ui-corner-all" id="registrar2" data-theme='b'>Registrar</button> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
           </form>
@@ -201,7 +201,7 @@
     </div>
 
     <!--PERFIL-->
-    <div data-role="page" id='perfil' data-theme='a'>
+    <div data-role="page" id='perfil' data-theme='b'>
       <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
         <a style="height:12px" id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Volver</a>
         <h1>PediloYA MOBILE</h1>
