@@ -25,7 +25,7 @@ var User = {
         User.registrarpedido();
       });
       
-      $(document).on('click','#verarticulos',function(){
+      $(document).on('click','.verarticulos',function(){
         var pedidoid = $(this).attr("value");
         User.verarticulos(pedidoid);
       });
@@ -125,7 +125,7 @@ var User = {
                 + '<div style="width:36px; margin-right:10px; float:left;" class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">'
                 + '<input type="number" name="cantidades[]" pattern="[0-9]*" class="cantidades" id="cant'+val.id+'" min="0" value="0"></div>'
                 + '<span style="vertical-align:-webkit-baseline-middle"><b>' + val.nombre + '</b>'
-                + ' <br><small>$' + val.precio + ' Stock: ' + val.stock + '</small>' + '</span></a>'
+                + ' <br><small style="font-weight:lighter;">$' + val.precio + ' Stock: ' + val.stock + '</small>' + '</span></a>'
                 + '<a href="#" class="vaciar"></a>'
                 + '<input type="hidden" name="articulos[]" value=' + val.id +'>'
                 + '<input type="hidden" name="precios[]" value=' + val.precio +'>'
@@ -229,7 +229,7 @@ var User = {
               console.log(data);               
               var output = '';
               $.each(data, function(key, val){
-                output += '<li>' + val.id + ' $' + val.total + ' ' + val.created_at + ' ' + val.estado + '<button id="verarticulos" value='+ val.id + '>Ver</button>' + '</li>';
+                output += '<li data-icon="eye" class="verarticulos" value='+ val.id + '><a href="#">' + val.id + ' $' + val.total + ' ' + val.created_at + ' ' + val.estado + '</li>';
               });
               $('#listapedidos').html(output).listview("refresh");
             },
