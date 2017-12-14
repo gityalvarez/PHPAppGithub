@@ -101,7 +101,8 @@
           <button type="submit" class="ui-btn ui-btn-b ui-corner-all" id="registrar2" data-theme='b'>Registrar</button> 
             <!--a href="login/facebook" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Facebook</a-->
             <!--a href="login/google" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Login con Google</a-->
-          </div>
+          </form>
+      </div>
     </div>
 
     <!--ARTICULOS-->
@@ -113,8 +114,9 @@
       </div>
       <div data-role="content" id='contenedorarticulos' class="ui-content" >
           <form id="form" name="form">
-          <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
-          <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..."  data-inset="true" id="articulos2" data-split-icon="delete" data-split-theme="a"></ul>
+            <a id="registrarpedido" data-role="button" data-theme="b" href="#" data-transition="slide">Confirmar Pedido</a>
+            <ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar productos..."  data-inset="true" id="articulos2" data-split-icon="delete" data-split-theme="a"></ul>
+            <input type="reset" data-role="button" data-theme="b" href="#" value="Limpiar Pedido">
           </form>
        </div>      
       <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
