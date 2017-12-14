@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Articulo extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     public $table = 'articulos';
     

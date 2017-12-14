@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Categoria extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     public $table = 'categorias';
     

@@ -146,8 +146,8 @@ class CategoriaController extends AppBaseController
 
             return redirect(route('backend.categorias.index'));
         }
-        $productos = $categoria->productos()->get();
-        if (!empty($productos->items)){
+        $productos = $categoria->productos()->first();
+        if (!empty($productos)){
             Flash::error('No es posible eliminar la Categoria dado que tiene Productos asociados');
 
             return redirect(route('backend.categorias.index'));

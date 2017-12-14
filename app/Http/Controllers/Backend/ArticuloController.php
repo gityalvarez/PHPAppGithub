@@ -191,14 +191,14 @@ class ArticuloController extends AppBaseController
             Flash::error('Articulo no encontrado');
             return redirect(route('backend.articulos.index'));
         }
-        $pedidos = $articulo->pedidos()->get();
+        $pedidos = $articulo->pedidos()->first();
         /*$encontrado = false;
         foreach ($pedidos as $pedido){
             if ($pedido->estado == "creado"){
                 $encontrado = true;
             }
         }*/
-        if (empty($pedidos->items) /*|| !$encontrado*/){
+        if (empty($pedidos) /*|| !$encontrado*/){
             $this->articuloRepository->delete($id);
             Flash::success('Articulo borrado exitosamente');
             return redirect(route('backend.articulos.index'));
