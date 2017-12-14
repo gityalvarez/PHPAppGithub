@@ -24,10 +24,30 @@ class PedidoController extends Controller
     }
     
     public function create(Request $request, Authorizer $authorizer){  
-        //$stocks = Articulo::select("stock");
+        $stocks = json_decode($request->stocks, true);
         $articulos = json_decode($request->articulos, true);
         $precios = json_decode($request->precios, true);
         $cantidades = json_decode($request->cantidades, true);
+        $i = 0;
+        $cantidadesnoseteadas = false;
+        while (($i < count($articulos)) && (!$cantidadesnoseteadas)){
+            if ($cantidades[$i] <> 0){
+                $cantidadesnoseteadas = true;
+            }
+            else {
+                $i++;
+            }
+        }
+        $cantidadesinvalidas = false;
+        while (($i < count($articulos)) && (!$cantidadesinvalidas)){
+            if ($cantidades[$i] > $stocks[$i]){
+                $cantidadesinvalidas = true;
+            }
+            else {
+                $i++;
+            }
+        }
+        if (($cantidadesnoseteadas) && (!$cantidadesinvalidas)){
         $pedido = new Pedido();
         $pedido->estado = "creado";
         $cliente_id = $authorizer->getResourceOwnerId();
@@ -51,6 +71,7 @@ class PedidoController extends Controller
              //dd($articulos[$i]); 
              $ultimopedido->articulos()->attach($articulos[$i], ['cantidad' => $cantidades[$i], 'created_at' => DB::raw('NOW()')]);            
           }  
+        }
         }
         /*for ($i=0; $i < count($request->articulos); $i++){
             if ($i == 0){
@@ -97,5 +118,12 @@ class PedidoController extends Controller
             }
             $ultimopedido->articulos()->attach($request->articulos[$i], ['cantidad' => $request->cantidades[$proximo], 'created_at' => DB::raw('NOW()')]);            
         } */       
+    }
+    
+    public function show(Request $request)
+    {
+        $pedido = Pedido::find($request->pedidoid);
+        $articulos = $pedido->articulos()->get();
+        return response()->json($articulos,200);
     }
 }

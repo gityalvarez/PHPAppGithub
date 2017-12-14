@@ -24,6 +24,11 @@ var User = {
         //e.preventDefault();
         User.registrarpedido();
       });
+      
+      $(document).on('click','#verarticulos',function(){
+        var pedidoid = $(this).attr("value");
+        User.verarticulos(pedidoid);
+      });
 
       $(document).on('click', '#logout', function(e){
         console.log('entre al logout');
@@ -121,7 +126,7 @@ var User = {
                 + '<input type="number" name="cantidades[]" pattern="[0-9]*" class="cantidades" id="cant'+val.id+'" min="0" value="0"></div>'
                 + val.nombre + '<input type="hidden" name="articulos[]" value=' + val.id +'>'
                 + '<input type="hidden" name="precios[]" value=' + val.precio +'>' + ' $' + val.precio
-                + '<input type="hidden" name="stocks[]" value=' + val.stock + '>' 
+                + '<input type="hidden" name="stocks[]" value=' + val.stock + '>' + ' #' + val.stock
                 + '</li>';  
                 //output += '<li id='+val.id+'><img src="../storage/' + val.imagen + '">' + val.nombre + '<input type="hidden" id="precio" class="precio" value=' + val.precio +'>' + ' $' + val.precio + '<input type="hidden" id="stock" class="stock" value=' + val.stock + '><p class="spin">cantidad: <span> 0</span></p>' +'</li>';
               });
@@ -220,7 +225,7 @@ var User = {
               console.log(data);               
               var output = '';
               $.each(data, function(key, val){
-                output += '<li>' + val.id + ' $' + val.total + ' ' + val.created_at + ' ' + val.estado + '<input type="button" value="Ver"/>' + '</li>';
+                output += '<li>' + val.id + ' $' + val.total + ' ' + val.created_at + ' ' + val.estado + '<button id="verarticulos" value='+ val.id + '>Ver</button>' + '</li>';
               });
               $('#listapedidos').html(output).listview("refresh");
             },
@@ -362,25 +367,26 @@ var User = {
   registrarpedido: function(){
     token = sessionStorage.getItem('token');         
     console.log('Entro a registrarpedido');
-    //var stocks = [];
+    var stocks = [];
     var precios = [];
     var articulos = [];
     var cantidades = [];
-    var i=0;
     $("input[name='cantidades[]']").each(function() {
         cantidades.push(this.value);
     });
-    i=0;
     $("input[name='articulos[]']").each(function() {
         articulos.push(this.value);
     });
-    i=0;
     $("input[name='precios[]']").each(function() {
         precios.push(this.value);
-    });    
+    });  
+    $("input[name='stocks[]']").each(function() {
+        stocks.push(this.value);
+    }); 
     var articulos_json = JSON.stringify(articulos);
     var cantidades_json = JSON.stringify(cantidades);
     var precios_json = JSON.stringify(precios);
+    var stocks_json = JSON.stringify(stocks);
     console.log(articulos_json);
     console.log(cantidades_json);
     console.log(precios_json);
@@ -391,6 +397,7 @@ var User = {
       data: {
            articulos : articulos_json,
            cantidades : cantidades_json,
+           stocks : stocks_json,
            precios : precios_json
       },
       dataType: 'json', 
@@ -402,6 +409,37 @@ var User = {
         alert(xhr.responseText);
       }
     });
+  },
+  
+  verarticulos : function(pedidoid){
+    console.log('entre ver articulos pedido');
+    console.log('idpedido: ' + pedidoid);
+    /*$.ajax({
+      url : 'http://localhost:8000/api/v1/articulo',
+      type : 'GET',
+      headers: {'Authorization': 'Bearer ' + token },
+      success : function(data) {
+        console.log(data);
+        if (data.error){
+          alert(data.error);
+        }
+        else{
+          console.log('todo bien');
+          $.mobile.navigate('#articulos');
+        }
+      },
+      error: function(a,b,c) {
+                console.log('error');
+                console.log(a,b,c);
+                sessionStorage.removeItem('token');
+                //sessionStorage.removeItem('email');
+                sessionStorage.clear();
+                token = null;
+                //var email = null;
+                $.mobile.navigate('#index'); 
+                location.reload();
+      },
+    });*/
   },
 
   logout : function(){
