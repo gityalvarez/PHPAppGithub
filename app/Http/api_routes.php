@@ -17,13 +17,11 @@ Route::post('oauth/access_token', function() {
 Route::post('registrar','UserController@create');
 
 Route::group(['middleware' => ['oauth']], function () {
+    Route::get('pedido/articulos/{id}', 'PedidoController@show');
     Route::get('user', 'UserController@index');
     Route::get('user/perfil', 'UserController@user');
     Route::get('articulo', 'ArticuloController@index');
-    //Route::resource('articulo', 'ArticuloController');
     Route::get('comercio', 'ComercioController@index');   
     Route::get('pedido', 'PedidoController@index');
     Route::post('pedido/registrar', 'PedidoController@create');
-    Route::get('pedido/verarticulospedido?pedidoid={pedidoid}', 'PedidoController@show');
-
 });

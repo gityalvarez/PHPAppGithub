@@ -240,8 +240,30 @@ var User = {
         
       });
       
-      $('#perfil').on('pageinit',function(){
-              
+      $('#articulospedido').on('pageinit',function(){
+          token = sessionStorage.getItem('token');
+          var pedidoid = sessionStorage.getItem('idpedido');
+          $.ajax({
+            url : 'http://localhost:8000/api/v1/pedido/articulos/'+pedidoid,
+            type : 'GET',
+            dataType: 'json',
+            headers: {'Authorization': 'Bearer ' + token },
+            success : function(data) {   
+              sessionStorage.removeItem('idpedido');  
+              var output = '';
+              console.log(data);
+              $.each(data, function(key, val){
+                 output += '<li style="display:flex;align-items:center;">' /*<img style="top:auto;" src="../storage/' + val.imagen + '">' + val.nombre*/ + ' $' + val.precio + ' #' + val.stock + '</li>';
+              });
+              $('#listarticulospedido').html(output).listview("refresh"); 
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.responseText);
+            }
+          });                  
+      });       
+     
+      $('#perfil').on('pageinit',function(){          
           token = sessionStorage.getItem('token');
           $.ajax({
             url : 'http://localhost:8000/api/v1/user/perfil',
@@ -418,32 +440,8 @@ var User = {
   verarticulos : function(pedidoid){
     console.log('entre ver articulos pedido');
     console.log('idpedido: ' + pedidoid);
-    /*$.ajax({
-      url : 'http://localhost:8000/api/v1/articulo',
-      type : 'GET',
-      headers: {'Authorization': 'Bearer ' + token },
-      success : function(data) {
-        console.log(data);
-        if (data.error){
-          alert(data.error);
-        }
-        else{
-          console.log('todo bien');
-          $.mobile.navigate('#articulos');
-        }
-      },
-      error: function(a,b,c) {
-                console.log('error');
-                console.log(a,b,c);
-                sessionStorage.removeItem('token');
-                //sessionStorage.removeItem('email');
-                sessionStorage.clear();
-                token = null;
-                //var email = null;
-                $.mobile.navigate('#index'); 
-                location.reload();
-      },
-    });*/
+    sessionStorage.setItem('idpedido', pedidoid);
+    $.mobile.navigate('#articulospedido');     
   },
 
   logout : function(){

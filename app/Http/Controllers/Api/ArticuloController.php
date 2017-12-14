@@ -12,11 +12,8 @@ use App\Models\Backend\Producto;
 class ArticuloController extends Controller
 {
     public function index()
-    { 
-    	
-    	//$articulos=Articulo::all()->toArray();
+    {     	
     	$articulos = Producto::join('articulos', 'productos.id', '=', 'articulos.producto_id')->get()->toArray();
-        return response()->json($articulos,200);
-        
+        return response()->json($articulos,200);        
     }
 }

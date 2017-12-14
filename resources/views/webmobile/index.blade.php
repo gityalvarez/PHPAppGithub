@@ -176,6 +176,28 @@
         </div>
       </div>
     </div>
+    
+    <!--ARTICULOS-->
+    <div data-role="page" id='articulospedido' data-theme='a'>
+      <div data-role="header" data-theme='b' data-position='fixed' data-tap-toggle="false">
+        <a id="backButton" href="#" data-rel="back" data-transition='slide' data-direction='reverse'>Atrás</a>
+        <h1>PediloYA MOBILE</h1>
+        <a id="logout" href="#" data-transition='slide'>Logout</a>
+      </div>
+      <div data-role="content" class="ui-content" id="contenedorarticulospedido">
+        <ul data-role="listview" data-inset="true" id="listarticulospedido"></ul>
+      </div>
+      <div data-role='footer' data-position='fixed' data-theme='b' data-tap-toggle="false">
+        <div data-role="navbar">
+          <ul>
+            <li><a href="#articulos"  data-icon="bullets">Artículos</a></li>
+            <li><a href="#comercios"  data-icon="location">Comercios</a></li>
+            <li><a href="#pedidos" class="ui-btn-active ui-state-persist" data-icon="shop">Pedidos</a></li>
+            <li><a href="#perfil" data-icon="user">Perfil</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <!--PERFIL-->
     <div data-role="page" id='perfil' data-theme='a'>
