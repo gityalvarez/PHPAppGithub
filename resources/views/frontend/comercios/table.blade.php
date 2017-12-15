@@ -4,8 +4,8 @@
             <th>Nombre</th>
             <th>Dirección</th>
             <th>Logo</th>
-            <th>Gerente Id</th>
-            <th >Datos</th>
+            <th>Gerente</th>
+            <th>Datos</th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
             @else
                 <p>El comercio no tiene logo...</p>
             @endif
-            <td>{!! $comercio->user_id !!}</td>
+            <td>{!! App\User::find($comercio->user_id)->name !!}</td>
             <td>
                 <div class='btn-group'>
                     <a href="{!! route('frontend.comercios.show', [$comercio->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>                    

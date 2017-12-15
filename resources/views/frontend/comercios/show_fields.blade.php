@@ -22,8 +22,8 @@
 
 <!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id', 'Gerente Id:') !!}
-    <p>{!! $comercio->user_id !!}</p>
+    {!! Form::label('user_id', 'Gerente:') !!}
+    <p>{!! App\User::find($comercio->user_id)->name !!}</p>
 </div>
 
 

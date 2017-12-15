@@ -11,12 +11,12 @@ use App\Http\Controllers\Controller;
 use Auth;
 Use DB;
 use LucaDegasperi\OAuth2Server\Authorizer;
+use Illuminate\Support\Collection;
 
 class PedidoController extends Controller
 {
-    public function index(/*Request $request,*/ Authorizer $authorizer)
+    public function index(Authorizer $authorizer)
     {
-        //$cliente_id = User::where('email',$request->email)->first()->id;
         $cliente_id = $authorizer->getResourceOwnerId();
         $pedidos = Pedido::where('user_id', $cliente_id)->get()->toArray();
         return response()->json($pedidos,200);
@@ -75,6 +75,16 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::find($id);
         $articulos = $pedido->articulos()->get();
-        return response()->json($articulos,200);
+        $articulosproducto = collect();
+        $articuloscomercio = collect();
+        $articulosattr = collect();
+        foreach ($articulos as $articulo){
+            $articulosattr->push($articulo->getAttributes());
+            $articulosproducto->push($articulo->producto()->first()->getAttributes());
+            $articuloscomercio->push($articulo->comercio()->first()->getAttributes());       
+        }
+        return response()->json(['articulosattr' => $articulosattr, 'articulosproducto' => $articulosproducto, 'articuloscomercio' => $articuloscomercio],200);
+        
+        //return response()->json($articulos,200);
     }
 }

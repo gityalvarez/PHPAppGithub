@@ -144,33 +144,6 @@ var User = {
                   else {$input.val(0);}
                 }
               });
-              //se crea una tabla cantidad y un json, despues vemos qué se ajusta más
-              /*var cantidad = new Array(data.length);
-              cantidad.fill(0);
-              //var json = {};
-              var count = 0;
-              var id;
-              $( ".spin" ).each(function() {    //al hacer click en cantidad se activa la funcion
-                var spin = $( this );
-                var count = 0;
-                spin.click(function() {
-                  id = $( this ).closest('li').attr('id');    //se toma el id del articulo
-                  stock = $(this).prev().attr('value');       //se toma el stock del articulo
-                  precio = $(this).prev().prev().attr('value');   //se toma el precio del articul
-                  count++;
-                  //se muestra la cantidad en pantalla (falta perfeccionar el spin, boton de más y de menos por ejemplo)
-                  //así como la funcion de restar, que va a ser similar 
-
-                  spin.find( "span" ).text(count ); 
-                  cantidad[id-1]=count;       //se agrega la cantidad al arreglo cantidad
-                  //json[id]={};              //se rellena el json con todos los datos
-                  //json[id].id = id;
-                  //json[id].cantidad = count;
-                  //json[id].stock = stock;
-                  //json[id].precio = precio;
-                  
-                });
-              });*/
             }
           });         
       });
@@ -229,7 +202,7 @@ var User = {
               console.log(data);               
               var output = '';
               $.each(data, function(key, val){
-                output += '<li data-icon="eye" class="verarticulos" value='+ val.id + '><a href="#">' + val.id + ' $' + val.total + ' ' + val.created_at + ' ' + val.estado + '</li>';
+                output += '<li data-icon="eye" id="verarticulos" class="verarticulos" value='+ val.id + '><a href="#">' + val.id + ' $' + val.total + ' ' + val.created_at + ' ' + val.estado + '</li>';
               });
               $('#listapedidos').html(output).listview("refresh");
             },
@@ -239,7 +212,7 @@ var User = {
           }); 
         
       });
-      
+          
       $('#articulospedido').on('pageinit',function(){
           token = sessionStorage.getItem('token');
           var pedidoid = sessionStorage.getItem('idpedido');
@@ -251,17 +224,23 @@ var User = {
             success : function(data) {   
               sessionStorage.removeItem('idpedido');  
               var output = '';
-              console.log(data);
-              $.each(data, function(key, val){
-                 output += '<li style="display:flex;align-items:center;">' /*<img style="top:auto;" src="../storage/' + val.imagen + '">' + val.nombre*/ + ' $' + val.precio + ' #' + val.stock + '</li>';
-              });
+              console.log(data.articulosattr);
+              console.log(data.articuloscomercio);
+              console.log(data.articulosproducto);
+              var i;
+              for (i=0; i < data.articulosattr.length; i++){
+                  output += '<li style="display:flex;align-items:center;"><img style="top:auto;" src="../storage/' + data.articulosproducto[i].imagen  + '">' + data.articulosproducto[i].nombre + ' $' + data.articulosattr[i].precio + ' #' + data.articulosattr[i].stock + '<img style="top:auto;" src="../storage/' + data.articuloscomercio[i].logo  + '" width="80" heigth="80">' + data.articuloscomercio[i].nombre + '</li>';
+              }              
+              /*$.each(data, function(key, val){
+                 output += '<li style="display:flex;align-items:center;">' + ' $' + val.precio + ' #' + val.stock + '</li>';
+              });*/
               $('#listarticulospedido').html(output).listview("refresh"); 
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.responseText);
             }
           });                  
-      });       
+      });
      
       $('#perfil').on('pageinit',function(){          
           token = sessionStorage.getItem('token');
