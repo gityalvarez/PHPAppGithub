@@ -4,23 +4,17 @@
     {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Direccion Field -->
+<!-- Calle Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('direccion', 'Dirección:') !!}
-    {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Calle', 'Calle:') !!}
+    {!! Form::text('calle', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Latitud Field -->
-<!--div class="form-group col-sm-6">
-    {!! Form::label('latitud', 'Latitud:') !!}
-    {!! Form::text('latitud', null, ['class' => 'form-control']) !!}
-</div-->
-
-<!-- Longitud Field -->
-<!--div class="form-group col-sm-6">
-    {!! Form::label('longitud', 'Longitud:') !!}
-    {!! Form::text('longitud', null, ['class' => 'form-control']) !!}
-</div-->
+    <!-- Nopuerta Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('Nopuerta', 'N° Puerta:') !!}
+    {!! Form::text('nopuerta', null, ['class' => 'form-control']) !!}
+</div>
 
 <!-- Logo Field -->
 <div class="form-group col-sm-6">

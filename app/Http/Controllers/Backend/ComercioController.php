@@ -52,7 +52,7 @@ class ComercioController extends AppBaseController
         $gerentestodos = User::whereHas('roles',function($query){
             $query->where('id',2);
         })->lists('name', 'id');
-        $gerentesasignados = User::join('comercios', 'users.id', '=', 'comercios.user_id')->lists('name', 'user_id as id');;
+        $gerentesasignados = User::join('comercios', 'users.id', '=', 'comercios.user_id')->lists('name', 'user_id as id');
         $gerentesdisponibles = $gerentestodos->diff($gerentesasignados);        
         return view('backend.comercios.create')
                 ->with('gerentes',$gerentesdisponibles);
@@ -72,11 +72,22 @@ class ComercioController extends AppBaseController
         ])){
             abort(404);
         }*/
+       
         $file = $request->file('logo_comercio');        
         $input = $request->except(['logo_comercio']);
-        $newFilename =  'logo-comercio-'.$file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
+        $newFilename =  'logo-comercio-'.substr($file->getClientOriginalName(), 0, -4).'.'.$file->getClientOriginalExtension();
         Storage::disk('public')->put($newFilename, file_get_contents($file));       
         $input['logo'] =$newFilename;
+        $domicilio=$input['nopuerta'].", ".$input['calle'].", montevideo, uruguay";
+        $input['direccion']=$domicilio;
+        $dirparaquery = urlencode( $domicilio );
+        $baseUrl = 'http://nominatim.openstreetmap.org/search?format=json&limit=1';
+        $respuestaApi = file_get_contents("{$baseUrl}&q={$dirparaquery}");
+        $json =json_decode($respuestaApi);
+        $latitud=$json[0]->lat;
+        $longitud=$json[0]->lon;
+        $input['latitud']=$latitud;
+        $input['longitud']=$longitud;
         $comercio = $this->comercioRepository->create($input);
         Flash::success('Comercio guardado exitosamente');
         return redirect(route('backend.comercios.index'));
@@ -118,6 +129,10 @@ class ComercioController extends AppBaseController
 
             return redirect(route('backend.comercios.index'));
         }
+        $domicilio=explode(",", $comercio->direccion);
+        $comercio->nopuerta=$domicilio[0];
+        $comercio->calle=$domicilio[1];
+        //dd($comercio);
         $gerentestodos = User::where('id','<>',$comercio->user_id)
                     ->whereHas('roles',function($query){
                         $query->where('id',2);
@@ -126,6 +141,7 @@ class ComercioController extends AppBaseController
         $gerentesdisponibles = $gerentestodos->diff($gerentesasignados);        
         $gerenteactual = User::where('id',$comercio->user_id)->lists('name', 'id');
         $gerentesdisponibles = $gerenteactual->union($gerentesdisponibles);
+
         return view('backend.comercios.edit')
                 ->with('comercio', $comercio)
                 ->with('gerentes', $gerentesdisponibles);
@@ -148,8 +164,23 @@ class ComercioController extends AppBaseController
 
             return redirect(route('backend.comercios.index'));
         }
-
-        $comercio = $this->comercioRepository->update($request->all(), $id);
+        $devuelto=$request->except(['logo_comercio','calle','nopuerta']);
+        $file = $request->file('logo_comercio');
+        $newFilename =  'logo-comercio-'.substr($file->getClientOriginalName(), 0, -4).'.'.$file->getClientOriginalExtension();
+        Storage::disk('public')->put($newFilename, file_get_contents($file));       
+        $devuelto['logo'] =$newFilename;
+        $devuelto['direccion']=$request->nopuerta.", ".$request->calle.", montevideo, uruguay";
+        $dirparaquery = urlencode( $devuelto['direccion'] );
+        $baseUrl = 'http://nominatim.openstreetmap.org/search?format=json&limit=1';
+        $respuestaApi = file_get_contents("{$baseUrl}&q={$dirparaquery}");
+        $json =json_decode($respuestaApi);
+        $latitud=$json[0]->lat;
+        $longitud=$json[0]->lon;
+        $devuelto['latitud']=$latitud;
+        $devuelto['longitud']=$longitud;
+        //dd($devuelto);
+        $comercio = $this->comercioRepository->update($devuelto, $id);
+       
 
         Flash::success('Comercio actualizado exitosamente');
 
@@ -172,11 +203,11 @@ class ComercioController extends AppBaseController
 
             return redirect(route('backend.comercios.index'));
         }
-        $articulos = $comercio->articulos()->first();
-        if (!empty($articulos)){
+        $articulos = $comercio->articulos()->get();
+        if (!empty($articulos->items)){
             Flash::error('No es posible eliminar el Comercio dado que tiene Articulos asociados');
 
-            return redirect(route('backend.comercios.index'));
+            return redirect(route('backend.categorias.index'));
         }
         $this->comercioRepository->delete($id);
 
